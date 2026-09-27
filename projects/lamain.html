@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LaMain — Arthur Mourgue</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <nav class="topbar" aria-label="Sheets">
+    <a href="../index.html#work">Drawing list</a>
+    <span class="label label--muted paper">Sheet 01</span>
+  </nav>
+
+  <header class="titleblock">
+    <div class="titleblock__head">
+      <div><span class="label">Title</span><h1 class="name">LaMain</h1></div>
+      <span>prototype v1 · in progress</span>
+    </div>
+    <div class="titleblock__cell"><span class="label">Part</span><span>Three-finger hand for the SO-101</span></div><div class="titleblock__cell"><span class="label">Team</span><span>Arthur Mourgue · CAD by Julien Navet</span></div><div class="titleblock__cell"><span class="label">Stack</span><span>3D printing, servos, LeRobot</span></div><div class="titleblock__cell"><span class="label">Date · sheet</span><span>09.2026 – · 1/4</span></div>
+  </header>
+
+  <section class="detail">
+    <div class="detail__text paper">
+      <h2>The problem</h2><p>The SO-101 comes with a simple gripper. <mark class="todo">[In your words: what it can’t grasp, and why a hand matters for robot learning.]</mark></p><p>The goal is a hand that stays cheap and printable, fits the SO-101, and can later carry touch sensors in the fingertips.</p>
+      <h2>Constraints</h2><p>Cost around $200 and a target weight under 200 g, so the arm can still carry it. Everything 3D-printable. <mark class="todo">[Other constraints: servo type, bus, wrist interface.]</mark></p>
+      <h2>The system</h2><p>Each finger has two phalanges linked for flexion, in the same spirit as Pollen’s Amazing Hand. One servo handles abduction. The thumb uses two servos in series. That makes 5 DOF.</p><p><mark class="todo">[How the linkage works, why this servo layout, what you and Julien Navet each did.]</mark></p>
+    </div>
+    <figure>
+      <div class="media">[Detail A — exploded view or annotated CAD, blue lines]</div>
+      <figcaption class="spec paper">Detail A</figcaption>
+    </figure>
+  </section>
+
+  <section class="detail">
+    <div class="detail__text paper">
+      <h2>What broke</h2><p><mark class="todo">[Keep this section honest and dated: what failed on the first prints, what you changed.]</mark></p>
+      <h2>Next</h2><p>Fingertip touch sensors, then a policy trained with and without touch, evaluated over a fixed number of trials. <mark class="todo">[Task, N trials, success rate.]</mark></p>
+    </div>
+    <div>
+      <table class="results" aria-label="Results">
+        <tbody><tr><td>Degrees of freedom</td><td>5</td></tr><tr><td>Weight</td><td>not yet measured · target &lt; 200 g</td></tr><tr><td>Parts cost</td><td>not yet measured · estimate ~$200</td></tr><tr><td>First grasp</td><td><mark class="todo">[date, object]</mark></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="Other sheets">
+    <span></span>
+    <a href="../index.html#work">Drawing list</a>
+    <a href="lepotager.html">Sheet 02 · LePotager</a>
+  </nav>
+</main>
+</body>
+</html>

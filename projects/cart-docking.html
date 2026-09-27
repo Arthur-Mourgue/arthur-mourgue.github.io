@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart docking — Arthur Mourgue</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <nav class="topbar" aria-label="Sheets">
+    <a href="../index.html#work">Drawing list</a>
+    <span class="label label--muted paper">Sheet 03</span>
+  </nav>
+
+  <header class="titleblock">
+    <div class="titleblock__head">
+      <div><span class="label">Title</span><h1 class="name">Cart docking</h1></div>
+      <span>in production</span>
+    </div>
+    <div class="titleblock__cell"><span class="label">Company</span><span>Capra Robotics</span></div><div class="titleblock__cell"><span class="label">Where</span><span>Aarhus, Denmark</span></div><div class="titleblock__cell"><span class="label">Role</span><span>R&amp;D robotics intern</span></div><div class="titleblock__cell"><span class="label">Date · sheet</span><span>03–09.2026 · 3/4</span></div>
+  </header>
+
+  <section class="detail">
+    <div class="detail__text paper">
+      <h2>The problem</h2><p>The robot had to find a food cart and dock to it on its own, in the company’s core market.</p>
+      <h2>Constraints</h2><p>A 3D LiDAR, a CPU only, and under 45 ms per cycle. <mark class="todo">[What made it hard: cart shapes, clutter, lighting-independent but noisy data…]</mark></p>
+      <h2>The system</h2><p>A cart pose estimation algorithm working on the LiDAR point cloud, fed to the docking behaviour. <mark class="todo">[The pipeline in 3–4 steps, as far as you are allowed to describe it.]</mark></p>
+    </div>
+    <figure>
+      <div class="media">[Detail A — pipeline diagram redrawn in blue lines; nothing confidential]</div>
+      <figcaption class="spec paper">Detail A</figcaption>
+    </figure>
+  </section>
+
+  <section class="detail">
+    <div class="detail__text paper">
+      <h2>What broke</h2><p><mark class="todo">[The first approach you tried, and why you dropped it.]</mark></p>
+      <h2>Next</h2><p>Also at Capra: moved GDPR anonymisation onto the camera itself (OAK-D, YOLOX-S in FP16), cutting stream latency by 86%; trained and deployed a traversable-ground segmentation model on a Jetson Orin Nano (IoU 0.981), fused into the Nav2 costmap, with 10× less manual labelling.</p>
+      
+    </div>
+    <div>
+      <table class="results" aria-label="Results">
+        <tbody><tr><td>Pose accuracy</td><td>sub-centimetre</td></tr><tr><td>Cycle time</td><td>&lt; 45 ms on CPU</td></tr><tr><td>Docking</td><td>18 / 18 attempts</td></tr><tr><td>Status</td><td>shipped to production</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="Other sheets">
+    <a href="lepotager.html">Sheet 02 · LePotager</a>
+    <a href="../index.html#work">Drawing list</a>
+    <a href="english-to-arm.html">Sheet 04 · English → ARM</a>
+  </nav>
+</main>
+</body>
+</html>
