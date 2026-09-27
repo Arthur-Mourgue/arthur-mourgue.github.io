@@ -124,7 +124,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 /* z-index: 1 pins the hand (and its masked line art) above the reactive
    background (body::before, z-index -1) in every browser, so the ink strokes
    occlude the crosses while the transparent gaps still let them show through. */
-.hand { position: relative; z-index: 1; aspect-ratio: 588 / 580; }
+.hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }
 
 /* The drawing is a mask: its colour follows var(--blue), so it works in night mode */
 .hand__lines {
