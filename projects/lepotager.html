@@ -6,7 +6,7 @@
   <title>LePotager · Arthur Mourgue</title>
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../assets/css/style.css?v=11">
+  <link rel="stylesheet" href="../assets/css/style.css?v=12">
 </head>
 <body>
 <button class="theme-toggle" aria-label="Toggle light / dark mode">◐</button>
@@ -27,8 +27,8 @@
   <section class="detail">
     <div class="detail__text paper">
       <h2>The problem</h2><p>Can a low-cost arm tell a ripe fruit from an unripe one by touching it? The idea: grasp the fruit, press it, sort it.</p>
-      <h2>Constraints</h2><p>48 hours, an SO-101 arm, and a piezoresistive tactile sensor that was still experimental. <mark class="todo">[Team size, your role.]</mark></p>
-      <h2>The system</h2><p>An ACT imitation-learning policy (LeRobot) that takes both the camera and the tactile signal as input, trained on demonstrations collected during the hackathon.</p><p><mark class="todo">[How many demos, how you mounted the sensor, how the policy decides ripe vs. unripe.]</mark></p>
+      <h2>Constraints</h2><p>48 hours, an <a href="https://github.com/TheRobotStudio/SO-ARM100" target="_blank" rel="noopener">SO-101</a> arm, and a piezoresistive tactile sensor that was still experimental. <mark class="todo">[Team size, your role.]</mark></p>
+      <h2>The system</h2><p>An ACT imitation-learning policy (<a href="https://huggingface.co/lerobot" target="_blank" rel="noopener">LeRobot</a>) that takes both the camera and the tactile signal as input, trained on demonstrations collected during the hackathon.</p><p><mark class="todo">[How many demos, how you mounted the sensor, how the policy decides ripe vs. unripe.]</mark></p>
     </div>
     <figure>
       <div class="media">[Detail A: the sensor on the gripper, plus a plot of the tactile signal, ripe vs. unripe]</div>

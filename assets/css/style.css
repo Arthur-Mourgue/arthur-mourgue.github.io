@@ -110,7 +110,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 
 /* ---------- Hero ---------- */
 .hero {
-  min-height: max(100vh, 760px);
+  min-height: auto;
   display: grid;
   grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
   column-gap: var(--gap);
