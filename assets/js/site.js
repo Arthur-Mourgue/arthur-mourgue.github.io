@@ -20,8 +20,8 @@
 
 // Tactile background: the page-wide cross grid lights up in blue around the
 // cursor (see body::before in style.css). Tracking runs everywhere, including
-// over the hand — an opaque backing plate behind the drawing (.hand__backing)
-// keeps the crosses from showing through it.
+// over the hand; .hand::before is an opaque paper backing, masked by the
+// drawing, that keeps the crosses from showing through its strokes.
 (function () {
   if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   var root = document.documentElement;

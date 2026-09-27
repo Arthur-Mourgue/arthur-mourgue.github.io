@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Portfolio — "drawing set" art direction
+   Portfolio: "drawing set" art direction
    One blue = the hand / touch. Paper, crosses, serif, outlined project names.
    ========================================================================== */
 
@@ -40,7 +40,7 @@
 }
 
 /* Explicit choice from the theme toggle overrides the system preference above.
-   Default (no saved choice) is forced to light — see assets/js/site.js. */
+   Default (no saved choice) is forced to light, see assets/js/site.js. */
 :root[data-theme="dark"] {
   --paper: #12131A;
   --ink: #E9E7E1;
@@ -170,7 +170,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 /* Tactile background: the grid of little crosses lights up in blue near the
    cursor, across the whole page. --mx / --my are set by assets/js/site.js.
    position: absolute (anchored to body, which is position: relative above)
-   so this scrolls together with body's own grid background — they'd drift
+   so this scrolls together with body's own grid background; they'd drift
    out of alignment if this used position: fixed (viewport-anchored) while
    body's background stays document-anchored. --mx/--my are page coordinates
    (pageX/pageY) to match. */
