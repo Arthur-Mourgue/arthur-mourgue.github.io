@@ -125,6 +125,19 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
    so the crosses show through the drawing's empty gaps but never through its strokes. */
 .hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }
 
+/* Opaque backing under the ink, masked by a slightly dilated copy of the drawing.
+   The strokes are thin anti-aliased ink: once scaled they
+   are semi-transparent, so the reactive crosses bled through and looked like they
+   passed in front of the hand, especially in light mode. This paper layer blocks
+   the crosses on the strokes while the drawing's gaps stay see-through. */
+.hand::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--paper);
+  -webkit-mask: url("../img/lamain-lines-backing.png") center / contain no-repeat;
+          mask: url("../img/lamain-lines-backing.png") center / contain no-repeat;
+}
+
 /* The drawing is a mask: its colour follows var(--blue), so it works in night mode.
    The stroke colour is pre-blended with the paper rather than set with opacity: the
    result looks the same, but the strokes stay opaque and hide the reactive crosses
