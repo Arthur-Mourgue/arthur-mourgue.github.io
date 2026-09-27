@@ -121,18 +121,20 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .intro .me { font-weight: 700; }
 
 .hand-figure { margin: 0; width: 100%; max-width: clamp(420px, 34vw, 700px); justify-self: end; }
-/* z-index: 1 pins the hand (and its masked line art) above the reactive
-   background (body::before, z-index -1) in every browser, so the ink strokes
-   occlude the crosses while the transparent gaps still let them show through. */
+/* z-index: 1 keeps the hand above the reactive background (body::before, z-index -1),
+   so the crosses show through the drawing's empty gaps but never through its strokes. */
 .hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }
 
-/* The drawing is a mask: its colour follows var(--blue), so it works in night mode */
+/* The drawing is a mask: its colour follows var(--blue), so it works in night mode.
+   The stroke colour is pre-blended with the paper rather than set with opacity: the
+   result looks the same, but the strokes stay opaque and hide the reactive crosses
+   behind them (at opacity 0.72 the crosses bled through the ink). */
 .hand__lines {
   position: absolute; inset: 0;
   background: var(--blue);
+  background: color-mix(in srgb, var(--blue) 72%, var(--paper));
   -webkit-mask: url("../img/lamain-lines.png") center / contain no-repeat;
           mask: url("../img/lamain-lines.png") center / contain no-repeat;
-  opacity: 0.72;
 }
 /* A brighter copy, visible only inside a moving band: the sweep */
 .hand__sweep {
@@ -143,7 +145,9 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   animation: sweep 6s ease-in-out infinite;
 }
-.hand__sweep .hand__lines { opacity: 0.6; }
+/* Pure blue, not the pre-blended stroke colour: this copy sits on top of the opaque
+   base and has to read as brighter than it. */
+.hand__sweep .hand__lines { background: var(--blue); opacity: 0.6; }
 
 @keyframes sweep {
   0%        { -webkit-mask-position: 0 -60%; mask-position: 0 -60%; }
