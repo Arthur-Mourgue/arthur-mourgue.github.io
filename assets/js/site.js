@@ -27,7 +27,9 @@
   var root = document.documentElement;
 
   document.addEventListener("mousemove", function (e) {
-    root.style.setProperty("--mx", e.clientX + "px");
-    root.style.setProperty("--my", e.clientY + "px");
+    // pageX/pageY (document-relative), not clientX/clientY (viewport-relative):
+    // body::before is position: absolute and scrolls with the page.
+    root.style.setProperty("--mx", e.pageX + "px");
+    root.style.setProperty("--my", e.pageY + "px");
   });
 })();
