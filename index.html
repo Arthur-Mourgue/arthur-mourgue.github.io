@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Arthur Mourgue — robot learning, hands that feel</title>
+  <title>Arthur Mourgue: robot learning, hands that feel</title>
   <meta name="description" content="Robotics engineer. Building LaMain, a three-finger hand for the SO-101 arm. Looking for an end-of-studies internship from March 2027.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png -->
-  <meta property="og:title" content="Arthur Mourgue — robot learning, hands that feel">
+  <meta property="og:title" content="Arthur Mourgue: robot learning, hands that feel">
   <meta property="og:description" content="Building LaMain, a three-finger hand for the SO-101 arm.">
   <meta property="og:image" content="assets/img/og.png">
 </head>
@@ -22,9 +22,9 @@
     <div class="intro paper">
       <p class="me">Arthur Mourgue</p>
       <p>Robot learning, for hands that can feel what they hold.</p>
-      <p><span class="muted">now —</span> building <a href="#sheet-01">LaMain</a>, a three-finger hand for the SO-101 arm. It should grasp by the end of November, with touch next.</p>
-      <p><span class="muted">before —</span> won the <a href="#sheet-02">LeRobot hackathon</a> with a robot that sorts fruit by feeling it. Shipped perception to production robots at <a href="#sheet-03">Capra</a>, in Denmark. R&amp;D at <a href="#sheet-04">Safran</a>.</p>
-      <p><span class="muted">next —</span> an end-of-studies internship from March 2027. Humanoids, manipulation.</p>
+      <p><span class="muted">now:</span> building <a href="#sheet-01">LaMain</a>, a three-finger hand for the SO-101 arm. It should grasp by the end of November, with touch next.</p>
+      <p><span class="muted">before:</span> won the <a href="#sheet-02">LeRobot hackathon</a> with a robot that sorts fruit by feeling it. Shipped perception to production robots at <a href="#sheet-03">Capra</a>, in Denmark. R&amp;D at <a href="#sheet-04">Safran</a>.</p>
+      <p><span class="muted">next:</span> an end-of-studies internship from March 2027. Humanoids, manipulation.</p>
       <p class="links">
         <a href="mailto:arthurmourgue0@gmail.com">email</a>
         <a href="https://github.com/Arthur-Mourgue">github</a>
@@ -36,7 +36,12 @@
       <div class="hand" role="img" aria-label="LaMain, a three-finger robot hand, as a blue technical line drawing">
         <div class="hand__lines"></div>
         <div class="hand__sweep" aria-hidden="true"><div class="hand__lines"></div></div>
-        <div class="hand__spot" aria-hidden="true"></div>
+        <!-- Sensor dots: faint at rest, brighten with cursor proximity — see assets/js/site.js -->
+        <svg class="hand__sensors" viewBox="0 0 588 580" aria-hidden="true">
+          <circle class="sensor" cx="142.7" cy="246.6" r="4"/>
+          <circle class="sensor" cx="215.4" cy="263.4" r="4"/>
+          <circle class="sensor" cx="316.1" cy="448.3" r="4"/>
+        </svg>
         <!-- Annotation coordinates are in the drawing's own 588 x 580 space.
              Move the dots (circle cx/cy) onto the right parts once you have the clean CAD export. -->
         <svg class="hand__notes" viewBox="0 0 588 580" aria-hidden="true">
@@ -64,10 +69,10 @@
     <table class="sheet-table">
       <thead><tr><th><span class="label">No.</span></th><th><span class="label">Title</span></th><th class="col-year"><span class="label">Year</span></th><th><span class="label">Status</span></th></tr></thead>
       <tbody>
-        <tr><td>01</td><td><a href="#sheet-01">LaMain</a> — three-finger hand for the SO-101</td><td class="col-year">2026</td><td class="is-live">● in progress</td></tr>
-        <tr><td>02</td><td><a href="#sheet-02">LePotager</a> — sorting fruit by touch</td><td class="col-year">2026</td><td>won · Most Creative Project</td></tr>
-        <tr><td>03</td><td><a href="#sheet-03">Cart docking</a> — Capra Robotics</td><td class="col-year">2026</td><td>in production</td></tr>
-        <tr><td>04</td><td><a href="#sheet-04">English → ARM</a> — Safran Data Systems</td><td class="col-year">2023–26</td><td>published · ETTC 2025</td></tr>
+        <tr><td>01</td><td><a href="#sheet-01">LaMain</a>: three-finger hand for the SO-101</td><td class="col-year">2026</td><td class="is-live">● in progress</td></tr>
+        <tr><td>02</td><td><a href="#sheet-02">LePotager</a>: sorting fruit by touch</td><td class="col-year">2026</td><td>won · Most Creative Project</td></tr>
+        <tr><td>03</td><td><a href="#sheet-03">Cart docking</a>: Capra Robotics</td><td class="col-year">2026</td><td>in production</td></tr>
+        <tr><td>04</td><td><a href="#sheet-04">English → ARM</a>: Safran Data Systems</td><td class="col-year">2023–26</td><td>published · ETTC 2025</td></tr>
       </tbody>
     </table>
   </section>
@@ -81,8 +86,8 @@
       <p>Next: touch sensors in the fingertips, then a policy that uses them.</p>
       <table class="log" aria-label="Build log">
         <tr><td>[date]</td><td>CAD v1 done, with Julien Navet</td></tr>
-        <tr><td>[date]</td><td><mark class="todo">[first print — what broke]</mark></td></tr>
-        <tr class="is-goal"><td>nov. 2026</td><td>first grasp — the goal</td></tr>
+        <tr><td>[date]</td><td><mark class="todo">[first print: what broke]</mark></td></tr>
+        <tr class="is-goal"><td>nov. 2026</td><td>first grasp: the goal</td></tr>
       </table>
       <p class="links"><a href="projects/lamain.html">full sheet</a></p>
     </div>
@@ -120,11 +125,11 @@
       <h2 id="s3">Cart docking</h2>
       <p>The robot had to find a food cart and dock to it on its own, with a 3D LiDAR and a CPU only. <mark class="todo">[What made it hard, what you tried first.]</mark></p>
       <p>It estimates the cart’s pose to under a centimetre, in under 45 ms. In testing it docked 18 times out of 18, and it shipped to production.</p>
-      <p><span class="muted">Also at Capra —</span> moved GDPR anonymisation onto the camera itself (stream latency −86%), and deployed a ground segmentation model on a Jetson Orin Nano.</p>
+      <p><span class="muted">Also at Capra:</span> moved GDPR anonymisation onto the camera itself (stream latency −86%), and deployed a ground segmentation model on a Jetson Orin Nano.</p>
       <p class="links"><a href="projects/cart-docking.html">full sheet</a></p>
     </div>
     <figure>
-      <div class="media">[Field video, or a diagram redrawn in blue lines — nothing confidential]</div>
+      <div class="media">[Field video, or a diagram redrawn in blue lines; nothing confidential]</div>
       <figcaption class="paper">
         <span class="spec">Capra Robotics · Aarhus · 03–09.2026 · 3D LiDAR · CPU only</span>
       </figcaption>
@@ -136,7 +141,7 @@
     <div class="sheet__text paper">
       <h2 id="s4">English → ARM</h2>
       <p>Flight-test engineers needed to program acquisition hardware without writing C or C++. I automated the path from what they describe in plain English to a cross-compiled ARM binary.</p>
-      <p><span class="muted">Also —</span> FPGA logic for real-time current and voltage acquisition on flight-test equipment.</p>
+      <p><span class="muted">Also:</span> FPGA logic for real-time current and voltage acquisition on flight-test equipment.</p>
       <p class="links"><a href="projects/english-to-arm.html">full sheet</a></p>
     </div>
     <figure>
@@ -152,16 +157,16 @@
     <div class="background__text paper">
       <span class="label">Background</span>
       <h2 id="bg-title">Other sheets</h2>
-      <p>Electrical engineer (INSA Lyon), now in an M2 in Robotics at Sorbonne Université — a deliberate move toward robot learning.</p>
+      <p>Electrical engineer (INSA Lyon), now in an M2 in Robotics at Sorbonne Université: a deliberate move toward robot learning.</p>
       <span class="spec">Toulon → Lyon → Les Ulis → Aarhus → Paris</span>
     </div>
     <table class="sheet-table">
       <thead><tr><th><span class="label">Year</span></th><th><span class="label">Sheet</span></th></tr></thead>
       <tbody>
-        <tr><td>2026–</td><td>Local rules for robot swarms — M2 project</td></tr>
-        <tr><td>2023</td><td>Gesture detection on the Buddy robot, 8×8 ToF — Blue Frog Robotics</td></tr>
-        <tr><td>2022–23</td><td>RoboCup MSL &amp; Eurobot — 3rd in MSL, 1st in the scientific challenge</td></tr>
-        <tr><td>2022</td><td>School robotics competition, Toulon — won, with a PIC32 robot in C</td></tr>
+        <tr><td>2026–</td><td>Local rules for robot swarms: M2 project</td></tr>
+        <tr><td>2023</td><td>Gesture detection on the Buddy robot, 8×8 ToF: Blue Frog Robotics</td></tr>
+        <tr><td>2022–23</td><td>RoboCup MSL &amp; Eurobot: 3rd in MSL, 1st in the scientific challenge</td></tr>
+        <tr><td>2022</td><td>School robotics competition, Toulon: won, with a PIC32 robot in C</td></tr>
       </tbody>
     </table>
   </section>

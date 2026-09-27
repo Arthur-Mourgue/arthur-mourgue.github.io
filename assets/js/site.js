@@ -18,15 +18,27 @@
   });
 })();
 
-// Tactile highlight on the hand drawing: brightens under the cursor.
+// Tactile sensor dots on the hand drawing: each one brightens as the cursor
+// approaches, like a touch sensor reacting before contact.
 (function () {
   var figure = document.querySelector(".hand-figure");
   if (!figure || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-  var hand = figure.querySelector(".hand");
+  var sensors = figure.querySelectorAll(".sensor");
+  var RADIUS = 170; // px — distance at which a sensor starts reacting
+
   figure.addEventListener("mousemove", function (e) {
-    var rect = hand.getBoundingClientRect();
-    hand.style.setProperty("--mx", ((e.clientX - rect.left) / rect.width) * 100 + "%");
-    hand.style.setProperty("--my", ((e.clientY - rect.top) / rect.height) * 100 + "%");
+    sensors.forEach(function (dot) {
+      var rect = dot.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+      var proximity = Math.max(0, 1 - dist / RADIUS);
+      dot.style.setProperty("--proximity", proximity.toFixed(3));
+    });
+  });
+
+  figure.addEventListener("mouseleave", function () {
+    sensors.forEach(function (dot) { dot.style.setProperty("--proximity", 0); });
   });
 })();
