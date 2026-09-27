@@ -146,20 +146,21 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   75%, 100% { -webkit-mask-position: 0 160%; mask-position: 0 160%; }
 }
 
-/* Tactile sensor dots: faint at rest, brighten and grow as the cursor gets close.
-   --proximity (0–1) is set per dot by assets/js/site.js on mousemove. */
-.hand__sensors { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.sensor {
-  fill: var(--blue);
-  opacity: 0.16;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(calc(1 + var(--proximity, 0) * 1.2));
-  filter: drop-shadow(0 0 calc(var(--proximity, 0) * 8px) var(--blue));
-  transition: transform 0.15s ease-out, filter 0.15s ease-out, opacity 0.15s ease-out;
-}
+/* Tactile background: the grid of little crosses lights up in blue near the
+   cursor, across the whole page. --mx / --my are set by assets/js/site.js. */
 @media (hover: hover) and (pointer: fine) {
-  .sensor { opacity: calc(0.16 + var(--proximity, 0) * 0.84); }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    color: var(--blue);
+    background-image: url("../img/crosses-accent.svg");
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(circle 260px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
+            mask-image: radial-gradient(circle 260px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
+  }
 }
 
 /* Annotations: one at a time */
