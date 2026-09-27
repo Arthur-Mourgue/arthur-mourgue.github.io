@@ -121,6 +121,10 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 
 .hand-figure { margin: 0; width: 100%; max-width: clamp(420px, 34vw, 700px); justify-self: end; }
 .hand { position: relative; aspect-ratio: 588 / 580; }
+/* Opaque backing plate: keeps the reactive background crosses from showing
+   through the hand illustration's bounding box (it's a line drawing, mostly
+   negative space, so it needs its own solid ground). */
+.hand__backing { position: absolute; inset: 0; background: var(--paper) var(--grid); background-size: 28px 28px; }
 
 /* The drawing is a mask: its colour follows var(--blue), so it works in night mode */
 .hand__lines {
