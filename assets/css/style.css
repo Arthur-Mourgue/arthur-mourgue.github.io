@@ -3,6 +3,11 @@
    One blue = the hand / touch. Paper, crosses, serif, outlined project names.
    ========================================================================== */
 
+/* Native cross-fade between page loads (progressive enhancement, Chrome/Edge only) */
+@view-transition {
+  navigation: auto;
+}
+
 /* ---------- Tokens ---------- */
 :root {
   --paper: #F4F2ED;
@@ -34,6 +39,27 @@
   }
 }
 
+/* Explicit choice from the theme toggle overrides the system preference above.
+   Default (no saved choice) is forced to light — see assets/js/site.js. */
+:root[data-theme="dark"] {
+  --paper: #12131A;
+  --ink: #E9E7E1;
+  --muted: #A09E97;
+  --blue: #8FA2FF;
+  --hair: rgba(143, 162, 255, 0.35);
+  --todo: #2A2B35;
+  --grid: url("../img/crosses-dark.svg");
+}
+:root[data-theme="light"] {
+  --paper: #F4F2ED;
+  --ink: #111111;
+  --muted: #5F5E5A;
+  --blue: #1A0DAB;
+  --hair: rgba(26, 13, 171, 0.35);
+  --todo: #E6E2D8;
+  --grid: url("../img/crosses.svg");
+}
+
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -42,7 +68,7 @@ body {
   background: var(--paper) var(--grid);
   background-size: 28px 28px;
   color: var(--ink);
-  font: 20px/1.5 var(--serif);
+  font: clamp(17px, 0.85vw + 14px, 23px)/1.5 var(--serif);
   -webkit-font-smoothing: antialiased;
 }
 p { margin: 0; }
@@ -52,7 +78,7 @@ a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 img, video { max-width: 100%; display: block; }
 
-.wrap { max-width: 1440px; margin-inline: auto; padding-inline: var(--pad); }
+.wrap { max-width: min(1680px, 96vw); margin-inline: auto; padding-inline: var(--pad); }
 
 /* Text sitting on the crosses: the grid fades out behind it */
 .paper { background: var(--paper); box-shadow: 0 0 22px 18px var(--paper); }
@@ -71,12 +97,12 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 
 /* Project names: outlined italic serif, same stroke as the drawing */
 .name {
-  font: italic 400 60px/1 var(--serif);
+  font: italic 400 clamp(44px, 2.4vw + 30px, 72px)/1 var(--serif);
   letter-spacing: -0.01em;
   color: transparent;
   -webkit-text-stroke: 1.2px var(--blue);
 }
-.name--sm { font-size: 40px; -webkit-text-stroke-width: 1px; }
+.name--sm { font-size: clamp(32px, 1.6vw + 22px, 48px); -webkit-text-stroke-width: 1px; }
 @supports not (-webkit-text-stroke: 1px) { .name { color: var(--blue); } }
 
 .links { display: flex; flex-wrap: wrap; gap: 22px; }
@@ -93,7 +119,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .intro { display: flex; flex-direction: column; gap: 20px; padding: 8px; }
 .intro .me { font-weight: 700; }
 
-.hand-figure { margin: 0; width: 100%; max-width: 588px; justify-self: end; }
+.hand-figure { margin: 0; width: 100%; max-width: clamp(420px, 34vw, 700px); justify-self: end; }
 .hand { position: relative; aspect-ratio: 588 / 580; }
 
 /* The drawing is a mask: its colour follows var(--blue), so it works in night mode */
@@ -118,6 +144,28 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 @keyframes sweep {
   0%        { -webkit-mask-position: 0 -60%; mask-position: 0 -60%; }
   75%, 100% { -webkit-mask-position: 0 160%; mask-position: 0 160%; }
+}
+
+/* Tactile highlight: brightens under the cursor, like the hand feels it.
+   --mx / --my are set by assets/js/site.js on mousemove. Pointer devices only. */
+@media (hover: hover) and (pointer: fine) {
+  .hand__spot {
+    position: absolute; inset: 0;
+    background: var(--blue);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    -webkit-mask-image: radial-gradient(circle 130px at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%), url("../img/lamain-lines.png");
+    -webkit-mask-size: 100% 100%, contain;
+    -webkit-mask-position: center, center;
+    -webkit-mask-repeat: no-repeat, no-repeat;
+    -webkit-mask-composite: source-in;
+    mask-image: radial-gradient(circle 130px at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%), url("../img/lamain-lines.png");
+    mask-size: 100% 100%, contain;
+    mask-position: center, center;
+    mask-repeat: no-repeat, no-repeat;
+    mask-composite: intersect;
+  }
+  .hand-figure:hover .hand__spot { opacity: 1; }
 }
 
 /* Annotations: one at a time */
@@ -145,7 +193,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   padding-bottom: 16px;
 }
 .section-head__title { display: flex; flex-direction: column; gap: 8px; padding-right: 12px; }
-.section-head h2 { font-size: 34px; }
+.section-head h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
 
 /* ---------- Tables (drawing list, other sheets, build log) ---------- */
 .sheet-table {
@@ -177,7 +225,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   display: flex; flex-direction: column; gap: 18px;
   font-size: 19px; line-height: 1.55;
 }
-.sheet__text h2 { font-size: 34px; }
+.sheet__text h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
 .sheet figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
 .sheet figcaption { display: flex; flex-direction: column; gap: 8px; }
 
@@ -208,6 +256,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   padding-top: var(--section);
 }
 .background__text { display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.55; }
+.background__text h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
 
 /* ---------- Contact ---------- */
 .contact { padding-top: calc(var(--section) + 20px); padding-bottom: 56px; display: flex; flex-direction: column; gap: 48px; }
@@ -262,13 +311,10 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  body { font-size: 18px; }
   .hero, .sheet, .background, .detail { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
   .hero { min-height: auto; padding-top: 48px; }
   .hand-figure { justify-self: center; max-width: 440px; }
   .hand__notes { display: none; }          /* too small to read on phones */
-  .name { font-size: 44px; }
-  .name--sm { font-size: 34px; }
   .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .titleblock__cell:nth-child(odd of .titleblock__cell) { border-left: none; }
 }
@@ -277,10 +323,40 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   .sheet-table { font-size: 16px; }
 }
 
+/* ---------- Scroll reveal ---------- */
+/* Sections rise and fade in as they cross into view. Progressive enhancement:
+   browsers without scroll-driven animations just show the content, no animation. */
+@supports (animation-timeline: view()) {
+  .section, .sheet, .background, .contact {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  position: fixed; top: 20px; right: var(--pad);
+  z-index: 20;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--blue);
+  background: var(--paper);
+  color: var(--blue);
+  font: 16px var(--serif);
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--hair); }
+
 /* ---------- Motion off ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hand__sweep { display: none; }
   .note { animation: none; }
   .note:first-of-type { opacity: 1; }
+  .section, .sheet, .background, .contact { animation: none; }
 }
