@@ -158,8 +158,8 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
     color: var(--blue);
     background-image: url("../img/crosses-accent.svg");
     background-size: 28px 28px;
-    -webkit-mask-image: radial-gradient(circle 260px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
-            mask-image: radial-gradient(circle 260px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 140px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
+            mask-image: radial-gradient(circle 140px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
   }
 }
 
