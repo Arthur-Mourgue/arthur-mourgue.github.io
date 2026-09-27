@@ -14,6 +14,7 @@
   <meta property="og:image" content="assets/img/og.png">
 </head>
 <body>
+<button class="theme-toggle" aria-label="Toggle light / dark mode">◐</button>
 <main class="wrap">
 
   <!-- ============ HERO ============ -->
@@ -35,6 +36,7 @@
       <div class="hand" role="img" aria-label="LaMain, a three-finger robot hand, as a blue technical line drawing">
         <div class="hand__lines"></div>
         <div class="hand__sweep" aria-hidden="true"><div class="hand__lines"></div></div>
+        <div class="hand__spot" aria-hidden="true"></div>
         <!-- Annotation coordinates are in the drawing's own 588 x 580 space.
              Move the dots (circle cx/cy) onto the right parts once you have the clean CAD export. -->
         <svg class="hand__notes" viewBox="0 0 588 580" aria-hidden="true">
@@ -55,7 +57,6 @@
   <section id="work" class="section" aria-labelledby="work-title">
     <div class="section-head">
       <div class="section-head__title paper">
-        <span class="label">Drawing list</span>
         <h2 id="work-title">Work</h2>
       </div>
       <span class="label label--muted paper">4 sheets · updated 09.2026</span>
@@ -74,7 +75,6 @@
   <!-- ============ SHEET 01 ============ -->
   <article id="sheet-01" class="sheet" aria-labelledby="s1">
     <div class="sheet__text paper">
-      <span class="label">Sheet 01</span>
       <h2 id="s1">LaMain</h2>
       <p>A three-finger hand for the SO-101 arm, designed with Julien Navet. Each finger has two phalanges linked for flexion, one servo handles abduction, and the thumb runs on two servos in series: 5 DOF.</p>
       <p><mark class="todo">[In your words: why this hand, what the stock gripper can’t do.]</mark></p>
@@ -89,7 +89,6 @@
     <figure>
       <div class="media">[Photo of the real prototype on the bench, graded in blue]</div>
       <figcaption class="paper">
-        <span class="name name--sm">LaMain</span>
         <span class="spec">prototype v1 · 5 DOF · &lt; 200 g (target) · ~$200 (estimate)</span>
       </figcaption>
     </figure>
@@ -98,7 +97,6 @@
   <!-- ============ SHEET 02 ============ -->
   <article id="sheet-02" class="sheet" aria-labelledby="s2">
     <div class="sheet__text paper">
-      <span class="label">Sheet 02</span>
       <h2 id="s2">LePotager</h2>
       <p>A robot arm grabs a fruit, presses it to feel how ripe it is, then puts it in the right pile. We had 48 hours, an SO-101 and a piezoresistive sensor that was still experimental.</p>
       <p>The policy (ACT, trained with LeRobot) uses vision and touch together. <mark class="todo">[What broke during the 48 h, and how you got the demo working.]</mark></p>
@@ -111,7 +109,6 @@
         <video src="assets/video/lepotager.mp4" poster="assets/video/lepotager.jpg" autoplay muted loop playsinline></video> -->
       </div>
       <figcaption class="paper">
-        <span class="name name--sm">LePotager</span>
         <span class="spec">HF LeRobot hackathon · Copenhagen · 06.2026 · 48 h · Most Creative Project</span>
       </figcaption>
     </figure>
@@ -120,7 +117,6 @@
   <!-- ============ SHEET 03 ============ -->
   <article id="sheet-03" class="sheet" aria-labelledby="s3">
     <div class="sheet__text paper">
-      <span class="label">Sheet 03</span>
       <h2 id="s3">Cart docking</h2>
       <p>The robot had to find a food cart and dock to it on its own, with a 3D LiDAR and a CPU only. <mark class="todo">[What made it hard, what you tried first.]</mark></p>
       <p>It estimates the cart’s pose to under a centimetre, in under 45 ms. In testing it docked 18 times out of 18, and it shipped to production.</p>
@@ -130,7 +126,6 @@
     <figure>
       <div class="media">[Field video, or a diagram redrawn in blue lines — nothing confidential]</div>
       <figcaption class="paper">
-        <span class="name name--sm">Cart docking</span>
         <span class="spec">Capra Robotics · Aarhus · 03–09.2026 · 3D LiDAR · CPU only</span>
       </figcaption>
     </figure>
@@ -139,7 +134,6 @@
   <!-- ============ SHEET 04 ============ -->
   <article id="sheet-04" class="sheet" aria-labelledby="s4">
     <div class="sheet__text paper">
-      <span class="label">Sheet 04</span>
       <h2 id="s4">English → ARM</h2>
       <p>Flight-test engineers needed to program acquisition hardware without writing C or C++. I automated the path from what they describe in plain English to a cross-compiled ARM binary.</p>
       <p><span class="muted">Also —</span> FPGA logic for real-time current and voltage acquisition on flight-test equipment.</p>
@@ -148,7 +142,6 @@
     <figure>
       <div class="media">[Architecture diagram, redrawn in blue lines]</div>
       <figcaption class="paper">
-        <span class="name name--sm">English → ARM</span>
         <span class="spec">Safran Data Systems · Les Ulis · 2023–26 · paper at ETTC 2025</span>
       </figcaption>
     </figure>
@@ -158,7 +151,7 @@
   <section id="background" class="background" aria-labelledby="bg-title">
     <div class="background__text paper">
       <span class="label">Background</span>
-      <h2 id="bg-title" style="font-size: 34px">Other sheets</h2>
+      <h2 id="bg-title">Other sheets</h2>
       <p>Electrical engineer (INSA Lyon), now in an M2 in Robotics at Sorbonne Université — a deliberate move toward robot learning.</p>
       <span class="spec">Toulon → Lyon → Les Ulis → Aarhus → Paris</span>
     </div>
@@ -186,5 +179,6 @@
   </footer>
 
 </main>
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>
