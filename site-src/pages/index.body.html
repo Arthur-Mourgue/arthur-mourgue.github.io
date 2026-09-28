@@ -34,18 +34,21 @@
         </svg>
       </div>
       <figcaption class="hand-caption paper">
-        <span class="label">● Currently building</span>
-        <span class="hand-caption__title">
-          <span><span class="name">LaMain</span> prototype v1</span>
-          <span class="hand-caption__side">
+        <span class="label is-live--pulse">● Currently building</span>
+        <div class="hand-caption__grid">
+          <div class="hand-caption__left">
+            <span class="name">LaMain</span>
+            <span class="hand-caption__proto">prototype v1</span>
+          </div>
+          <div class="hand-caption__right">
             <span class="hand-caption__tags">
-              <span>5 DOF</span>
-              <span>under 200 g</span>
-              <span>under €200</span>
+              <span class="hand-caption__tag">5 DOF</span>
+              <span class="hand-caption__tag">under 200 g</span>
+              <span class="hand-caption__tag">under €200</span>
             </span>
-            <span class="spec">Mechanical design with Julien Navet</span>
-          </span>
-        </span>
+            <span class="hand-caption__credit">Mechanical design with Julien Navet</span>
+          </div>
+        </div>
       </figcaption>
     </figure>
   </section>
@@ -157,18 +160,28 @@
         <h3>Local rules for robot swarms</h3>
         <p>In a swarm, simple local rules produce a collective behaviour. I am working on the reverse problem. Given the behaviour we want, can a learned world model help find the rules that produce it?</p>
         <p>The literature review and the proposal are done, and the first experiments are starting.</p>
-        <span class="spec">world models · JEPA · optimisation · Sorbonne Université</span>
+        <div class="sheet__tags">
+          <span>world models</span>
+          <span>JEPA</span>
+          <span>optimisation</span>
+          <span>Set Transformer</span>
+          <span>CMA-ES</span>
+          <span>sim-to-real</span>
+        </div>
       </div>
-      <ul class="papers">
-        <li>
-          <a href="{{ETTC_PAPER_URL}}">{{ETTC_PAPER_TITLE}}</a>
-          <span class="spec">ETTC 2025, European Test and Telemetry Conference · co-author</span>
-        </li>
-        <li>
-          <a href="{{INSA_PAPER_URL}}">{{INSA_PAPER_TITLE}}</a>
-          <span class="spec">Technical paper, INSA Lyon, BioMAÉ vision pipeline · co-author</span>
-        </li>
-      </ul>
+      <div class="research__block">
+        <span class="label">Papers</span>
+        <ul class="papers">
+          <li>
+            <a href="https://conference-ettc.org/ettc-2025/program/detailed-program/#:~:text=Arthur%20Mourgue">Facilitating Advanced Real-Time Data Processing Through Auto-Coding: An Application of Large Language Models for Intelligent Flight Test Instrumentation</a>
+            <span class="spec">ETTC 2025, European Test and Telemetry Conference · co-author</span>
+          </li>
+          <li>
+            <a href="assets/documents/B6_D_tection_reconnaissance_gammares-2.pdf">Detection and recognition of gammarids</a>
+            <span class="spec">Technical paper, INSA Lyon, BioMAÉ vision pipeline · co-author</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 

@@ -227,6 +227,65 @@
   v1), à sa droite, arrangement interne inchangé. `css_version` 29.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — carte LaMain en deux colonnes
+- Fait : la légende LaMain est découpée en deux moitiés invisibles (grille 1fr 1fr,
+  fond blanc, sans séparateur) : à gauche `LaMain` / `prototype v1` / description
+  « Open-source hand with touch sensors for the SO-101 » ; à droite les tags
+  `5 DOF · under 200 g · under €200` puis le crédit « Mechanical design with
+  Julien Navet ». `.hand-caption__title`/`__sub` remplacés par `__grid`/`__left`/
+  `__right`/`__proto`/`__desc`. `css_version` 35. Diagnostiqué via capture Chrome
+  headless (carte ≈653px ; le bloc specs ne tenait pas à droite du nom complet).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Non commité (à la demande).
+
+## 2026-09-29 — « prototype v1 » en noir, description retirée
+- Fait : `.hand-caption__proto` passe de `var(--muted)` à `var(--ink)` (noir en
+  thème clair) ; la ligne `<span class="hand-caption__desc">Open-source hand with
+  touch sensors for the SO-101</span>` est supprimée de l'accueil, ainsi que la
+  règle CSS `.hand-caption__desc` devenue inutile. `.hand-caption__grid` passe de
+  `align-items: start` à `end`, donc le bloc tags + crédit descend au niveau de
+  « prototype v1 ». `css_version` 36.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Capture Chrome headless OK.
+  Non commité (à la demande).
+
+## 2026-09-29 — liens papier ETTC et rapport BioMAÉ
+- Fait : `{{ETTC_PAPER_URL}}` remplacé par l'URL du programme détaillé ETTC 2025
+  (`index.body.html`, `projects/dagobert.body.html`). `{{INSA_PAPER_URL}}` remplacé
+  par le PDF local `assets/documents/B6_D_tection_reconnaissance_gammares-2.pdf`
+  (accueil). Titres `{{ETTC_PAPER_TITLE}}` / `{{INSA_PAPER_TITLE}}` laissés en
+  placeholders (non fournis).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Non commité (à la demande).
+
+## 2026-09-29 — « ● Currently building » clignote
+- Fait : le label de légende LaMain passe en `label is-live--pulse` et réutilise
+  l'animation `status-pulse` existante (même clignotement lent que « ● Building »
+  du tableau, désactivé sous `prefers-reduced-motion`). Pas de changement CSS.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Non commité (à la demande).
+
+## 2026-09-29 — titres des deux papiers
+- Fait : à l'accueil (section Papers), `{{ETTC_PAPER_TITLE}}` remplacé par le titre
+  ETTC exact « Facilitating Advanced Real-Time Data Processing Through Auto-Coding:
+  An Application of Large Language Models for Intelligent Flight Test
+  Instrumentation » ; `{{INSA_PAPER_TITLE}}` remplacé par la traduction anglaise du
+  rapport BioMAÉ « Detection and recognition of gammarids » (titre original FR
+  « DÉTECTION ET RECONNAISSANCE DE GAMMARES »).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Non commité (à la demande).
+
+## 2026-09-29 — section Research, tags et label Papers
+- Fait : le spec du projet de recherche passe du texte `·` à un bloc encadré
+  `.sheet__tags` (même format que les fiches projet) ; « Sorbonne Université »
+  retiré ; termes ajoutés `Set Transformer`, `CMA-ES`, `sim-to-real`. Ajout d'un
+  label `Papers` au-dessus de la liste des papiers (colonne droite encadrée dans
+  `.research__block`). Aucun changement CSS.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Capture Chrome OK. Non commité.
+
+## 2026-09-29 — navigation des fiches et colonne centrée
+- Fait : dans le topbar des quatre fiches, le lien « Drawing list » devient
+  « ← Work » et le label « Sheet 0X » est supprimé. Dans le pager bas, « Drawing
+  list » devient « ← Work ». `.article-lead` et `.prose` reçoivent
+  `margin-inline: auto` : la colonne de texte (max 720px) est centrée
+  horizontalement. `css_version` 37.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK). Capture Chrome OK. Non commité.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

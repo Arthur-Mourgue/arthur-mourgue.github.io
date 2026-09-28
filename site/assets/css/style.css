@@ -238,25 +238,23 @@ img, video { display: block; max-width: 100%; }
   36%, 100% { opacity: 0; }
 }
 .hand-caption { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; padding: 4px; }
-.hand-caption__title { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 10px 14px; }
-/* Prototype specs and credit, right-aligned beside the name. */
-.hand-caption__side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.hand-caption__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; align-items: end; }
+.hand-caption__left, .hand-caption__right { display: flex; flex-direction: column; gap: 4px; }
+.hand-caption__left { gap: 2px; }
+.hand-caption__proto { color: var(--ink); }
+/* Specs and credit, stacked on the right half of the card. */
 .hand-caption__tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  align-items: center;
   gap: 6px;
   font: 11px/1.4 var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.hand-caption__tags span { border: 1px solid var(--hair); padding: 2px 8px; }
-.hand-caption__tags > span + span {
-  margin-left: 12px;
-  padding-left: 12px;
-  border-left: 1px solid var(--hair);
-}
+.hand-caption__tag { border: 1px solid var(--hair); padding: 2px 8px; }
+.hand-caption__credit { text-transform: none; letter-spacing: 0; font: 12px/1.5 var(--mono); color: var(--muted); }
 
 /* ==========================================================================
    SELECTED WORK
@@ -369,8 +367,8 @@ img, video { display: block; max-width: 100%; }
 .titleblock__cell + .titleblock__cell { border-left: 1px solid var(--blue); }
 .titleblock__cell .label { font-size: 9px; }
 
-.article-lead { max-width: 720px; margin-top: 56px; font-size: var(--lead); line-height: 1.5; padding: 6px; }
-.prose { max-width: 720px; margin-top: 40px; padding: 6px; background: var(--paper); box-shadow: 0 0 24px 20px var(--paper); }
+.article-lead { max-width: 720px; margin-top: 56px; margin-inline: auto; font-size: var(--lead); line-height: 1.5; padding: 6px; }
+.prose { max-width: 720px; margin-top: 40px; margin-inline: auto; padding: 6px; background: var(--paper); box-shadow: 0 0 24px 20px var(--paper); }
 .prose h2 { font-size: var(--h2); font-weight: 700; margin: 56px 0 16px; }
 .prose h3 { font-size: calc(var(--h2) * 0.72); font-weight: 700; margin: 36px 0 12px; }
 .prose p { margin: 0 0 16px; line-height: 1.65; }
