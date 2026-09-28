@@ -1,5 +1,5 @@
 {
-  "css_version": "37",
+  "css_version": "42",
   "js_version": "12",
   "pages": [
     {
@@ -38,9 +38,9 @@
     },
     {
       "output": "projects/dagobert.html",
-      "title": "DagoBERT, Arthur Mourgue",
+      "title": "Safran, Arthur Mourgue",
       "description": "Programming flight-test hardware in plain English, at Safran Data Systems.",
-      "og_title": "DagoBERT, Arthur Mourgue",
+      "og_title": "Safran, Arthur Mourgue",
       "og_description": "Programming flight-test hardware in plain English, at Safran Data Systems.",
       "body": "projects/dagobert.body.html"
     }

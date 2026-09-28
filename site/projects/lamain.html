@@ -7,7 +7,7 @@
   <meta name="description" content="An open-source robot hand with touch, light enough to go on the SO-101 arm.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../assets/css/style.css?v=37">
+  <link rel="stylesheet" href="../assets/css/style.css?v=42">
   <meta property="og:title" content="LaMain, Arthur Mourgue">
   <meta property="og:description" content="An open-source robot hand with touch, light enough to go on the SO-101 arm.">
 </head>
@@ -23,7 +23,7 @@
       <div><span class="label">Title</span><h1 class="name">LaMain</h1></div>
       <span>prototype v1 · building</span>
     </div>
-    <div class="titleblock__cell"><span class="label">Part</span><span>Three-finger hand for the SO-101</span></div><div class="titleblock__cell"><span class="label">Team</span><span>Julien Navet and me</span></div><div class="titleblock__cell"><span class="label">Stack</span><span>Feetech servos · FlexiTac · LeRobot</span></div><div class="titleblock__cell"><span class="label">Date</span><span>2026</span></div>
+    <div class="titleblock__cell"><span class="label">Part</span><span>Three-finger hand for the SO-101</span></div><div class="titleblock__cell"><span class="label">Team</span><span><a href="https://www.linkedin.com/in/julien-navet/">Julien Navet</a> and me</span></div><div class="titleblock__cell"><span class="label">Stack</span><span>Feetech servos · FlexiTac · LeRobot</span></div><div class="titleblock__cell"><span class="label">Date</span><span>2026</span></div>
   </header>
 
   <p class="article-lead">An open-source robot hand with touch, light enough to go on the SO-101 arm.</p>
@@ -45,8 +45,11 @@
     <p>LaMain has three fingers and is underactuated. It uses five servos for five degrees of freedom. One servo bends the index finger, one bends the middle finger, one spreads both of them apart, and two servos in series move the thumb.</p>
     <p>We started from the architecture of the Amazing Hand and reused its parts where we could. Pollen did real engineering work on it, and reusing parts keeps the cost down. But there is one big difference. The Amazing Hand drives each finger with two small servos. We use one servo per finger to save weight, and a single small servo does not have enough torque to hold an object. So we moved to larger Feetech servos.</p>
     <p>This is the main trade-off of the whole project. Small servos are light, so the arm can still lift things, but the hand cannot grip. Large servos grip well, but then the hand is too heavy for the arm. We are trying to find the point where both work.</p>
-    <p>Spreading the two fingers apart with a single servo also needed a new mechanism. Julien Navet, the mechanical engineer I work with, designed it.</p>
-    <figure><div class="media">[The annotated CAD of the hand]</div></figure>
+    <p>Spreading the two fingers apart with a single servo also needed a new mechanism. <a href="https://www.linkedin.com/in/julien-navet/">Julien Navet</a>, the mechanical engineer I work with, designed it.</p>
+    <figure>
+      <div class="media"><img src="../assets/documents/LaMain/main-ouverte.png" alt="CAD render of LaMain, the three-finger hand, open, in grey and blue"></div>
+      <figcaption>The hand in CAD, three fingers and five servos.</figcaption>
+    </figure>
     <h2>Touch</h2>
     <p>The first tactile sensor will be FlexiTac, a flexible piezoresistive sensor. It changes resistance when it is pressed. Later we want to compare it with other tactile skins.</p>
     <h2>Software and data</h2>
@@ -60,9 +63,12 @@
     <p>Nothing has been tested yet. The parts are ordered, and the first assembly comes next. The weight and cost above are targets, not measurements. I will assemble the hand, report the problems to Julien, and we will iterate.</p>
     <p>The goal is a hand that can grasp objects by the end of November 2026. Then we can start recording data.</p>
     <p>I will document every step on this page and on GitHub, with photos of the parts and of the assembled hand.</p>
-    <p>LaMain is designed with Julien Navet, who does the mechanical design. I handle the assembly, the tests, the LeRobot integration and the datasets.</p>
-    <p>The bill of materials and the design files are on <a href="{{LAMAIN_GITHUB_URL}}">GitHub</a>.</p>
-    <figure><div class="media">[The assembled hand]</div></figure>
+    <p>LaMain is designed with <a href="https://www.linkedin.com/in/julien-navet/">Julien Navet</a>, who does the mechanical design. I handle the assembly, the tests, the LeRobot integration and the datasets.</p>
+    <p>The bill of materials and the design files are on <a href="https://github.com/Arthur-Mourgue/LaMain">GitHub</a>.</p>
+    <figure>
+      <div class="media"><img src="../assets/documents/LaMain/lamain-mouvement.gif" alt="Animation of the LaMain fingers and thumb moving through their range"></div>
+      <figcaption>Range of motion of the fingers and the thumb.</figcaption>
+    </figure>
   </article>
 
   <nav class="pager" aria-label="Other sheets">

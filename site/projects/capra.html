@@ -7,7 +7,7 @@
   <meta name="description" content="Three problems on real autonomous mobile robots. Two of them are about computer vision models, one is about localisation.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../assets/css/style.css?v=37">
+  <link rel="stylesheet" href="../assets/css/style.css?v=42">
   <meta property="og:title" content="Capra Robotics, Arthur Mourgue">
   <meta property="og:description" content="Three problems on real autonomous mobile robots, from computer vision to LiDAR docking.">
 </head>
@@ -36,8 +36,22 @@
     <h3>The problem</h3>
     <p>The robots navigate mainly with LiDAR. A LiDAR is good at detecting walls and large obstacles, but it misses low ones like a plank on the floor or a kerb. It also makes the opposite mistake. It can treat a ramp or tall grass as a wall.</p>
     <p>The idea was to add a depth camera and a segmentation model. The model labels every pixel of the image as ground or obstacle. The obstacle pixels are then combined with the depth information and added to the robot's navigation map, so the robot avoids them.</p>
+    <figure class="media-row">
+      <div class="media"><img src="../assets/documents/Capra/segmentation-01-probleme-trottoir.png" alt="The robot's LiDAR rays passing over a low kerb"></div>
+      <div class="media"><img src="../assets/documents/Capra/segmentation-02-probleme-palette-au-sol.png" alt="A pallet lying flat on the floor, below the LiDAR plane"></div>
+      <figcaption>Low obstacles the LiDAR misses: a kerb, and a pallet left on the floor.</figcaption>
+    </figure>
+    <figure class="media-row">
+      <div class="media"><img src="../assets/documents/Capra/segmentation-03-probleme-pierre.png" alt="A small stone on the floor that the LiDAR reads as an obstacle"></div>
+      <div class="media"><img src="../assets/documents/Capra/segmentation-04-probleme-rampe.png" alt="A gentle ramp that the LiDAR reads as a wall"></div>
+      <figcaption>Obstacles the LiDAR invents: a stone, and a ramp read as a wall.</figcaption>
+    </figure>
     <h3>A first version</h3>
     <p>The first version ran in Python on the robot's main computer, at less than one image per second. That was slow, but it was enough to prove the idea. The robot stopped in front of a plank that its LiDAR could not see.</p>
+    <figure>
+      <div class="media"><img src="../assets/documents/Capra/segmentation-05-pipeline-premiere-version.png" alt="The first segmentation pipeline, from the camera image to the obstacle added to the navigation map"></div>
+      <figcaption>The first pipeline, camera image to navigation map.</figcaption>
+    </figure>
     <h3>Building the dataset</h3>
     <p>Generic models did not work well on the robot's images, so I needed my own dataset. Labelling images by hand is slow, so I used the models to help.</p>
     <p>I labelled 183 images by hand, including difficult cases such as stairs and door sills. I trained a large model on them and used it to label the next batch automatically. I corrected its mistakes, trained again, and repeated the process. In the end the dataset had 1,840 images, with about ten times less manual labelling than doing it all by hand.</p>
@@ -46,10 +60,22 @@
     <p>The most interesting result was about data. With the larger dataset, the smallest SegFormer improved more than it would have by switching to a model 17 times bigger. More data beat a bigger model.</p>
     <p>I also changed the training loss. The first masks had holes in the ground areas, so I added a term to the loss that measures how well the shapes overlap. This removed most of the holes.</p>
     <p>The final model is SegFormer B0, running at the camera's native resolution of 848 by 480 pixels. It reaches an IoU of 0.981 on 367 images it never saw during training.</p>
-    <figure><div class="media">[A camera image next to its ground mask, generic model and fine-tuned model]</div></figure>
+    <figure class="media-row">
+      <div class="media"><img src="../assets/documents/Capra/segmentation-06-modele-generique.png" alt="A generic segmentation model labelling the floor as a rug, water and sky"></div>
+      <div class="media"><img src="../assets/documents/Capra/segmentation-07-modele-finetune-sol.png" alt="The fine-tuned model labelling the whole floor as ground"></div>
+      <figcaption>Left: a generic model. Right: the same image after fine-tuning on the robot's ground.</figcaption>
+    </figure>
     <h3>What I did not finish</h3>
     <p>The target was 30 images per second on a Jetson Orin Nano. The model runs at 5.7. I profiled the pipeline with NVIDIA Nsight to understand why. Most of the time was lost outside the model itself, in Python overhead, in the processor waiting for the graphics chip, in memory copies, and in steps that ran one after the other instead of in parallel. I estimated the fixes, such as TensorRT and a C++ pipeline, but did not implement them. For the robot, accuracy mattered more than speed at that stage.</p>
+    <figure>
+      <div class="media media--narrow"><img src="../assets/documents/Capra/segmentation-10-profilage-nsight.png" alt="An Nsight profile showing most of the time spent outside the model itself"></div>
+      <figcaption>Nsight profiling: most of the time is spent outside the model.</figcaption>
+    </figure>
     <p>There is also a deeper limit. Segmentation says what a surface is, not whether the robot can drive on it. A gentle slope and a steep slope are both ground. The next step is to combine the segmentation with an elevation map built from the LiDAR. I ported that software to our version of ROS 2 before the priorities moved to anonymisation.</p>
+    <figure>
+      <div class="media media--narrow"><img src="../assets/documents/Capra/segmentation-11-carte-elevation-lidar.png" alt="A LiDAR elevation map of the floor, coloured by height"></div>
+      <figcaption>The LiDAR elevation map, to combine with segmentation.</figcaption>
+    </figure>
     <h2>2. Anonymising images inside the camera</h2>
     <h3>The problem</h3>
     <p>ARLI is a robot that drives along city sidewalks and scans them to keep a digital model of the city up to date. The project is funded by the European Space Agency, with the Technical University of Denmark and the City of Aarhus.</p>
@@ -60,7 +86,14 @@
     <h3>How it works</h3>
     <p>I fine-tuned YOLOX-S, a detection model under a permissive licence, to detect faces and number plates. The training data combined public datasets with 920 images from the robot, labelled automatically. The two classes were not equally represented in the data, so I weighted the training loss to balance them.</p>
     <p>I then converted the model step by step, from PyTorch to ONNX to OpenVINO, and finally to a 16-bit format that the camera's chip can run. Detection runs on the vision chip. Blurring and image compression run on the small processors. Only the blurred video stream leaves the camera.</p>
-    <figure><div class="media">[A frame from the robot with faces and plates pixelated]</div></figure>
+    <figure>
+      <div class="media media--narrow"><img src="../assets/documents/Capra/anonymisation-05-pipeline-dans-la-camera.png" alt="The four steps of the anonymisation pipeline inside the camera, then the ROS 2 node on the robot"></div>
+      <figcaption>Detection, pixelation, compression and streaming, all inside the camera.</figcaption>
+    </figure>
+    <figure>
+      <div class="media media--narrow"><img src="../assets/documents/Capra/anonymisation-03-detection-image-robot-parking.png" alt="A frame from the robot with the number plate pixelated"></div>
+      <figcaption>Only the blurred stream leaves the camera.</figcaption>
+    </figure>
     <h3>What went wrong</h3>
     <p>The first working version had a delay of 2.5 seconds, and the delay kept growing. The model was not the cause. The images were waiting in memory queues between the processing steps. When I made the queues shorter, the pipeline started to run out of images instead. The solution was queues that hold a single image and replace it when a new one arrives, instead of waiting.</p>
     <p>A second problem appeared after that. Blurred images compress badly, so each image became about five times bigger. When the network could not send them fast enough, the whole pipeline froze. Now the camera drops images when the network is too slow, and the delay stays stable.</p>
@@ -74,10 +107,17 @@
     <p>The robot's computer has no graphics chip, so everything runs on the processor. Each LiDAR point has an error of 1 to 3.5 centimetres, which is more than the tolerance. The carts are made of polished stainless steel, so some parts of them simply do not appear in the LiDAR data. And below about 50 centimetres the sensor saturates and distorts the points, exactly where precision matters most.</p>
     <h3>The approach</h3>
     <p>The method belongs to Capra, so I will not describe it. The main ideas are that no single measurement is trusted, that the estimate becomes more precise as the robot gets closer, and that the system works without adding markers to the customers' carts.</p>
-    <figure><div class="media">[A diagram of the docking manoeuvre]</div></figure>
+    <figure>
+      <div class="media media--narrow"><img src="../assets/documents/Capra/docking-02-sequence-de-recuperation.png" alt="Six steps of the docking manoeuvre, from the approach to recovering the cart"></div>
+      <figcaption>The six steps of the manoeuvre.</figcaption>
+    </figure>
+    <figure>
+      <div class="media media--narrow"><img src="../assets/documents/Capra/docking-01-robot-capra500-et-eurobin.png" alt="The Capra robot and the steel food cart it has to dock to"></div>
+      <figcaption>The robot and the cart it has to pick up.</figcaption>
+    </figure>
     <h3>The result</h3>
     <p>The robot picked up the cart 18 times out of 18 during an hour of continuous tests. Each update takes less than 45 milliseconds on the processor. This unlocks the fully automatic mode. The next steps are difficult cases, such as carts partly hidden by their neighbours, and a longer test campaign on a customer site.</p>
-    <p>I built this with José Vasquez. The reverse manoeuvre that uses the estimate is the work of Victor Risager.</p>
+    <p>I built this with <a href="https://www.linkedin.com/in/josevasq/">José Vasquez</a>. The reverse manoeuvre that uses the estimate is the work of Victor Risager.</p>
   </article>
 
   <nav class="pager" aria-label="Other sheets">

@@ -139,9 +139,22 @@ img, video { display: block; max-width: 100%; }
   font: 12px/1.6 var(--mono); color: var(--blue);
   overflow: hidden;
 }
-.media:has(img), .media:has(video) { border-style: solid; padding: 0; }
-.media img, .media video { width: 100%; height: 100%; object-fit: cover; }
-.media--small { aspect-ratio: 4 / 3; }
+/* With a real image or video, the frame hugs the media's own aspect ratio. */
+.media:has(img), .media:has(video) { border-style: solid; padding: 0; aspect-ratio: auto; }
+.media img, .media video { width: 100%; height: auto; object-fit: contain; }
+/* Cropped variant: a fixed landscape frame filled by the media. */
+.media--crop:has(img), .media--crop:has(video) { aspect-ratio: 4 / 3; }
+.media--crop img, .media--crop video { height: 100%; object-fit: cover; }
+/* Narrower frames for a small standalone figure, centred in the column. */
+.media--narrow { max-width: 440px; margin-inline: auto; }
+.media--medium { max-width: 580px; margin-inline: auto; }
+.prose figure:has(.media--narrow) figcaption,
+.prose figure:has(.media--medium) figcaption,
+.sheet figure:has(.media--narrow) figcaption,
+.sheet figure:has(.media--medium) figcaption { text-align: center; }
+/* Two images side by side. */
+.media-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.6vw, 20px); align-items: start; }
+.media-row figcaption { grid-column: 1 / -1; text-align: center; }
 
 /* ---------- Section heads ---------- */
 .section { padding-top: var(--section); scroll-margin-top: 16px; }
@@ -312,6 +325,8 @@ img, video { display: block; max-width: 100%; }
   align-items: start;
 }
 .research__block { display: flex; flex-direction: column; gap: 14px; padding: 6px; }
+/* Separator between the research project and the papers column. */
+.research__block + .research__block { border-left: 1px solid var(--blue); }
 .research__block h3 { font-size: calc(var(--h2) * 0.8); font-weight: 700; }
 .papers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); background: var(--paper); }
 .papers li { padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
@@ -373,7 +388,7 @@ img, video { display: block; max-width: 100%; }
 .prose h3 { font-size: calc(var(--h2) * 0.72); font-weight: 700; margin: 36px 0 12px; }
 .prose p { margin: 0 0 16px; line-height: 1.65; }
 .prose figure { margin: 36px 0; }
-.prose figure .media { aspect-ratio: 16 / 10; }
+.prose figcaption, .sheet figcaption { font: 12px/1.6 var(--mono); color: var(--muted); }
 .prose figcaption { margin-top: 8px; }
 .prose > :first-child { margin-top: 0; }
 
@@ -399,6 +414,7 @@ img, video { display: block; max-width: 100%; }
   .hand-figure { justify-self: center; width: min(100%, 440px); }
   .hand__notes { display: none; }
   .sheet, .research, .background { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .research__block + .research__block { border-left: none; }
   .cards { grid-template-columns: minmax(0, 1fr); }
   .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .titleblock__cell:nth-child(odd of .titleblock__cell) { border-left: none; }
@@ -407,6 +423,7 @@ img, video { display: block; max-width: 100%; }
   .col-year { display: none; }
   .hero-nav { gap: 14px; right: 44px; }
   .cv-table td:first-child { width: 96px; white-space: normal; }
+  .media-row { grid-template-columns: 1fr; }
 }
 
 /* ---------- Motion off ---------- */

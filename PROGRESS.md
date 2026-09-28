@@ -286,6 +286,92 @@
   horizontalement. `css_version` 37.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK). Capture Chrome OK. Non commité.
 
+## 2026-09-28 — médias des projets, nettoyage des emplacements
+- Fait : les 14 emplacements `.media` (8 accueil, 6 fiches) sont remplis ou
+  retirés. LaMain : `main-ouverte.png` (CAO) + `lamain-mouvement.gif` (webm
+  converti) ; LePotager : `sensing.gif` + `pipeline.gif` ; Capra :
+  `capra-segmentation.mp4` (seule image gardée ; les figures anonymisation et
+  docking, sans média, sont retirées) ; DagoBERT :
+  `dagobert-01-chaine-complete.png`. Accueil : les 4 feuilles et les 4 cartes
+  (gammarides, Buddy, RoboCup, vidéo compétition école). Liens remplis : email,
+  github, linkedin, et le CV (`assets/documents/cv_arthurmourgue.pdf`) ;
+  `{{UPDATED_DATE}}` → « September 2026 ». Liens projet fournis par l'owner :
+  LaMain (`github.com/Arthur-Mourgue/LaMain`), LePotager
+  (`github.com/Arthur-Mourgue/LePotager`), et le dépôt gammarides
+  (`github.com/Arthur-Mourgue/biomae-gammarus`) ajouté à la carte Water quality.
+- Médias : GIF et vidéos réencodés pour le web (`pipeline.gif` 6,4→3,2 Mo,
+  `sensing.gif` 2,3→1,9 Mo, `capra-segmentation.mp4` 5,6→2,4 Mo, vidéo école
+  2,9→1,7 Mo, GIF mouvement LaMain 1,0 Mo) ; JPG RoboCup 968→277 Ko ; PNG
+  optimisés (optipng). Fichier renommé sans espace (`main-ouverte.png`).
+- Décisions : `object-fit: contain` pour les figures (rien n'est rogné),
+  `cover` conservé pour les vignettes de cartes ; légendes `<figcaption>` en
+  mono muted ; `css_version` 38. Tous les placeholders de lien sont remplis : la
+  démo LePotager pointe désormais vers
+  `assets/documents/LePotager/fullvideolepotager.mp4`.
+- Vérifié : `./scripts/check.sh` vert (5 pages, 4 tests OK). Rendu vérifié par
+  impression PDF headless (accueil + 4 fiches).
+- À surveiller : médias non utilisés encore présents dans
+  `site/assets/documents/` (séries Capra et Safran, `fail.gif`,
+  `TrieurResistance.png`, vidéos sources) — à trier/supprimer plus tard.
+
+## 2026-09-28 — encarts adaptatifs, cartes réordonnées
+- Fait : les cadres `.media` épousent le format réel de l'image, du GIF ou de la
+  vidéo (`aspect-ratio: auto`, plus d'aplat bleu) ; variante `.media--crop` pour
+  garder un cadre paysage rempli (vidéo School robotics). Cartes « Other
+  projects » réordonnées : Water quality, RoboCup, School, Buddy — les deux
+  images verticales (Water quality, Buddy) aux extrémités et affichées en entier.
+  `css_version` 39.
+- Décisions : le hero de l'accueil garde le dessin technique + annotations (pas de
+  GIF animé) ; le GIF de mouvement reste la 2e figure de la page LaMain.
+- Vérifié : `./scripts/check.sh` vert ; rendu pleine page Chrome (grille des
+  cartes + figures).
+
+## 2026-09-28 — Safran, sous-titres cohérents, séparateur, images Capra/Safran
+- Fait : DagoBERT renommé « Safran » partout dans le visible (table, feuille,
+  fiche, title/og, pager) et le nom n'est plus cité dans le texte. Feuille LaMain
+  de l'accueil remplacée par le GIF de mouvement, avec un léger zoom (recadrage
+  du GIF). Sous-titres des cartes mini-projets uniformisés (Institution ·
+  Période) : « INSA Lyon · 2026 », « Robot Club Toulon · 2022 to 2023 »,
+  « Université de Toulon · 2022 », « Blue Frog Robotics · 2023 ». Séparateur
+  vertical entre le projet de recherche et les papiers. Capra : figures
+  anonymisation (pipeline dans la caméra + cadre flouté) et docking (séquence en
+  6 étapes + photo robot). LePotager : `fail.gif` sur « What went wrong »,
+  `pipeline.gif` sur « The result », sensing en `.media--narrow` (plus petit).
+  Safran : étapes 02–04 dans « How it works », 05 dans « The results ».
+  `css_version` 40.
+- Vérifié : `./scripts/check.sh` vert ; rendu pleine page + PDF Chrome (accueil
+  et fiches Capra/LePotager/Safran).
+
+## 2026-09-28 — retouches images, tags et mention ETTC
+- Fait : images des fiches réduites et centrées (`.media--narrow`, max 440px) :
+  GIF LaMain de l'accueil, étapes Safran 02–05, images Capra (segmentation
+  01/05/06/07/10/11, anonymisation et docking), sensing LePotager. Capra : images
+  ajoutées pour le premier problème (trottoir, première version, modèle générique
+  vs fine-tuné, profilage Nsight, carte d'élévation LiDAR) — la vidéo reste.
+  Tags : Capra (OpenVINO → Transformer, ajout CNN et CUDA), Safran (ajout NLP,
+  Llama 3 → Llama 3 8B). ETTC : mention « presented by me » (sous-titre + texte).
+  Pied de page : « Paris · open to moving anywhere ». `css_version` 41.
+- Vérifié : `./scripts/check.sh` vert ; rendu PDF Chrome (accueil + Capra, Safran,
+  LePotager).
+
+## 2026-09-28 — liens LinkedIn des coéquipiers
+- Fait : les personnes citées sont nommées en entier et liées à leur LinkedIn :
+  Julien Navet (accueil ×2, LaMain ×3), Doga Ozbek (LePotager ×3), Hakan Yanik
+  (LePotager titleblock + intro), José Vasquez (LePotager titleblock + intro,
+  Capra). « Akan » corrigé en « Hakan Yanik » (slug `hakanyanik`).
+- Vérifié : `./scripts/check.sh` vert.
+
+## 2026-09-28 — paires côte à côte, retrait de la vidéo Capra
+- Fait : figure côte à côte (`.media-row`, 2 colonnes, empilée en mobile) pour
+  les problèmes LiDAR de Capra — trottoir + palette (« ce que le LiDAR rate ») et
+  pierre + rampe (« ce qu'il détecte à tort ») ; modèle générique + fine-tuné
+  côte à côte. Pipeline « première version » remis en pleine largeur (plus
+  grand). Vidéo de segmentation retirée de la fiche Capra (légende comprise).
+  GIF LaMain de l'accueil repassé en `.media--medium` (580px, un peu plus grand).
+  `css_version` 42.
+- Vérifié : `./scripts/check.sh` vert ; rendu PDF Chrome (Capra).
+- Commit + push de tout le travail média de la session.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
