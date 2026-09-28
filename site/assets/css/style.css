@@ -22,10 +22,10 @@
   --mono: ui-monospace, Menlo, Consolas, monospace;
 
   /* Fluid sizing: everything scales with the viewport and the zoom level. */
-  --pad: clamp(24px, 6vw, 120px);        /* page side margins */
+  --pad: clamp(24px, 5vw, 96px);         /* page side margins */
   --gap: clamp(32px, 4vw, 72px);         /* gap between text and figure */
-  --h1: clamp(40px, 5.2vw, 88px);        /* hero title */
-  --lead: clamp(18px, 1.55vw, 26px);     /* hero paragraphs */
+  --h1: clamp(34px, 3.6vw, 60px);        /* hero title */
+  --lead: clamp(16px, 1.1vw, 20px);      /* hero paragraphs */
   --body: clamp(17px, 1.25vw, 20px);     /* rest of the site */
   --section: clamp(96px, 12vh, 160px);   /* space between sections */
 }
@@ -121,7 +121,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
   column-gap: var(--gap);
   align-items: center;
-  padding-block: clamp(72px, 12vh, 150px);
+  padding-block: clamp(64px, 9vh, 118px);
   scroll-margin-top: 0;
 }
 .hero__nav {
@@ -136,7 +136,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .intro h1 { font-size: var(--h1); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; }
 .intro p { font-size: var(--lead); line-height: 1.45; }
 
-.hand-figure { margin: 0; width: min(46vw, 72vh); width: min(46vw, 72svh); max-width: 100%; justify-self: end; }
+.hand-figure { margin: 0; width: min(36vw, 56vh); width: min(36vw, 56svh); max-width: 100%; justify-self: end; }
 /* z-index: 1 keeps the hand above the reactive background (body::before, z-index -1),
    so the crosses show through the drawing's empty gaps but never through its strokes. */
 .hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }

@@ -56,6 +56,14 @@
   cadratin ou demi-cadratin dans le texte visible ; les 12 placeholders présents.
 - À surveiller : `site-content.md` est encore la v1, à remplacer ou supprimer.
 
+## 2026-09-28 — hero proportions
+- Fait : le hero était trop grand (titre et dessin massifs, liens sous la ligne
+  de flottaison). Réduction de `--h1` (34-60px), `--lead` (16-20px), `--pad`
+  (max 96px), du padding vertical du hero et de la largeur du dessin
+  (`min(36vw, 56svh)`). `css_version` 15.
+- Vérifié : screenshots Chrome 1280x720, 1920x1080 et 390x844, rendu équilibré
+  et hero complet sur un écran. `./scripts/check.sh` vert.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
