@@ -214,6 +214,13 @@
   `.toolbox` retiré du CSS. `css_version` 27.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — crédit sous les tags LaMain
+- Fait : la légende LaMain passe en colonne droite `.hand-caption__side`
+  (tags puis crédit, alignés à droite), remontée au sommet du titre
+  (`align-items: flex-start`). Le crédit « Mechanical design with Julien Navet »
+  est donc sous les tags `5 DOF · under 200 g · under €200`. `css_version` 28.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
