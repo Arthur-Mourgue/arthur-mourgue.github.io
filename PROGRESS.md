@@ -172,6 +172,11 @@
   mechanical reliability » (index.body.html + docs/00).
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — majuscules après virgule dans la table
+- Fait : après le nom de projet dans la table, la première lettre du complément
+  est passée en majuscule (« LaMain, An open-source… », etc.).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
