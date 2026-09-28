@@ -167,6 +167,11 @@
   Llama 3, GNU Radio, C++, ARM). `css_version` 23.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — RoboCup : fiabilité mécanique, pas design chassis
+- Fait : carte RoboCup, « designed their chassis » remplacé par « ensured their
+  mechanical reliability » (index.body.html + docs/00).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

@@ -144,7 +144,7 @@ papers:
   image: "The 8 × 8 view on Buddy's screen"
 - title: "RoboCup and the French Robotics Cup"
   status: "2022 and 2023"
-  text: "Kept two autonomous robots running through multi-day tournaments and designed their chassis. Third in the RoboCup Middle Size League, first in the scientific challenge."
+  text: "Kept two autonomous robots running through multi-day tournaments and ensured their mechanical reliability. Third in the RoboCup Middle Size League, first in the scientific challenge."
   image: "The robots in competition"
 - title: "School robotics competition"
   status: "Université de Toulon · 2022"
