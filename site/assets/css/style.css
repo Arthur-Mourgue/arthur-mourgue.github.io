@@ -273,7 +273,8 @@ img, video { display: block; max-width: 100%; }
 .sheet__text h3 { font-size: var(--h2); font-weight: 700; }
 .sheet figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
 /* Skills insert: the tech list, framed, above the "Read the full sheet" link. */
-.sheet__tags {
+.sheet__tags,
+.hand-caption__tags {
   align-self: flex-start;
   max-width: 100%;
   display: flex;

@@ -187,6 +187,14 @@
   (17-19px), comme les autres paragraphes du hero. `css_version` 24.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — encart specs du prototype LaMain
+- Fait : la ligne de la légende du prototype est scindée : les specs (5 DOF,
+  under 200 g, under €200) passent dans un encart encadré `.hand-caption__tags`
+  (même style que `.sheet__tags`, partagé par le sélecteur), et la créditation
+  devient une ligne à part « Mechanical design with Julien Navet ».
+  `css_version` 25.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

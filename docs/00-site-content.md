@@ -68,7 +68,7 @@ figure:
   label: "Current project · building"
   name: "LaMain"
   subtitle: "prototype v1"
-  spec: "5 DOF · under 200 g · under €200 (targets) · mechanical design by Julien Navet"
+  spec: "5 DOF · under 200 g · under €200 · mechanical design with Julien Navet"
   annotations: ["linked flexion", "abduction servo", "thumb, two servos"]
 scroll_cue: "Selected work ↓"
 ```
