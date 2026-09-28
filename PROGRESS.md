@@ -112,6 +112,19 @@
   insa-lyon.fr, univ-tln.fr). `css_version` 20.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-28 — suppression des petits titres du home
+- Fait : retiré la ligne spec du hero (« Most Creative Project, LeRobot
+  hackathon 2026 · Co-author, ETTC 2025 »), les quatre en-têtes de section
+  (`section-head`: « Drawing list / Selected work », « Research / Research and
+  papers », « Also / Other projects », « Background / Experience and
+  education ») et leur `aria-labelledby` devenu orphelin, ainsi que les labels
+  des feuilles (« Sheet 01 · building », « Sheet 02 · on real robots », …).
+  Les h3 de projet (LaMain, Capra Robotics, …) sont conservés.
+- Décisions : les labels Sheet 0X ont aussi été retirés, comme demandé dans le
+  message ; facile à restaurer si non voulu. `.section-head` reste dans le CSS
+  (plus utilisé sur le home).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
