@@ -1,11 +1,11 @@
 {
-  "css_version": "13",
+  "css_version": "14",
   "js_version": "10",
   "pages": [
     {
       "output": "index.html",
       "title": "Arthur Mourgue: research engineer, robotics and AI",
-      "description": "Research engineer in robotics and AI. I work on AI for robots, from training the models to making them work on real hardware. Building LaMain, an open-source robot hand with touch. Looking for an end-of-studies internship from March 2027.",
+      "description": "Research engineer in robotics and AI. I work on AI for robots, from training the models to making them work on real hardware. Building LaMain, an open-source robot hand with touch, and researching world models for robot swarms. Looking for an end-of-studies internship from March 2027.",
       "og_comment": "Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png",
       "og_title": "Arthur Mourgue: research engineer, robotics and AI",
       "og_description": "I work on AI for robots, from training the models to making them work on real hardware. Currently building LaMain, an open-source robot hand with touch.",
@@ -21,20 +21,20 @@
       "body": "projects/lamain.body.html"
     },
     {
-      "output": "projects/lepotager.html",
-      "title": "LePotager · Arthur Mourgue",
-      "description": "LePotager: a robot arm that sorts fruit by pressing it, using imitation learning on vision and touch. Built in 48 hours at the LeRobot hackathon in Copenhagen.",
-      "og_title": "LePotager · Arthur Mourgue",
-      "og_description": "A robot arm that sorts fruit by touch, built in 48 hours at the LeRobot hackathon.",
-      "body": "projects/lepotager.body.html"
-    },
-    {
       "output": "projects/capra.html",
       "title": "Capra Robotics · Arthur Mourgue",
       "description": "Capra Robotics: three problems on real autonomous mobile robots. Ground segmentation on a Jetson, anonymisation inside an OAK-D camera, and LiDAR docking to a food cart.",
       "og_title": "Capra Robotics · Arthur Mourgue",
       "og_description": "Three problems on real autonomous mobile robots, from computer vision to LiDAR docking.",
       "body": "projects/capra.body.html"
+    },
+    {
+      "output": "projects/lepotager.html",
+      "title": "LePotager · Arthur Mourgue",
+      "description": "LePotager: a robot arm that sorts fruit by pressing it, using imitation learning on vision and touch. Built in 48 hours at the LeRobot hackathon in Copenhagen.",
+      "og_title": "LePotager · Arthur Mourgue",
+      "og_description": "A robot arm that sorts fruit by touch, built in 48 hours at the LeRobot hackathon.",
+      "body": "projects/lepotager.body.html"
     },
     {
       "output": "projects/dagobert.html",

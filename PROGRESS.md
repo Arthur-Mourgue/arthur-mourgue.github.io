@@ -37,6 +37,25 @@
   `{{ETTC_PAPER_URL}}`, `{{INSA_PAPER_TITLE}}`, `{{INSA_PAPER_URL}}`,
   `{{UPDATED_DATE}}`) ; slots média encore en boîtes pointillées.
 
+## 2026-09-28 — home v2 (spec complète)
+- Fait : home reconstruite selon la spec v2. Hero plein écran (nav Work/Research/
+  Background/CV en haut à droite, « Selected work ↓ » en bas, nom + h1 fluides),
+  Selected work (table drawing list + 4 sheets avec grande image), Research and
+  papers (2 colonnes), Other projects (grille de 4 cartes), Background (2 tables
+  Experience/Education), Contact. Ancienne section « Now » et ancienne table
+  « Other sheets » supprimées. Ordre des pages projet passé à LaMain, Capra,
+  LePotager, DagoBERT (pagers mis à jour). Paragraphe ajouté à Capra « Building
+  the dataset ». CSS réécrit (tokens fluides --h1/--lead/--body/--section, hero
+  100svh, plus de fade-in au scroll), art direction conservée. `css_version` 14.
+- Décisions : la spec v2 dit de garder les `{{...}}` ; tous les placeholders sont
+  donc laissés visibles (y compris email/github/linkedin/cv). Les pages projet
+  gardent la mise en page actuelle (titleblock, prose + slots image, pager) ; pas
+  de table de résultats, la v2 ne fournit pas de contenu pour elle. `site-content.md`
+  (v1) n'a pas été touché, la v2 le remplace.
+- Vérifié : `./scripts/check.sh` vert (5 pages, 4 tests OK) ; aucun « : », tiret
+  cadratin ou demi-cadratin dans le texte visible ; les 12 placeholders présents.
+- À surveiller : `site-content.md` est encore la v1, à remplacer ou supprimer.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

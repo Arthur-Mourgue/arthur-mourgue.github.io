@@ -7,7 +7,7 @@
   <meta name="description" content="Capra Robotics: three problems on real autonomous mobile robots. Ground segmentation on a Jetson, anonymisation inside an OAK-D camera, and LiDAR docking to a food cart.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../assets/css/style.css?v=13">
+  <link rel="stylesheet" href="../assets/css/style.css?v=14">
   <meta property="og:title" content="Capra Robotics · Arthur Mourgue">
   <meta property="og:description" content="Three problems on real autonomous mobile robots, from computer vision to LiDAR docking.">
 </head>
@@ -44,6 +44,7 @@
     <p>The first version ran in Python on the robot's main computer, at less than one image per second. That was slow, but it was enough to prove the idea. The robot stopped in front of a plank that its LiDAR could not see.</p>
 
     <h3>Building the dataset</h3>
+    <p>Generic models did not work well on the robot's images, so I needed my own dataset. Labelling images by hand is slow, so I used the models to help.</p>
     <p>I labelled 183 images by hand, including difficult cases such as stairs and door sills. I trained a large model on them and used it to label the next batch automatically. I corrected its mistakes, trained again, and repeated the process. In the end the dataset had 1,840 images, with about ten times less manual labelling than doing it all by hand.</p>
 
     <h3>Choosing the model</h3>
@@ -110,9 +111,9 @@
   </article>
 
   <nav class="pager" aria-label="Other sheets">
-    <a href="lepotager.html">Sheet 02 · LePotager</a>
+    <a href="lamain.html">Sheet 01 · LaMain</a>
     <a href="../index.html#work">Drawing list</a>
-    <a href="dagobert.html">Sheet 04 · DagoBERT</a>
+    <a href="lepotager.html">Sheet 03 · LePotager</a>
   </nav>
 </main>
 <script src="../assets/js/site.js?v=10" defer></script>

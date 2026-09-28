@@ -21,9 +21,13 @@
   --serif: "Times New Roman", Times, Georgia, serif;
   --mono: ui-monospace, Menlo, Consolas, monospace;
 
-  --pad: clamp(24px, 7.6vw, 110px);   /* page side margin, 110px on desktop */
-  --gap: clamp(40px, 7.6vw, 110px);   /* gap between text column and figure */
-  --section: clamp(96px, 10vw, 140px);/* space between sections */
+  /* Fluid sizing: everything scales with the viewport and the zoom level. */
+  --pad: clamp(24px, 6vw, 120px);        /* page side margins */
+  --gap: clamp(32px, 4vw, 72px);         /* gap between text and figure */
+  --h1: clamp(40px, 5.2vw, 88px);        /* hero title */
+  --lead: clamp(18px, 1.55vw, 26px);     /* hero paragraphs */
+  --body: clamp(17px, 1.25vw, 20px);     /* rest of the site */
+  --section: clamp(96px, 12vh, 160px);   /* space between sections */
 }
 
 /* Night mode: same system, inverted paper */
@@ -69,7 +73,7 @@ body {
   background: var(--paper) var(--grid);
   background-size: 28px 28px;
   color: var(--ink);
-  font: clamp(17px, 0.85vw + 14px, 23px)/1.5 var(--serif);
+  font: var(--body)/1.5 var(--serif);
   -webkit-font-smoothing: antialiased;
 }
 p { margin: 0; }
@@ -98,29 +102,41 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 
 /* Project names: outlined italic serif, same stroke as the drawing */
 .name {
-  font: italic 400 clamp(44px, 2.4vw + 30px, 72px)/1 var(--serif);
+  font: italic 400 clamp(32px, 2.4vw + 16px, 56px)/1 var(--serif);
   letter-spacing: -0.01em;
   color: transparent;
   -webkit-text-stroke: 1.2px var(--blue);
 }
-.name--sm { font-size: clamp(32px, 1.6vw + 22px, 48px); -webkit-text-stroke-width: 1px; }
+.name--lg { font-size: clamp(44px, 2.4vw + 30px, 72px); }
 @supports not (-webkit-text-stroke: 1px) { .name { color: var(--blue); } }
 
 .links { display: flex; flex-wrap: wrap; gap: 22px; }
 
 /* ---------- Hero ---------- */
 .hero {
-  min-height: auto;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
   display: grid;
-  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
   column-gap: var(--gap);
   align-items: center;
-  padding-block: 64px;
+  padding-block: clamp(72px, 12vh, 150px);
+  scroll-margin-top: 0;
 }
-.intro { display: flex; flex-direction: column; gap: 20px; padding: 8px; }
-.intro .me { font-weight: 700; }
+.hero__nav {
+  position: absolute; top: clamp(20px, 4vh, 44px); right: 48px;
+  z-index: 2;
+  display: flex; flex-wrap: wrap; gap: clamp(16px, 2vw, 32px);
+}
+.hero__cue { position: absolute; bottom: clamp(20px, 4vh, 44px); left: 0; }
 
-.hand-figure { margin: 0; width: 100%; max-width: clamp(420px, 34vw, 700px); justify-self: end; }
+.intro { display: flex; flex-direction: column; gap: clamp(12px, 1.4vh, 20px); padding: 8px; }
+.intro .me { font-weight: 700; font-size: var(--body); }
+.intro h1 { font-size: var(--h1); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; }
+.intro p { font-size: var(--lead); line-height: 1.45; }
+
+.hand-figure { margin: 0; width: min(46vw, 72vh); width: min(46vw, 72svh); max-width: 100%; justify-self: end; }
 /* z-index: 1 keeps the hand above the reactive background (body::before, z-index -1),
    so the crosses show through the drawing's empty gaps but never through its strokes. */
 .hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }
@@ -208,7 +224,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .hand-caption__title { display: flex; align-items: baseline; gap: 16px; font-size: 17px; }
 
 /* ---------- Section heads ---------- */
-.section { padding-top: var(--section); }
+.section { padding-top: var(--section); scroll-margin-top: 24px; }
 .section-head {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
   padding-bottom: 16px;
@@ -216,7 +232,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .section-head__title { display: flex; flex-direction: column; gap: 8px; padding-right: 12px; }
 .section-head h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
 
-/* ---------- Tables (drawing list, other sheets, build log) ---------- */
+/* ---------- Tables (drawing list, experience, education) ---------- */
 .sheet-table {
   width: 100%;
   border-collapse: collapse;
@@ -225,15 +241,14 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   background: var(--paper);
   font-size: 18px;
 }
-.sheet-table th {
-  text-align: left; font-weight: 400; padding: 8px 12px;
-}
+.sheet-table th { text-align: left; font-weight: 400; padding: 8px 12px; }
 .sheet-table td { padding: 12px; border-top: 1px solid var(--hair); vertical-align: top; }
 .sheet-table td:first-child { font: 12px/2 var(--mono); color: var(--muted); white-space: nowrap; }
 .sheet-table tbody tr:hover td { color: var(--blue); }
 .is-live { color: var(--blue); }
 
-/* ---------- Project sheet (home) ---------- */
+/* ---------- Selected work (home) ---------- */
+.work-list { padding-bottom: var(--section); }
 .sheet {
   display: grid;
   grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
@@ -242,13 +257,10 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   padding-top: var(--section);
   scroll-margin-top: 24px;
 }
-.sheet__text {
-  display: flex; flex-direction: column; gap: 18px;
-  font-size: 19px; line-height: 1.55;
-}
+.sheet__text { display: flex; flex-direction: column; gap: 18px; line-height: 1.55; }
 .sheet__text h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
 .sheet figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
-.sheet figcaption { display: flex; flex-direction: column; gap: 8px; }
+.sheet figcaption { display: flex; flex-direction: column; gap: 10px; }
 
 .media {
   aspect-ratio: 3 / 2;
@@ -263,27 +275,42 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .media:has(video), .media:has(img) { border-style: solid; padding: 0; }
 .media video, .media img { width: 100%; height: 100%; object-fit: cover; }
 
-.log { width: 100%; border-collapse: collapse; border-top: 1px solid var(--blue); font-size: 17px; }
-.log td { padding: 9px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
-.log td:first-child { width: 110px; font: 12px/1.9 var(--mono); color: var(--muted); }
-.log .is-goal td:first-child { color: var(--blue); }
-
-/* ---------- Background ---------- */
-.background {
+/* ---------- Research and papers ---------- */
+.research-grid {
   display: grid;
-  grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   column-gap: var(--gap);
   align-items: start;
-  padding-top: var(--section);
+  padding-top: 40px;
 }
-.background__text { display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.55; }
-.background__text h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
+.research-item { display: flex; flex-direction: column; gap: 14px; padding: 4px; line-height: 1.55; }
+.research-item h3 { font: italic 400 clamp(24px, 1.4vw + 16px, 34px)/1.1 var(--serif); }
+.paper-item { display: flex; flex-direction: column; gap: 6px; padding: 4px; }
+.paper-item + .paper-item { margin-top: 28px; }
 
-/* ---------- Entries (Now, selected work, earlier work, papers) ---------- */
-.entries { display: flex; flex-direction: column; gap: 40px; padding-top: 40px; }
-.entry { display: flex; flex-direction: column; gap: 12px; padding: 4px; max-width: 720px; }
-.entry h3 { font: italic 400 clamp(24px, 1vw + 18px, 32px)/1.1 var(--serif); }
-.entry--wide { max-width: 860px; }
+/* ---------- Other projects ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 3vw, 56px);
+  padding-top: 40px;
+}
+.card { display: flex; flex-direction: column; gap: 14px; }
+.card .media { aspect-ratio: 4 / 3; }
+.card__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.card h3 { font-size: clamp(20px, 1.3vw + 12px, 26px); }
+.card p { font-size: var(--body); line-height: 1.55; }
+
+/* ---------- Background ---------- */
+.tables {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 48px;
+  padding-top: 40px;
+}
+.table-block { display: flex; flex-direction: column; gap: 16px; }
+.languages { padding-top: 24px; }
 
 /* ---------- Contact ---------- */
 .contact { padding-top: calc(var(--section) + 20px); padding-bottom: 56px; display: flex; flex-direction: column; gap: 48px; }
@@ -297,7 +324,9 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 /* ==========================================================================
    Project page (level 2)
    ========================================================================== */
-.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; }.titleblock {
+.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; }
+
+.titleblock {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--blue);
@@ -319,21 +348,15 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .titleblock__cell + .titleblock__cell { border-left: 1px solid var(--blue); }
 .titleblock__cell .label { font-size: 9px; }
 
-.detail { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 1fr); column-gap: var(--gap); padding-top: 96px; align-items: start; }
-.detail__text { display: flex; flex-direction: column; gap: 18px; font-size: 19px; line-height: 1.6; }
-.detail__text h2 { font-size: 26px; }
-.detail__text h2:not(:first-child) { margin-top: 18px; }
-.detail figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
-
 /* Flowing narrative used by the project pages: text with image slots between sections */
 .prose {
   max-width: 760px; margin-inline: auto; padding-top: 72px;
   display: flex; flex-direction: column; gap: 16px;
-  font-size: 19px; line-height: 1.6;
+  line-height: 1.6;
   background: var(--paper);
   box-shadow: 0 0 22px 18px var(--paper);
 }
-.prose .lede { font-size: clamp(22px, 1vw + 18px, 28px); line-height: 1.35; }
+.prose .lede { font-size: var(--lead); line-height: 1.35; }
 .prose h2 { font-size: 26px; margin-top: 26px; }
 .prose h3 { font-size: 20px; margin-top: 10px; }
 .prose figure { margin: 18px 0 6px; display: flex; flex-direction: column; gap: 10px; }
@@ -350,31 +373,17 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .hero, .sheet, .background, .detail { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
-  .hero { min-height: auto; padding-top: 48px; }
-  .hand-figure { justify-self: center; max-width: 440px; }
+  .hero { grid-template-columns: minmax(0, 1fr); row-gap: 40px; min-height: auto; padding-top: 96px; }
+  .hand-figure { justify-self: center; width: min(100%, 440px); }
   .hand__notes { display: none; }          /* too small to read on phones */
+  .sheet, .research-grid, .tables { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
   .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .titleblock__cell:nth-child(odd of .titleblock__cell) { border-left: none; }
 }
-@media (max-width: 640px) {
+@media (max-width: 720px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
   .col-year { display: none; }
   .sheet-table { font-size: 16px; }
-}
-
-/* ---------- Scroll reveal ---------- */
-/* Sections rise and fade in as they cross into view. Progressive enhancement:
-   browsers without scroll-driven animations just show the content, no animation. */
-@supports (animation-timeline: view()) {
-  .section, .sheet, .background, .contact {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 30%;
-  }
-  @keyframes reveal {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
 }
 
 /* ---------- Theme toggle ---------- */
@@ -397,5 +406,4 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   .hand__sweep { display: none; }
   .note { animation: none; }
   .note:first-of-type { opacity: 1; }
-  .section, .sheet, .background, .contact { animation: none; }
 }
