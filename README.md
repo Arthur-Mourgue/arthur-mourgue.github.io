@@ -16,7 +16,12 @@ portfolio-lamain/
 │   ├── 03-contenus.md         quoi écrire, projet par projet, et comment
 │   ├── 04-medias.md           CAO, photos, vidéos : comment les produire
 │   └── 05-checklist.md        tout ce qu'il reste à faire, dans l'ordre
-├── site/                      le site, en HTML/CSS pur (aucune dépendance)
+├── site-src/                  sources du site (c'est ICI qu'on édite)
+│   ├── layout.html            gabarit commun (head, bouton thème, script)
+│   ├── partials/              morceaux réutilisables (bouton thème…)
+│   ├── pages.json             titres, méta descriptions, versions d'assets
+│   └── pages/                 contenu de chaque page (*.body.html)
+├── site/                      le site GÉNÉRÉ (ne pas éditer à la main)
 │   ├── index.html             page d'accueil (hero + nomenclature + 4 feuilles + contact)
 │   ├── projects/              une page détaillée par projet
 │   │   ├── lamain.html
@@ -39,10 +44,20 @@ portfolio-lamain/
 Le dessin de la main utilise un masque CSS, que les navigateurs bloquent si tu ouvres le fichier directement (`file://`). Lance un petit serveur :
 
 ```bash
+# 1. régénérer le site après avoir modifié site-src/
+python3 tools/build_site.py
+
+# 2. le servir
 cd site
 python3 -m http.server 8000
 # puis ouvre http://localhost:8000
 ```
+
+## Éditer le site
+
+Ne modifie **pas** `site/*.html` : ces fichiers sont générés. Édite les sources
+dans `site-src/` puis relance `python3 tools/build_site.py`. `./scripts/check.sh`
+échoue si le site généré n'est plus à jour.
 
 ## Comment le site fonctionne
 
@@ -60,7 +75,7 @@ Les passages surlignés en beige (`<mark class="todo">`) sont les textes à écr
 Pour tout retrouver d'un coup :
 
 ```bash
-grep -rn "\[" site/*.html site/projects/*.html
+grep -rn "\[" site-src/pages/
 ```
 
 ## Mettre en ligne (gratuit)

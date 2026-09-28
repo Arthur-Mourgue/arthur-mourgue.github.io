@@ -1,31 +1,40 @@
 # Architecture
 
 ## What this project actually is
-A static portfolio site plus an offline image pipeline. There is no server,
-no build step, no package graph and no module system. "Layers" here mean
-*who produces what*, not importable packages.
+A static portfolio site plus an offline image pipeline. There is no server and
+no runtime dependency. Since 0002, the site's HTML is *generated* from templates
+by a standard-library script; everything else is plain files.
 
 ```
 docs/            editorial + strategy + art direction (French, human-facing)
-site/            the deployed website (pure HTML/CSS/vanilla JS)
-  *.html         pages: index + projects/*.html
+site-src/        SOURCE for the website (edit here)
+  layout.html    shared skeleton: <head>, theme toggle, script tag
+  partials/      reusable fragments (theme-toggle.html)
+  pages.json     per-page metadata (title, description, og, asset versions)
+  pages/         per-page <main> content (*.body.html)
+site/            GENERATED website (never edit by hand)
   assets/css     style.css — all art direction, variables at the top
   assets/js      site.js  — two IIFEs: theme toggle + cursor tracking
-  assets/img     images; produced by tools/
+  assets/img     images; produced by tools/*.py and tools/duotone.sh
   assets/video   generated videos (git-ignored except README.txt)
-tools/           offline pipeline: CAD/photo -> web assets (Python + ffmpeg)
+tools/           offline pipeline + site generator
+  build_site.py  site-src/ -> site/  (stdlib only)
+  test_site.py   stdlib unittest tests for the generated site
+  make_lineart.py, make_backing.py, duotone.sh  image pipeline
 scripts/         agent harness: check.sh, setup.sh
 ```
 
 ### Data flow
-`tools/*.py` and `tools/duotone.sh` read raw inputs and write into
-`site/assets/{img,video}`. The site then only *reads* those static files.
-Nothing in `site/` imports anything from `tools/` at runtime.
+`site-src/` + `tools/build_site.py` → `site/` → served statically. Separately,
+`tools/make_lineart.py`, `tools/make_backing.py` and `tools/duotone.sh` read raw
+inputs and write into `site/assets/{img,video}`. The site only *reads* those
+static files; nothing in `site/` imports anything at runtime.
 
 ### Shared front-end
-The 5 HTML pages each embed their own markup and link the same
-`assets/css/style.css` and `assets/js/site.js`. `site.js` has no imports;
-the two IIFEs are independent.
+`site/assets/css/style.css` and `site/assets/js/site.js` are unchanged plain
+assets. The shared `<head>`, theme toggle and script tags are produced once from
+`site-src/layout.html` + `site-src/partials/`, so the five pages can no longer
+drift from each other.
 
 ## Why there is no automated architecture contract
 - `import-linter` needs a Python package with intra-package imports. `tools/`
@@ -35,15 +44,17 @@ the two IIFEs are independent.
 Both were intentionally NOT installed. See `docs/decisions/0001-baseline.md`.
 
 ## Current violations / known debt (observed, not aspirational)
-- Header/footer/theme-toggle markup is duplicated across the 5 HTML pages
-  (copy-paste, no templating or include step).
-- The CSS cache-buster `?v=N` is hard-coded per page and can drift between pages.
-- No HTML validation, no lint, no tests: `check.sh` covers syntax and JSON only.
-- `tools/` outputs are not reproducible in CI (opencv/scipy/ffmpeg not installed there).
+- No lint/type checking and no HTML validation: `check.sh` covers syntax, the
+  generated-site freshness and a small unittest suite only.
+- `tools/` outputs are not reproducible in CI (opencv/scipy/ffmpeg are not
+  installed there); only `build_site.py` and `test_site.py` are stdlib-only.
 - `site/assets/img/og.png` is referenced but not committed yet.
+- `cv.pdf` is referenced but not committed yet.
+- `site-src/pages/*.body.html` still contain long single-line paragraphs; the
+  generator preserves them verbatim rather than reformatting (no HTML formatter).
 
 ## Cross-cutting rules
-- Validate anything crossing a boundary (user input, files, env) — currently
-  the only "input" is static HTML, so keep data hard-coded rather than guessed.
+- Never edit `site/*.html` by hand: edit `site-src/` then run
+  `python3 tools/build_site.py`. `check.sh` enforces the output matches.
 - No secrets in the repo; `.env*` is git-ignored and blocked by the pre-commit hook.
 - Keep `site/` dependency-free: it must stay a folder you can drop on any host.

@@ -11,9 +11,10 @@
 6. At the end of every session, append a short entry to `PROGRESS.md`.
 
 ## Commands
-- Full check: `./scripts/check.sh` — JSON + JS/Python/Shell syntax only. No install needed.
-- Tests: none exist. There is no test framework and no lint/type tooling (see
-  `docs/decisions/0001-baseline.md`). Do not invent a test command.
+- Full check: `./scripts/check.sh` — JSON + JS/Python/Shell syntax, generated-site
+  freshness, and stdlib `unittest` tests. No install needed.
+- Rebuild the site: `python3 tools/build_site.py` (after editing `site-src/`).
+- Tests only: `python3 tools/test_site.py` (stdlib unittest; do not add pytest).
 - Run the site locally: `python3 -m http.server 8000 --directory site`
   (open http://localhost:8000). A plain `file://` open breaks the CSS mask.
 
@@ -30,7 +31,9 @@
 3. `./scripts/check.sh` green → commit `fix: ...`.
 
 ## Project gotchas (add one line each time an agent repeats the same mistake)
-- CSS is cache-busted: bump `assets/css/style.css?v=N` in every HTML page when you edit it.
+- `site/*.html` is GENERATED from `site-src/` by `tools/build_site.py`. Never edit
+  the HTML by hand; edit `site-src/` and rebuild, or check.sh will fail.
+- CSS/JS cache-buster versions live in `site-src/pages.json` (`css_version`/`js_version`).
 - Placeholders live in brackets (`[date]`, `[YOUR_EMAIL]`) and `<mark class="todo">` spans;
   do not silently delete them — they are intentional content TODOs.
 - `tools/` is an offline image pipeline (opencv/numpy/scipy), not part of the site runtime.
