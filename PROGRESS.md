@@ -195,6 +195,14 @@
   `css_version` 25.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — specs prototype en ligne, à droite
+- Fait : l'encadré `.hand-caption__tags` est retiré ; les valeurs (5 DOF, under
+  200 g, under €200) sont maintenant sur la même ligne que « LaMain prototype
+  v1 », alignées à droite (`justify-content: space-between`), en mono muted, sans
+  bordure ni point séparateur. `.hand-caption__tags` a son propre style (plus
+  partagé avec `.sheet__tags`). `css_version` 26.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
