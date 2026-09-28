@@ -203,6 +203,17 @@
   partagé avec `.sheet__tags`). `css_version` 26.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — toolbox réparti, specs LaMain en tags
+- Fait : la ligne toolbox en fin de Background est supprimée. Ses technologies
+  sont réparties dans les encarts `.sheet__tags` des 4 feuilles : LaMain
+  (+PyTorch, Python, C/C++, Fusion 360), Capra (+Nav2, OpenVINO, ONNX, Docker,
+  Python, C/C++), LePotager (+PyTorch, LeRobot, Python), DagoBERT (+Python,
+  Docker). Les langues (French native · English C2) déplacées dans le pied de
+  page contact. Valeurs du prototype LaMain : passées en petits tags encadrés
+  (`border: hair`, uppercase mono) à droite du titre, sans points.
+  `.toolbox` retiré du CSS. `css_version` 27.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

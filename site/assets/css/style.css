@@ -238,16 +238,24 @@ img, video { display: block; max-width: 100%; }
   36%, 100% { opacity: 0; }
 }
 .hand-caption { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; padding: 4px; }
-.hand-caption__title { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
-/* Prototype specs, right-aligned beside the name: small mono, no separators. */
+.hand-caption__title { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px 14px; }
+/* Prototype specs, right-aligned beside the name: small mono tags, no separators. */
 .hand-caption__tags {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 4px 18px;
-  font: 12px/1.5 var(--mono);
-  letter-spacing: 0.02em;
+  gap: 6px;
+  margin-left: auto;
+  font: 11px/1.4 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--muted);
+}
+.hand-caption__tags span { border: 1px solid var(--hair); padding: 2px 8px; }
+.hand-caption__tags > span + span {
+  margin-left: 12px;
+  padding-left: 12px;
+  border-left: 1px solid var(--hair);
 }
 
 /* ==========================================================================
@@ -332,7 +340,6 @@ img, video { display: block; max-width: 100%; }
 .cv-table td:first-child { font: 12px/1.9 var(--mono); color: var(--muted); white-space: nowrap; width: 150px; }
 .cv-table b { font-weight: 700; }
 .cv-table span { display: block; color: var(--muted); }
-.toolbox { margin-top: 28px; }
 
 /* ==========================================================================
    CONTACT
