@@ -177,6 +177,11 @@
   est passée en majuscule (« LaMain, An open-source… », etc.).
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — plus d'articles dans la table
+- Fait : retiré les articles en tête de description de projet (« An »/« A »),
+  ex. « LaMain, Open-source robot hand with touch for the SO-101 arm ».
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
