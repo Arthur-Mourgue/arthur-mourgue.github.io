@@ -221,6 +221,12 @@
   est donc sous les tags `5 DOF · under 200 g · under €200`. `css_version` 28.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — bloc LaMain aligné bas à droite
+- Fait : `.hand-caption__title` passe en `align-items: flex-end`, donc le bloc
+  tags + crédit s'aligne sur la ligne « prototype v1 » (le plus bas = prototype
+  v1), à sa droite, arrangement interne inchangé. `css_version` 29.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

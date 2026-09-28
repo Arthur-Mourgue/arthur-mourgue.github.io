@@ -238,7 +238,7 @@ img, video { display: block; max-width: 100%; }
   36%, 100% { opacity: 0; }
 }
 .hand-caption { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; padding: 4px; }
-.hand-caption__title { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px 14px; }
+.hand-caption__title { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 10px 14px; }
 /* Prototype specs and credit, right-aligned beside the name. */
 .hand-caption__side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
 .hand-caption__tags {
