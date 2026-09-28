@@ -1,21 +1,21 @@
 {
-  "css_version": "12",
+  "css_version": "13",
   "js_version": "10",
   "pages": [
     {
       "output": "index.html",
-      "title": "Arthur Mourgue: research engineer in AI for robotics",
-      "description": "Research engineer in AI for robotics. I design, train and deploy AI models directly on robotic systems. Building LaMain, an open-source robot hand with touch. Looking for an end-of-studies internship from March 2027.",
+      "title": "Arthur Mourgue: research engineer, robotics and AI",
+      "description": "Research engineer in robotics and AI. I work on AI for robots, from training the models to making them work on real hardware. Building LaMain, an open-source robot hand with touch. Looking for an end-of-studies internship from March 2027.",
       "og_comment": "Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png",
-      "og_title": "Arthur Mourgue: research engineer in AI for robotics",
-      "og_description": "I design, train and deploy AI models directly on robotic systems. Currently building LaMain, an open-source robot hand with touch.",
+      "og_title": "Arthur Mourgue: research engineer, robotics and AI",
+      "og_description": "I work on AI for robots, from training the models to making them work on real hardware. Currently building LaMain, an open-source robot hand with touch.",
       "og_image": "assets/img/og.png",
       "body": "index.body.html"
     },
     {
       "output": "projects/lamain.html",
       "title": "LaMain · Arthur Mourgue",
-      "description": "LaMain: an open-source three-finger robot hand with touch for the SO-101 arm. 5 DOF, printable, under 200 g (target).",
+      "description": "LaMain: an open-source three-finger robot hand with touch for the SO-101 arm. 5 DOF, under 200 g (target), under €200 (target), with tactile sensors and LeRobot integration.",
       "og_title": "LaMain · Arthur Mourgue",
       "og_description": "An open-source three-finger robot hand with touch for the SO-101 arm.",
       "body": "projects/lamain.body.html"
@@ -23,26 +23,26 @@
     {
       "output": "projects/lepotager.html",
       "title": "LePotager · Arthur Mourgue",
-      "description": "LePotager: a robot arm that sorts fruit by pressing it, using imitation learning on vision and touch. Built in 48 h at the HF LeRobot hackathon.",
+      "description": "LePotager: a robot arm that sorts fruit by pressing it, using imitation learning on vision and touch. Built in 48 hours at the LeRobot hackathon in Copenhagen.",
       "og_title": "LePotager · Arthur Mourgue",
-      "og_description": "A robot arm that sorts fruit by touch, built in 48 h at the HF LeRobot hackathon.",
+      "og_description": "A robot arm that sorts fruit by touch, built in 48 hours at the LeRobot hackathon.",
       "body": "projects/lepotager.body.html"
     },
     {
-      "output": "projects/cart-docking.html",
-      "title": "Cart docking · Arthur Mourgue",
-      "description": "Cart docking at Capra Robotics: LiDAR cart pose estimation for autonomous mobile robots, sub-centimetre and under 45 ms on CPU.",
-      "og_title": "Cart docking · Arthur Mourgue",
-      "og_description": "LiDAR cart pose estimation for autonomous mobile robots, under 45 ms on CPU.",
-      "body": "projects/cart-docking.body.html"
+      "output": "projects/capra.html",
+      "title": "Capra Robotics · Arthur Mourgue",
+      "description": "Capra Robotics: three problems on real autonomous mobile robots. Ground segmentation on a Jetson, anonymisation inside an OAK-D camera, and LiDAR docking to a food cart.",
+      "og_title": "Capra Robotics · Arthur Mourgue",
+      "og_description": "Three problems on real autonomous mobile robots, from computer vision to LiDAR docking.",
+      "body": "projects/capra.body.html"
     },
     {
-      "output": "projects/english-to-arm.html",
+      "output": "projects/dagobert.html",
       "title": "DagoBERT · Arthur Mourgue",
-      "description": "DagoBERT: a local language model that turns plain English into embedded C++ for ARM flight-test hardware, presented at ETTC 2025.",
+      "description": "DagoBERT: a local language model that turns plain English into embedded C++ for ARM flight-test hardware, co-authored as a paper at ETTC 2025.",
       "og_title": "DagoBERT · Arthur Mourgue",
-      "og_description": "A local language model that turns plain English into embedded C++ for ARM hardware.",
-      "body": "projects/english-to-arm.body.html"
+      "og_description": "A local language model that turns plain English into embedded C++ for ARM flight-test hardware.",
+      "body": "projects/dagobert.body.html"
     }
   ]
 }

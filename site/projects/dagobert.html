@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DagoBERT · Arthur Mourgue</title>
+  <meta name="description" content="DagoBERT: a local language model that turns plain English into embedded C++ for ARM flight-test hardware, co-authored as a paper at ETTC 2025.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css?v=13">
+  <meta property="og:title" content="DagoBERT · Arthur Mourgue">
+  <meta property="og:description" content="A local language model that turns plain English into embedded C++ for ARM flight-test hardware.">
+</head>
+<body>
+<button class="theme-toggle" aria-label="Toggle light / dark mode">◐</button>
+<main class="wrap">
+  <nav class="topbar" aria-label="Sheets">
+    <a href="../index.html#work">Drawing list</a>
+    <span class="label label--muted paper">Sheet 04</span>
+  </nav>
+
+  <header class="titleblock">
+    <div class="titleblock__head">
+      <div><span class="label">Title</span><h1 class="name">DagoBERT</h1></div>
+      <span>paper, ETTC 2025</span>
+    </div>
+    <div class="titleblock__cell"><span class="label">Company</span><span>Safran Data Systems</span></div><div class="titleblock__cell"><span class="label">Where</span><span>Les Ulis, France</span></div><div class="titleblock__cell"><span class="label">Role</span><span>R&amp;D innovation apprentice</span></div><div class="titleblock__cell"><span class="label">Date</span><span>2023 to 2024</span></div>
+  </header>
+
+  <article class="prose">
+    <p class="lede">Programming flight-test hardware in plain English, at Safran Data Systems.</p>
+
+    <h2>The context</h2>
+    <p>I spent three years as an R&amp;D apprentice in the innovation team of Safran Data Systems. The company makes flight-test instrumentation, the equipment that records data during the test flights of new aircraft.</p>
+    <p>One of its products is a modular acquisition system called XMA. One of its modules, the OBP, is a small on-board computer. It can convert raw sensor values into physical units, run frequency analyses, or keep only the important data before it is sent to the ground.</p>
+    <p>One example shows why this matters. When engineers study how a wing vibrates, the wing can be damaged if it stays too long at its resonant frequency. Usually the data is sent to the ground, analysed there, and then the pilot is told to slow down. That takes time. If the analysis runs on board, the alarm can reach the pilot much faster.</p>
+
+    <h2>The problem</h2>
+    <p>The OBP is powerful, but it has to be programmed in C or C++. Most flight-test engineers do not write C. So a very useful tool stays out of reach for the people who need it.</p>
+    <p>My project was a proof of concept to change that. The idea was to let engineers describe what they want in plain English, and to turn that description into a program for the OBP. I called it DagoBERT.</p>
+
+    <h2>The constraints</h2>
+    <p>Three constraints shaped the design.</p>
+    <p>The first is confidentiality. Test data and programs are sensitive, so a cloud service like ChatGPT was not an option. The language model had to run locally, on a company machine. This limited us to models of about 8 billion parameters.</p>
+    <p>The second is reliability. A language model is never fully predictable. A small change in the request can change the answer. In flight testing, a random bug is not acceptable. So I decided that the model would only understand the request. It would never write the code itself.</p>
+    <p>The third is control. The engineer must be able to see what will run on the aircraft, and change it if needed.</p>
+
+    <h2>How it works</h2>
+    <p>The chain has three parts.</p>
+    <p>First, the engineer types a request, for example "take one input, compute the average over five values, and send the result to an output". A local language model turns this sentence into a structured file that lists the processing blocks and how they are connected. To make this reliable, the model receives a prompt with a few examples of requests and correct answers before each question.</p>
+    <p>Second, the blocks open in GNU Radio, an open-source tool that shows processing chains as connected blocks. The engineer can check them and edit them. If the model got the request 90% right, the engineer fixes the last 10% by hand instead of asking again.</p>
+    <p>Third, a Python script turns the blocks into C++ code. To keep this generation simple and safe, I wrote a small C++ library where each type of block is a class. An input, an average or a maximum each has its own class, and each block passes its results to the next one. The script also writes the configuration file that describes the inputs and outputs. The code is then cross-compiled for the ARM processor of the OBP and loaded with Safran's configuration software.</p>
+    <p>I also built a simple desktop interface that brings the three parts together, with a log window to find errors quickly.</p>
+
+    <figure>
+      <div class="media">[Diagram of the chain: request, language model, GNU Radio blocks, C++ for ARM, OBP]</div>
+      <figcaption class="spec paper">Detail A · the chain</figcaption>
+    </figure>
+
+    <h2>The results</h2>
+    <p>The complete chain works, from a sentence to a program running on the OBP.</p>
+    <p>The choice of model made a big difference. A small model gave the right answer only 30 to 40% of the time and took about a minute per request on an office computer. A Llama 3 model on a more powerful workstation reached 90 to 95% with a better prompt, and answered in 3 to 5 seconds.</p>
+    <p>This work led to a paper that I co-authored at ETTC 2025, the European Test and Telemetry Conference.</p>
+
+    <h2>What I learned</h2>
+    <p>At the start, I chose Blockly, a block library written in JavaScript. I spent days learning a language that added nothing to the project. GNU Radio was already based on blocks and written in Python, like the rest of the project. Switching saved the proof of concept.</p>
+    <p>The main lesson is to build the simplest chain that works from start to finish first, even with hard-coded values and no interface. Then you improve it one piece at a time. I also learned to ask for help sooner instead of staying stuck for days.</p>
+    <p>When an intern joined the project, I split it into three independent parts so he could work on one without knowing the others. With hindsight, the task I gave him was too big for two weeks, and I would plan it differently today.</p>
+
+    <h2>Limits</h2>
+    <p>DagoBERT is a proof of concept. It supports only a few blocks and covers one or two of the main uses of the OBP. The code generation should be made more robust, and the tool needs to be tested with real users.</p>
+    <p>During the same apprenticeship I also designed FPGA logic for real-time current and voltage acquisition on flight-test equipment.</p>
+    <p><a href="{{ETTC_PAPER_URL}}">Read the paper</a>.</p>
+  </article>
+
+  <nav class="pager" aria-label="Other sheets">
+    <a href="capra.html">Sheet 03 · Capra Robotics</a>
+    <a href="../index.html#work">Drawing list</a>
+    <span></span>
+  </nav>
+</main>
+<script src="../assets/js/site.js?v=10" defer></script>
+</body>
+</html>

@@ -47,6 +47,8 @@ class GeneratedSiteTest(unittest.TestCase):
             for url in ATTR_RE.findall(body):
                 if url.startswith(("http://", "https://", "mailto:", "tel:", "data:", "#")):
                     continue
+                if "{{" in url:
+                    continue  # unfilled content placeholder, e.g. {{LAMAIN_GITHUB_URL}}
                 clean = url.split("?")[0].split("#")[0]
                 if not clean or clean in KNOWN_MISSING:
                     continue

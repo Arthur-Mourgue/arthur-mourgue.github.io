@@ -21,6 +21,22 @@
   3 metadata lines each. `./scripts/check.sh` green.
 - To watch: never hand-edit `site/*.html`; edit `site-src/` then rebuild.
 
+## 2026-09-28 — contenu du portfolio (site-content.md)
+- Fait : home réécrite selon le spec (Hero, Now, Selected work, Earlier work,
+  Papers, Contact) ; les 4 pages projet réécrites depuis Part 3 et renommées en
+  `capra.body.html` / `dagobert.body.html` (ex-`cart-docking` / `english-to-arm`,
+  supprimées) ; `pages.json` mis à jour (descriptions, `css_version` 13) ;
+  CSS minimal ajouté (`.entries`, `.entry`, `.prose`) sans toucher l'art direction.
+- Décisions : valeurs connues remplies (email, github, linkedin, cv.pdf) ; les
+  autres `{{...}}` restent visibles pour l'owner. `tools/test_site.py` ignore
+  désormais les hrefs contenant `{{` (placeholder de contenu, même rôle que
+  `KNOWN_MISSING`), sur accord explicite de l'owner.
+- Vérifié : `./scripts/check.sh` vert (5 pages générées, 4 tests OK).
+- À surveiller : placeholders à remplir (`{{LAMAIN_GITHUB_URL}}`,
+  `{{LEPOTAGER_VIDEO_URL}}`, `{{LEPOTAGER_CODE_URL}}`, `{{ETTC_PAPER_TITLE}}`,
+  `{{ETTC_PAPER_URL}}`, `{{INSA_PAPER_TITLE}}`, `{{INSA_PAPER_URL}}`,
+  `{{UPDATED_DATE}}`) ; slots média encore en boîtes pointillées.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

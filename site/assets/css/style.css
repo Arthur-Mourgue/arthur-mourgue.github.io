@@ -279,6 +279,12 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .background__text { display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.55; }
 .background__text h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
 
+/* ---------- Entries (Now, selected work, earlier work, papers) ---------- */
+.entries { display: flex; flex-direction: column; gap: 40px; padding-top: 40px; }
+.entry { display: flex; flex-direction: column; gap: 12px; padding: 4px; max-width: 720px; }
+.entry h3 { font: italic 400 clamp(24px, 1vw + 18px, 32px)/1.1 var(--serif); }
+.entry--wide { max-width: 860px; }
+
 /* ---------- Contact ---------- */
 .contact { padding-top: calc(var(--section) + 20px); padding-bottom: 56px; display: flex; flex-direction: column; gap: 48px; }
 .contact__box { display: flex; flex-direction: column; gap: 22px; align-self: flex-start; }
@@ -291,9 +297,7 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 /* ==========================================================================
    Project page (level 2)
    ========================================================================== */
-.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; }
-
-.titleblock {
+.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; }.titleblock {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--blue);
@@ -320,6 +324,20 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 .detail__text h2 { font-size: 26px; }
 .detail__text h2:not(:first-child) { margin-top: 18px; }
 .detail figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+
+/* Flowing narrative used by the project pages: text with image slots between sections */
+.prose {
+  max-width: 760px; margin-inline: auto; padding-top: 72px;
+  display: flex; flex-direction: column; gap: 16px;
+  font-size: 19px; line-height: 1.6;
+  background: var(--paper);
+  box-shadow: 0 0 22px 18px var(--paper);
+}
+.prose .lede { font-size: clamp(22px, 1vw + 18px, 28px); line-height: 1.35; }
+.prose h2 { font-size: 26px; margin-top: 26px; }
+.prose h3 { font-size: 20px; margin-top: 10px; }
+.prose figure { margin: 18px 0 6px; display: flex; flex-direction: column; gap: 10px; }
+.prose .media { aspect-ratio: 16 / 9; }
 
 .results { width: 100%; border-collapse: collapse; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); background: var(--paper); }
 .results td { padding: 12px; border-top: 1px solid var(--hair); }
