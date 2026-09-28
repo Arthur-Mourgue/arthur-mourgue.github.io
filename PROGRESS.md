@@ -154,6 +154,19 @@
   rester dans la direction artistique (papier, croix, bleu). `css_version` 22.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — table allégée, textes projets, skills techniques
+- Fait : colonne des numéros retirée de la table (et règle CSS `td:first-child`),
+  textes projets rendus plus naturels (« an open-source robot hand with touch
+  for the SO-101 arm », « computer vision and localisation on autonomous mobile
+  robots », « a robot arm that sorts fruit by touch », « programming flight-test
+  hardware in plain English »). Année DagoBERT « 2023 to 2025 » pour l'ETTC.
+  Encart skills : plus de points `·`, chaque skill est un `<span>` espacé ;
+  retiré les dates/lieux/non-skills (2026, Copenhagen, Safran Data Systems).
+- Décisions : skills purement techniques (5 DOF, FlexiTac, LeRobot ; SegFormer,
+  YOLOX, ROS 2, Jetson Orin Nano, OAK-D ; ACT, SO-101, piezoresistive sensor ;
+  Llama 3, GNU Radio, C++, ARM). `css_version` 23.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

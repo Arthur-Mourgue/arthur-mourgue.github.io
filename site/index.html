@@ -7,7 +7,7 @@
   <meta name="description" content="Research engineer in AI for robotics. Three years of R&amp;D at Safran, six months in R&amp;D at Capra Robotics, MSc in Robotics at Sorbonne Université (ex-UPMC).">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/style.css?v=22">
+  <link rel="stylesheet" href="assets/css/style.css?v=23">
   <!-- Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png -->
   <meta property="og:title" content="Arthur Mourgue, Research Engineer in AI for Robotics">
   <meta property="og:description" content="AI for robots, from training the models to running them on real hardware.">
@@ -61,12 +61,12 @@
   <!-- ================= SELECTED WORK ================= -->
   <section id="work" class="section">
     <table class="sheet-table">
-      <thead><tr><th><span class="label">No.</span></th><th><span class="label">Project</span></th><th class="col-year"><span class="label">Year</span></th><th><span class="label">Status</span></th></tr></thead>
+      <thead><tr><th><span class="label">Project</span></th><th class="col-year"><span class="label">Year</span></th><th><span class="label">Status</span></th></tr></thead>
       <tbody>
-        <tr><td>01</td><td><a href="#sheet-01">LaMain</a>, a robot hand with touch for the SO-101</td><td class="col-year">2026</td><td class="is-live is-live--pulse">● Building</td></tr>
-        <tr><td>02</td><td><a href="#sheet-02">Capra Robotics</a>, AI on autonomous mobile robots</td><td class="col-year">2026</td><td class="is-live">● Running</td></tr>
-        <tr><td>03</td><td><a href="#sheet-03">LePotager</a>, sorting fruit by touch</td><td class="col-year">2026</td><td class="is-live">● Won Most Creative Project</td></tr>
-        <tr><td>04</td><td><a href="#sheet-04">DagoBERT</a>, plain English to embedded code</td><td class="col-year">2023 to 2024</td><td class="is-live">● Presented at the European Test and Telemetry Conference</td></tr>
+        <tr><td><a href="#sheet-01">LaMain</a>, an open-source robot hand with touch for the SO-101 arm</td><td class="col-year">2026</td><td class="is-live is-live--pulse">● Building</td></tr>
+        <tr><td><a href="#sheet-02">Capra Robotics</a>, computer vision and localisation on autonomous mobile robots</td><td class="col-year">2026</td><td class="is-live">● Running</td></tr>
+        <tr><td><a href="#sheet-03">LePotager</a>, a robot arm that sorts fruit by touch</td><td class="col-year">2026</td><td class="is-live">● Won Most Creative Project</td></tr>
+        <tr><td><a href="#sheet-04">DagoBERT</a>, programming flight-test hardware in plain English</td><td class="col-year">2023 to 2025</td><td class="is-live">● Presented at the European Test and Telemetry Conference</td></tr>
       </tbody>
     </table>
 
@@ -75,7 +75,11 @@
         <h3 id="s1">LaMain</h3>
         <p>An open-source three-finger hand for the SO-101 arm, designed with Julien Navet. It stays under 200 grams so the arm can still lift objects, and it carries touch sensors on the fingertips.</p>
         <p>The goal is to train robot learning models with touch, from imitation learning to vision-language-action models.</p>
-        <div class="sheet__tags">5 DOF · FlexiTac · LeRobot · 2026</div>
+        <div class="sheet__tags">
+          <span>5 DOF</span>
+          <span>FlexiTac</span>
+          <span>LeRobot</span>
+        </div>
         <a class="more" href="projects/lamain.html">Read the full sheet</a>
       </div>
       <figure>
@@ -88,7 +92,13 @@
         <h3 id="s2">Capra Robotics</h3>
         <p>Six months on autonomous mobile robots in Denmark. I trained a segmentation model that lets the robot see obstacles its LiDAR misses, on a dataset built with ten times less manual labelling.</p>
         <p>I also moved face and plate anonymisation inside the camera, and built the localisation that lets the robot dock to a food cart, 18 times out of 18 in tests.</p>
-        <div class="sheet__tags">SegFormer · YOLOX · ROS 2 · Jetson Orin Nano · OAK-D · 2026</div>
+        <div class="sheet__tags">
+          <span>SegFormer</span>
+          <span>YOLOX</span>
+          <span>ROS 2</span>
+          <span>Jetson Orin Nano</span>
+          <span>OAK-D</span>
+        </div>
         <a class="more" href="projects/capra.html">Read the full sheet</a>
       </div>
       <figure>
@@ -101,7 +111,11 @@
         <h3 id="s3">LePotager</h3>
         <p>In 48 hours at a LeRobot hackathon, we built a robot arm that sorts fruit by pressing it. Colour can lie about ripeness, touch does not.</p>
         <p>The policy is an imitation learning model trained on camera images and a low-cost pressure sensor.</p>
-        <div class="sheet__tags">ACT · SO-101 · piezoresistive sensor · Copenhagen, June 2026</div>
+        <div class="sheet__tags">
+          <span>ACT</span>
+          <span>SO-101</span>
+          <span>piezoresistive sensor</span>
+        </div>
         <a class="more" href="projects/lepotager.html">Read the full sheet</a>
       </div>
       <figure>
@@ -114,7 +128,12 @@
         <h3 id="s4">DagoBERT</h3>
         <p>At <a href="https://www.safran-group.com/companies/safran-data-systems">Safran</a>, flight-test engineers can program an on-board computer, but only in C. DagoBERT lets them describe what they want in plain English.</p>
         <p>A local language model turns the request into blocks they can check and edit, and the blocks become embedded C++.</p>
-        <div class="sheet__tags">Llama 3 · GNU Radio · C++ · ARM · Safran Data Systems</div>
+        <div class="sheet__tags">
+          <span>Llama 3</span>
+          <span>GNU Radio</span>
+          <span>C++</span>
+          <span>ARM</span>
+        </div>
         <a class="more" href="projects/dagobert.html">Read the full sheet</a>
       </div>
       <figure>

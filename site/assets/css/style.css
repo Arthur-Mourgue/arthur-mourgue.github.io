@@ -252,7 +252,6 @@ img, video { display: block; max-width: 100%; }
 }
 .sheet-table th { text-align: left; font-weight: 400; padding: 8px 12px; }
 .sheet-table td { padding: 12px; border-top: 1px solid var(--hair); vertical-align: top; }
-.sheet-table td:first-child { font: 12px/2 var(--mono); color: var(--muted); white-space: nowrap; width: 64px; }
 .sheet-table tbody tr:hover td { color: var(--blue); }
 .is-live { color: var(--blue); }
 /* Slow blink for an in-progress status only. */
@@ -277,8 +276,11 @@ img, video { display: block; max-width: 100%; }
 .sheet__tags {
   align-self: flex-start;
   max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
   border: 1px solid var(--blue);
-  padding: 6px 10px;
+  padding: 7px 12px;
   font: 12px/1.6 var(--mono);
   color: var(--blue);
 }
