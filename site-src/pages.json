@@ -1,11 +1,11 @@
 {
-  "css_version": "19",
+  "css_version": "20",
   "js_version": "12",
   "pages": [
     {
       "output": "index.html",
       "title": "Arthur Mourgue, Research Engineer in AI for Robotics",
-      "description": "Research engineer in AI for robotics. Three years of R&D at Safran, six months at Capra Robotics, master's in intelligent systems at Sorbonne Université.",
+      "description": "Research engineer in AI for robotics. Three years of R&D at Safran, six months at Capra Robotics, MSc in Robotics (ex-UPMC) at Sorbonne Université.",
       "og_comment": "Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png",
       "og_title": "Arthur Mourgue, Research Engineer in AI for Robotics",
       "og_description": "AI for robots, from training the models to running them on real hardware.",

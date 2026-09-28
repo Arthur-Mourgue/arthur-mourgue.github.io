@@ -99,6 +99,19 @@
   `css_version` 19, `js_version` 12.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-28 — titre discret, liens entreprises, MSc cohérent
+- Fait : le h1 du hero passe de `clamp(34px, 4vw, 64px)` à `clamp(23px, 2vw, 31px)`
+  en `font-weight: 700` (discret, proche des h2). Liens ajoutés vers Safran Data
+  Systems, Capra Robotics, Blue Frog Robotics dans le hero, la table expérience,
+  la feuille DagoBERT et les titleblocks projet ; liens aussi vers Sorbonne,
+  INSA Lyon et Université de Toulon. « master's/M2 » remplacé partout par
+  « MSc in Robotics (ex-UPMC) » (hero, table éducation, label recherche, meta
+  description, docs/00).
+- Décisions : URLs vérifiées (caprarobotics.com, safran-group.com/companies/
+  safran-data-systems, bluefrogrobotics.com, sorbonne-universite.fr,
+  insa-lyon.fr, univ-tln.fr). `css_version` 20.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
