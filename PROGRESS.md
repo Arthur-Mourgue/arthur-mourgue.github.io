@@ -87,6 +87,18 @@
 - À surveiller : `site-content.md` à la racine est encore l'ancienne v1, à
   supprimer ou remplacer.
 
+## 2026-09-28 — restauration du halo tactile
+- Fait : effet de halo bleu des croix restauré. `site.js` récupère le suivi
+  souris `--mx`/`--my` (gardé par `(hover: hover) and (pointer: fine)`), le CSS
+  récupère `body::before` masqué par un `radial-gradient` de 140px et
+  `body { position: relative }` pour rester ancré au document.
+- Assets : `crosses-accent.svg` recréé et `lamain-lines-backing.png` restauré.
+- Décisions : correctif anti-bavure sur la main repris aussi (`.hand` en
+  `z-index: 1; isolation: isolate`, plaque `.hand::before`, `.hand__lines` en
+  `color-mix` au lieu d'`opacity: 0.72`), sinon le halo traverse les traits.
+  `css_version` 19, `js_version` 12.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

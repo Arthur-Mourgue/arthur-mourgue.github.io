@@ -65,6 +65,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
+  position: relative;
   margin: 0;
   background: var(--paper) var(--grid);
   background-size: 28px 28px;
@@ -84,6 +85,28 @@ img, video { display: block; max-width: 100%; }
 
 /* Text sitting on the crosses. The grid fades out behind it. */
 .paper { background: var(--paper); box-shadow: 0 0 20px 16px var(--paper); }
+
+/* Tactile background: the grid of little crosses lights up in blue near the
+   cursor, across the whole page. --mx / --my are set by assets/js/site.js.
+   position: absolute (anchored to body, which is position: relative above)
+   so this scrolls together with body's own grid background; they'd drift
+   out of alignment if this used position: fixed (viewport-anchored) while
+   body's background stays document-anchored. --mx/--my are page coordinates
+   (pageX/pageY) to match. */
+@media (hover: hover) and (pointer: fine) {
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    color: var(--blue);
+    background-image: url("../img/crosses-accent.svg");
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(circle 140px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
+            mask-image: radial-gradient(circle 140px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
+  }
+}
 
 /* ---------- Small parts ---------- */
 .label {
@@ -158,13 +181,33 @@ img, video { display: block; max-width: 100%; }
 .intro .note { color: var(--muted); }
 
 .hand-figure { margin: 0; justify-self: end; width: min(100%, 60vh); width: min(100%, 60svh); }
-.hand { position: relative; aspect-ratio: 588 / 580; }
+/* z-index: 1 keeps the hand above the reactive background (body::before, z-index -1),
+   so the crosses show through the drawing's empty gaps but never through its strokes. */
+.hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }
+
+/* Opaque backing under the ink, masked by a slightly dilated copy of the drawing.
+   The strokes are thin anti-aliased ink: once scaled they are semi-transparent, so
+   the reactive crosses bled through and looked like they passed in front of the
+   hand. This paper layer blocks the crosses on the strokes while the drawing's
+   gaps stay see-through. */
+.hand::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--paper);
+  -webkit-mask: url("../img/lamain-lines-backing.png") center / contain no-repeat;
+          mask: url("../img/lamain-lines-backing.png") center / contain no-repeat;
+}
+
+/* The drawing is a mask: its colour follows var(--blue), so it works in night mode.
+   The stroke colour is pre-blended with the paper rather than set with opacity: the
+   result looks the same, but the strokes stay opaque and hide the reactive crosses
+   behind them (at opacity 0.72 the crosses bled through the ink). */
 .hand__lines {
   position: absolute; inset: 0;
   background: var(--blue);
+  background: color-mix(in srgb, var(--blue) 72%, var(--paper));
   -webkit-mask: url("../img/lamain-lines.png") center / contain no-repeat;
           mask: url("../img/lamain-lines.png") center / contain no-repeat;
-  opacity: 0.72;
 }
 .hand__sweep {
   position: absolute; inset: 0;

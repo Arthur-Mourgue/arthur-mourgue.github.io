@@ -1,6 +1,6 @@
 {
-  "css_version": "18",
-  "js_version": "11",
+  "css_version": "19",
+  "js_version": "12",
   "pages": [
     {
       "output": "index.html",
