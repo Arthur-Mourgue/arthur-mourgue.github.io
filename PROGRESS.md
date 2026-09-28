@@ -130,6 +130,19 @@
   `href="#work"`). `.scroll-cue` reste dans le CSS (plus utilisé).
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — statuts animés, table remontée, MSc (ex-UPMC)
+- Fait : la table « Selected work » remonte (`#work { padding-top: clamp(32px,
+  4vh, 56px) }`). Statuts : LaMain « ● Building » clignote lentement
+  (`is-live--pulse`, 3s, coupé en `prefers-reduced-motion`) ; Capra
+  « ● Running », LePotager « ● Won Most Creative Project », DagoBERT
+  « ● Presented at the European Test and Telemetry Conference », tous en bleu
+  (`is-live`) sans clignotement. Majuscules en début de statut. Hero : MSc en
+  gras retiré, « (ex-UPMC) » déplacé après Sorbonne Université (idem table
+  éducation, meta description, docs/00).
+- Décisions : « Winned most creative proejt » écrit « Won Most Creative
+  Project ». `css_version` 21.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

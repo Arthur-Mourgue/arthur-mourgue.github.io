@@ -145,6 +145,8 @@ img, video { display: block; max-width: 100%; }
 
 /* ---------- Section heads ---------- */
 .section { padding-top: var(--section); scroll-margin-top: 16px; }
+/* The drawing list sits closer to the hero than the later sections. */
+#work { padding-top: clamp(32px, 4vh, 56px); }
 .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 20px; }
 .section-head > div { display: flex; flex-direction: column; gap: 8px; padding-right: 12px; }
 .section-head h2 { font-size: var(--h2); font-weight: 700; }
@@ -253,6 +255,12 @@ img, video { display: block; max-width: 100%; }
 .sheet-table td:first-child { font: 12px/2 var(--mono); color: var(--muted); white-space: nowrap; width: 64px; }
 .sheet-table tbody tr:hover td { color: var(--blue); }
 .is-live { color: var(--blue); }
+/* Slow blink for an in-progress status only. */
+.is-live--pulse { animation: status-pulse 3s ease-in-out infinite; }
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.25; }
+}
 
 .sheet {
   display: grid;
@@ -381,4 +389,5 @@ img, video { display: block; max-width: 100%; }
   .hand__sweep { display: none; }
   .hand__notes .note { animation: none; }
   .hand__notes .note:first-of-type { opacity: 1; }
+  .is-live--pulse { animation: none; }
 }

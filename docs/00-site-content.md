@@ -60,7 +60,7 @@ name: "Arthur Mourgue"
 title: "Research Engineer in AI for Robotics"
 paragraphs:
   - "I work on AI for robots, from training the models to making them work on real hardware."
-  - "Three years of R&D at Safran, six months at Capra Robotics in Denmark, and now an MSc in Robotics (ex-UPMC) at Sorbonne Université."
+  - "Three years of R&D at Safran, six months at Capra Robotics in Denmark, and now an MSc in Robotics at Sorbonne Université (ex-UPMC)."
   - "Looking for an end-of-studies internship from March 2027, with a view to staying on."
 highlights: "Most Creative Project, LeRobot hackathon 2026 · Co-author, ETTC 2025"
 links: ["cv.pdf -> {{CV_PATH}}", "github -> {{GITHUB_URL}}", "linkedin -> {{LINKEDIN_URL}}", "email -> mailto:{{EMAIL}}"]
@@ -160,7 +160,7 @@ experience:
   - ["2023 to 2026", "Safran Data Systems, Les Ulis. R&D innovation engineer, apprenticeship."]
   - ["2023", "Blue Frog Robotics, Paris. Embedded systems intern."]
 education:
-  - ["2026 to 2027", "Sorbonne Université. MSc in Robotics (ex-UPMC). Imitation learning, reinforcement learning, multimodal models."]
+  - ["2026 to 2027", "Sorbonne Université (ex-UPMC). MSc in Robotics. Imitation learning, reinforcement learning, multimodal models."]
   - ["2023 to 2026", "INSA Lyon. Engineering degree in electrical engineering, signal and image processing."]
   - ["2021 to 2023", "Université de Toulon. BUT in electronics and embedded systems."]
 ```
