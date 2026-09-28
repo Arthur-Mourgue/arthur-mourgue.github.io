@@ -125,6 +125,11 @@
   (plus utilisé sur le home).
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — retrait du scroll cue « Selected work ↓ »
+- Fait : supprimé le lien scroll-cue en bas du hero (« Selected work ↓ »,
+  `href="#work"`). `.scroll-cue` reste dans le CSS (plus utilisé).
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
