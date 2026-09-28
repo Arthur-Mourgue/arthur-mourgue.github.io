@@ -60,8 +60,8 @@ name: "Arthur Mourgue"
 title: "Research Engineer in AI for Robotics"
 paragraphs:
   - "I work on AI for robots, from training the models to making them work on real hardware."
-  - "Three years of R&D at Safran, six months at Capra Robotics in Denmark, and now an MSc in Robotics at Sorbonne Université (ex-UPMC)."
-  - "Looking for an end-of-studies internship from March 2027, with a view to staying on."
+  - "Three years of R&D at Safran, six months in R&D at Capra Robotics in Denmark, and now an MSc in Robotics at Sorbonne Université (ex-UPMC)."
+  - "Looking for an end-of-studies internship from March 2027."
 highlights: "Most Creative Project, LeRobot hackathon 2026 · Co-author, ETTC 2025"
 links: ["cv.pdf -> {{CV_PATH}}", "github -> {{GITHUB_URL}}", "linkedin -> {{LINKEDIN_URL}}", "email -> mailto:{{EMAIL}}"]
 figure:

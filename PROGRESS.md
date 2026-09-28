@@ -143,6 +143,17 @@
   Project ». `css_version` 21.
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — encart skills, R&D Capra, retouches hero
+- Fait : les specs sous les images des 4 feuilles (« 5 DOF · FlexiTac · LeRobot
+  · 2026 », etc.) sont déplacées dans un encart encadré `.sheet__tags` (mono,
+  bordure bleue) au-dessus du lien « Read the full sheet ». Hero : « six months
+  in R&D at Capra Robotics », « LaMain, a hand with touch sensors for the SO-101
+  arm », et suppression de « with a view to staying on. » dans la note. Meta
+  description et docs/00 alignés.
+- Décisions : encart en bleu sur la gauche (`align-self: flex-start`), pour
+  rester dans la direction artistique (papier, croix, bleu). `css_version` 22.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

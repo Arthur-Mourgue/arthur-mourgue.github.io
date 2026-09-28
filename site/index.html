@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Arthur Mourgue, Research Engineer in AI for Robotics</title>
-  <meta name="description" content="Research engineer in AI for robotics. Three years of R&amp;D at Safran, six months at Capra Robotics, MSc in Robotics at Sorbonne Université (ex-UPMC).">
+  <meta name="description" content="Research engineer in AI for robotics. Three years of R&amp;D at Safran, six months in R&amp;D at Capra Robotics, MSc in Robotics at Sorbonne Université (ex-UPMC).">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/style.css?v=21">
+  <link rel="stylesheet" href="assets/css/style.css?v=22">
   <!-- Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png -->
   <meta property="og:title" content="Arthur Mourgue, Research Engineer in AI for Robotics">
   <meta property="og:description" content="AI for robots, from training the models to running them on real hardware.">
@@ -29,8 +29,8 @@
       <p class="me">Arthur Mourgue</p>
       <h1>Research Engineer in AI for Robotics</h1>
       <p class="lead">I work on AI for robots, from training the models to making them work on real hardware.</p>
-      <p>Three years of R&amp;D at <a href="https://www.safran-group.com/companies/safran-data-systems">Safran</a>, six months at <a href="https://caprarobotics.com">Capra Robotics</a> in Denmark, and now an MSc in Robotics at <a href="https://www.sorbonne-universite.fr">Sorbonne Université</a> (ex-UPMC). Currently building LaMain, a robot hand with touch.</p>
-      <p class="note">Looking for an end-of-studies internship from March 2027, with a view to staying on.</p>
+      <p>Three years of R&amp;D at <a href="https://www.safran-group.com/companies/safran-data-systems">Safran</a>, six months in R&amp;D at <a href="https://caprarobotics.com">Capra Robotics</a> in Denmark, and now an MSc in Robotics at <a href="https://www.sorbonne-universite.fr">Sorbonne Université</a> (ex-UPMC). Currently building LaMain, a hand with touch sensors for the SO-101 arm.</p>
+      <p class="note">Looking for an end-of-studies internship from March 2027.</p>
       <p class="links">
         <a href="{{CV_PATH}}">cv.pdf</a>
         <a href="{{GITHUB_URL}}">github</a>
@@ -75,11 +75,11 @@
         <h3 id="s1">LaMain</h3>
         <p>An open-source three-finger hand for the SO-101 arm, designed with Julien Navet. It stays under 200 grams so the arm can still lift objects, and it carries touch sensors on the fingertips.</p>
         <p>The goal is to train robot learning models with touch, from imitation learning to vision-language-action models.</p>
+        <div class="sheet__tags">5 DOF · FlexiTac · LeRobot · 2026</div>
         <a class="more" href="projects/lamain.html">Read the full sheet</a>
       </div>
       <figure>
         <div class="media">[Photo of the assembled hand, or the annotated CAD]</div>
-        <figcaption class="spec">5 DOF · FlexiTac · LeRobot · 2026</figcaption>
       </figure>
     </article>
 
@@ -88,11 +88,11 @@
         <h3 id="s2">Capra Robotics</h3>
         <p>Six months on autonomous mobile robots in Denmark. I trained a segmentation model that lets the robot see obstacles its LiDAR misses, on a dataset built with ten times less manual labelling.</p>
         <p>I also moved face and plate anonymisation inside the camera, and built the localisation that lets the robot dock to a food cart, 18 times out of 18 in tests.</p>
+        <div class="sheet__tags">SegFormer · YOLOX · ROS 2 · Jetson Orin Nano · OAK-D · 2026</div>
         <a class="more" href="projects/capra.html">Read the full sheet</a>
       </div>
       <figure>
         <div class="media">[Camera image next to its ground mask]</div>
-        <figcaption class="spec">SegFormer · YOLOX · ROS 2 · Jetson Orin Nano · OAK-D · 2026</figcaption>
       </figure>
     </article>
 
@@ -101,11 +101,11 @@
         <h3 id="s3">LePotager</h3>
         <p>In 48 hours at a LeRobot hackathon, we built a robot arm that sorts fruit by pressing it. Colour can lie about ripeness, touch does not.</p>
         <p>The policy is an imitation learning model trained on camera images and a low-cost pressure sensor.</p>
+        <div class="sheet__tags">ACT · SO-101 · piezoresistive sensor · Copenhagen, June 2026</div>
         <a class="more" href="projects/lepotager.html">Read the full sheet</a>
       </div>
       <figure>
         <div class="media">[Demo video. Pick, press three times, sort]</div>
-        <figcaption class="spec">ACT · SO-101 · piezoresistive sensor · Copenhagen, June 2026</figcaption>
       </figure>
     </article>
 
@@ -114,11 +114,11 @@
         <h3 id="s4">DagoBERT</h3>
         <p>At <a href="https://www.safran-group.com/companies/safran-data-systems">Safran</a>, flight-test engineers can program an on-board computer, but only in C. DagoBERT lets them describe what they want in plain English.</p>
         <p>A local language model turns the request into blocks they can check and edit, and the blocks become embedded C++.</p>
+        <div class="sheet__tags">Llama 3 · GNU Radio · C++ · ARM · Safran Data Systems</div>
         <a class="more" href="projects/dagobert.html">Read the full sheet</a>
       </div>
       <figure>
         <div class="media">[Diagram of the chain. Sentence, blocks, C++, hardware]</div>
-        <figcaption class="spec">Llama 3 · GNU Radio · C++ · ARM · Safran Data Systems</figcaption>
       </figure>
     </article>
   </section>
