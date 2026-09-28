@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Checks the Conventional Commits format: type(scope optional): description
+msg=$(head -1 "$1")
+if echo "$msg" | grep -Eq '^(Merge|Revert) '; then exit 0; fi
+if ! echo "$msg" | grep -Eq '^(feat|fix|style|refactor|test|docs|chore|perf|build|ci|revert)(\([A-Za-z0-9_-]+\))?!?: .{3,}'; then
+  echo "⛔ Invalid commit message: \"$msg\""
+  echo "   Expected format: type(scope): description"
+  echo "   Examples: feat(F003): add login form  |  fix: handle empty cart"
+  exit 1
+fi

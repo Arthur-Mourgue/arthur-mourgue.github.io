@@ -1,0 +1,19 @@
+# CI = a GitHub server re-runs check.sh on every push / pull request.
+# Even if someone bypasses the local hook (git commit --no-verify),
+# CI sees it. Combine it with "branch protection" on the default branch.
+name: CI
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # check.sh is syntax/JSON only and needs no dependencies.
+      # ubuntu-latest ships python3 and node out of the box.
+      - name: Run check.sh
+        run: bash scripts/check.sh

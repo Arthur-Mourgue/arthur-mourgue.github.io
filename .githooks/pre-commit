@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Lancé automatiquement par git AVANT chaque commit.
+# Si ce script sort avec un code ≠ 0, le commit est annulé.
+
+# 1. Jamais de secrets dans git
+if git diff --cached --name-only | grep -Eq '(^|/)\.env($|\.)'; then
+  echo "⛔ Commit bloqué : un fichier .env est dans le commit (secrets !)."
+  exit 1
+fi
+
+# 2. Le code doit passer tous les checks
+./scripts/check.sh || { echo "⛔ Commit bloqué : check.sh a échoué."; exit 1; }
