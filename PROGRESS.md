@@ -182,6 +182,11 @@
   ex. « LaMain, Open-source robot hand with touch for the SO-101 arm ».
 - Vérifié : `./scripts/check.sh` vert (4 tests OK).
 
+## 2026-09-29 — lead au même corps de texte
+- Fait : `.intro .lead` passe de `var(--lead)` (18-22px) à `var(--body)`
+  (17-19px), comme les autres paragraphes du hero. `css_version` 24.
+- Vérifié : `./scripts/check.sh` vert (4 tests OK).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

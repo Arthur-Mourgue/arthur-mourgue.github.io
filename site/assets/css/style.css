@@ -179,7 +179,7 @@ img, video { display: block; max-width: 100%; }
 .intro { display: flex; flex-direction: column; gap: clamp(14px, 2.2vh, 22px); padding: 6px; }
 .intro .me { font-weight: 700; }
 .intro h1 { font-size: var(--h1); font-weight: 700; letter-spacing: -0.005em; line-height: 1.2; }
-.intro .lead { font-size: var(--lead); line-height: 1.5; }
+.intro .lead { font-size: var(--body); line-height: 1.55; }
 .intro .note { color: var(--muted); }
 
 .hand-figure { margin: 0; justify-self: end; width: min(100%, 60vh); width: min(100%, 60svh); }
