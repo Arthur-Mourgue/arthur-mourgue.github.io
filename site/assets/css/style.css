@@ -1,12 +1,8 @@
 /* ==========================================================================
-   Portfolio: "drawing set" art direction
-   One blue = the hand / touch. Paper, crosses, serif, outlined project names.
+   Arthur Mourgue, portfolio
+   Art direction. A set of technical drawings. Paper, small crosses, serif,
+   one blue accent (the hand, touch, links). Nothing else.
    ========================================================================== */
-
-/* Native cross-fade between page loads (progressive enhancement, Chrome/Edge only) */
-@view-transition {
-  navigation: auto;
-}
 
 /* ---------- Tokens ---------- */
 :root {
@@ -15,22 +11,23 @@
   --muted: #5F5E5A;
   --blue: #1A0DAB;
   --hair: rgba(26, 13, 171, 0.35);
-  --todo: #E6E2D8;
+  --slot: rgba(244, 242, 237, 0.85);
   --grid: url("../img/crosses.svg");
 
   --serif: "Times New Roman", Times, Georgia, serif;
   --mono: ui-monospace, Menlo, Consolas, monospace;
 
-  /* Fluid sizing: everything scales with the viewport and the zoom level. */
-  --pad: clamp(24px, 5vw, 96px);         /* page side margins */
-  --gap: clamp(32px, 4vw, 72px);         /* gap between text and figure */
-  --h1: clamp(34px, 3.6vw, 60px);        /* hero title */
-  --lead: clamp(16px, 1.1vw, 20px);      /* hero paragraphs */
-  --body: clamp(17px, 1.25vw, 20px);     /* rest of the site */
-  --section: clamp(96px, 12vh, 160px);   /* space between sections */
+  /* Fluid sizes. They follow the viewport, so the page keeps its proportions
+     at any window size and any browser zoom. */
+  --pad: clamp(24px, 6vw, 112px);
+  --gap: clamp(32px, 6vw, 104px);
+  --h1: clamp(34px, 4vw, 64px);
+  --lead: clamp(18px, 1.3vw, 22px);
+  --body: clamp(17px, 1.1vw, 19px);
+  --h2: clamp(26px, 2.2vw, 34px);
+  --section: clamp(96px, 13vh, 150px);
 }
 
-/* Night mode: same system, inverted paper */
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #12131A;
@@ -38,7 +35,7 @@
     --muted: #A09E97;
     --blue: #8FA2FF;
     --hair: rgba(143, 162, 255, 0.35);
-    --todo: #2A2B35;
+    --slot: rgba(18, 19, 26, 0.85);
     --grid: url("../img/crosses-dark.svg");
   }
 }
@@ -51,7 +48,7 @@
   --muted: #A09E97;
   --blue: #8FA2FF;
   --hair: rgba(143, 162, 255, 0.35);
-  --todo: #2A2B35;
+  --slot: rgba(18, 19, 26, 0.85);
   --grid: url("../img/crosses-dark.svg");
 }
 :root[data-theme="light"] {
@@ -60,7 +57,7 @@
   --muted: #5F5E5A;
   --blue: #1A0DAB;
   --hair: rgba(26, 13, 171, 0.35);
-  --todo: #E6E2D8;
+  --slot: rgba(244, 242, 237, 0.85);
   --grid: url("../img/crosses.svg");
 }
 
@@ -68,25 +65,25 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  position: relative;
   margin: 0;
   background: var(--paper) var(--grid);
   background-size: 28px 28px;
   color: var(--ink);
-  font: var(--body)/1.5 var(--serif);
+  font: var(--body)/1.55 var(--serif);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 p { margin: 0; }
-h1, h2, h3 { margin: 0; font-weight: 700; line-height: 1.1; }
-a { color: var(--blue); text-underline-offset: 0.15em; }
+h1, h2, h3 { margin: 0; line-height: 1.12; }
+a { color: var(--blue); text-underline-offset: 0.16em; text-decoration-thickness: 1px; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-img, video { max-width: 100%; display: block; }
+img, video { display: block; max-width: 100%; }
 
-.wrap { max-width: min(1680px, 96vw); margin-inline: auto; padding-inline: var(--pad); }
+.wrap { max-width: 1480px; margin-inline: auto; padding-inline: var(--pad); }
 
-/* Text sitting on the crosses: the grid fades out behind it */
-.paper { background: var(--paper); box-shadow: 0 0 22px 18px var(--paper); }
+/* Text sitting on the crosses. The grid fades out behind it. */
+.paper { background: var(--paper); box-shadow: 0 0 20px 16px var(--paper); }
 
 /* ---------- Small parts ---------- */
 .label {
@@ -96,23 +93,42 @@ img, video { max-width: 100%; display: block; }
   color: var(--blue);
 }
 .label--muted { color: var(--muted); }
+.spec { font: 12px/1.6 var(--mono); color: var(--muted); }
 .muted { color: var(--muted); }
-.spec { font: 12px/1.5 var(--mono); color: var(--muted); }
-mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 
-/* Project names: outlined italic serif, same stroke as the drawing */
 .name {
-  font: italic 400 clamp(32px, 2.4vw + 16px, 56px)/1 var(--serif);
+  font: italic 400 clamp(40px, 3.6vw, 58px)/1 var(--serif);
   letter-spacing: -0.01em;
   color: transparent;
-  -webkit-text-stroke: 1.2px var(--blue);
+  -webkit-text-stroke: 1.1px var(--blue);
 }
-.name--lg { font-size: clamp(44px, 2.4vw + 30px, 72px); }
 @supports not (-webkit-text-stroke: 1px) { .name { color: var(--blue); } }
 
-.links { display: flex; flex-wrap: wrap; gap: 22px; }
+/* Image slot. A dashed frame until a real image or video is added. */
+.media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border: 1px dashed var(--blue);
+  background: var(--slot);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; text-align: center;
+  font: 12px/1.6 var(--mono); color: var(--blue);
+  overflow: hidden;
+}
+.media:has(img), .media:has(video) { border-style: solid; padding: 0; }
+.media img, .media video { width: 100%; height: 100%; object-fit: cover; }
+.media--small { aspect-ratio: 4 / 3; }
 
-/* ---------- Hero ---------- */
+/* ---------- Section heads ---------- */
+.section { padding-top: var(--section); scroll-margin-top: 16px; }
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 20px; }
+.section-head > div { display: flex; flex-direction: column; gap: 8px; padding-right: 12px; }
+.section-head h2 { font-size: var(--h2); font-weight: 700; }
+
+/* ==========================================================================
+   HERO. Exactly one screen at normal zoom.
+   ========================================================================== */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -121,51 +137,35 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
   column-gap: var(--gap);
   align-items: center;
-  padding-block: clamp(64px, 9vh, 118px);
-  scroll-margin-top: 0;
+  padding-block: clamp(64px, 10vh, 120px) clamp(56px, 8vh, 104px);
 }
-.hero__nav {
-  position: absolute; top: clamp(20px, 4vh, 44px); right: 48px;
-  z-index: 2;
-  display: flex; flex-wrap: wrap; gap: clamp(16px, 2vw, 32px);
+/* right: 48px keeps the nav clear of the fixed theme toggle. */
+.hero-nav {
+  position: absolute; top: clamp(20px, 3.5vh, 36px); right: 48px;
+  display: flex; gap: 22px;
 }
-.hero__cue { position: absolute; bottom: clamp(20px, 4vh, 44px); left: 0; }
-
-.intro { display: flex; flex-direction: column; gap: clamp(12px, 1.4vh, 20px); padding: 8px; }
-.intro .me { font-weight: 700; font-size: var(--body); }
-.intro h1 { font-size: var(--h1); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; }
-.intro p { font-size: var(--lead); line-height: 1.45; }
-
-.hand-figure { margin: 0; width: min(36vw, 56vh); width: min(36vw, 56svh); max-width: 100%; justify-self: end; }
-/* z-index: 1 keeps the hand above the reactive background (body::before, z-index -1),
-   so the crosses show through the drawing's empty gaps but never through its strokes. */
-.hand { position: relative; z-index: 1; isolation: isolate; aspect-ratio: 588 / 580; }
-
-/* Opaque backing under the ink, masked by a slightly dilated copy of the drawing.
-   The strokes are thin anti-aliased ink: once scaled they
-   are semi-transparent, so the reactive crosses bled through and looked like they
-   passed in front of the hand, especially in light mode. This paper layer blocks
-   the crosses on the strokes while the drawing's gaps stay see-through. */
-.hand::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: var(--paper);
-  -webkit-mask: url("../img/lamain-lines-backing.png") center / contain no-repeat;
-          mask: url("../img/lamain-lines-backing.png") center / contain no-repeat;
+.hero-nav a { font: 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
+.hero-nav a:hover { text-decoration: underline; }
+.scroll-cue {
+  position: absolute; bottom: clamp(20px, 3.5vh, 36px); left: 0;
+  font: 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
 }
 
-/* The drawing is a mask: its colour follows var(--blue), so it works in night mode.
-   The stroke colour is pre-blended with the paper rather than set with opacity: the
-   result looks the same, but the strokes stay opaque and hide the reactive crosses
-   behind them (at opacity 0.72 the crosses bled through the ink). */
+.intro { display: flex; flex-direction: column; gap: clamp(14px, 2.2vh, 22px); padding: 6px; }
+.intro .me { font-weight: 700; }
+.intro h1 { font-size: var(--h1); font-weight: 400; letter-spacing: -0.012em; line-height: 1.06; }
+.intro .lead { font-size: var(--lead); line-height: 1.5; }
+.intro .note { color: var(--muted); }
+
+.hand-figure { margin: 0; justify-self: end; width: min(100%, 60vh); width: min(100%, 60svh); }
+.hand { position: relative; aspect-ratio: 588 / 580; }
 .hand__lines {
   position: absolute; inset: 0;
   background: var(--blue);
-  background: color-mix(in srgb, var(--blue) 72%, var(--paper));
   -webkit-mask: url("../img/lamain-lines.png") center / contain no-repeat;
           mask: url("../img/lamain-lines.png") center / contain no-repeat;
+  opacity: 0.72;
 }
-/* A brighter copy, visible only inside a moving band: the sweep */
 .hand__sweep {
   position: absolute; inset: 0;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 45%, #000 55%, transparent 100%);
@@ -174,217 +174,133 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   animation: sweep 6s ease-in-out infinite;
 }
-/* Pure blue, not the pre-blended stroke colour: this copy sits on top of the opaque
-   base and has to read as brighter than it. */
-.hand__sweep .hand__lines { background: var(--blue); opacity: 0.6; }
-
+.hand__sweep .hand__lines { opacity: 0.6; }
 @keyframes sweep {
   0%        { -webkit-mask-position: 0 -60%; mask-position: 0 -60%; }
   75%, 100% { -webkit-mask-position: 0 160%; mask-position: 0 160%; }
 }
-
-/* Tactile background: the grid of little crosses lights up in blue near the
-   cursor, across the whole page. --mx / --my are set by assets/js/site.js.
-   position: absolute (anchored to body, which is position: relative above)
-   so this scrolls together with body's own grid background; they'd drift
-   out of alignment if this used position: fixed (viewport-anchored) while
-   body's background stays document-anchored. --mx/--my are page coordinates
-   (pageX/pageY) to match. */
-@media (hover: hover) and (pointer: fine) {
-  body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    color: var(--blue);
-    background-image: url("../img/crosses-accent.svg");
-    background-size: 28px 28px;
-    -webkit-mask-image: radial-gradient(circle 140px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
-            mask-image: radial-gradient(circle 140px at var(--mx, -1000px) var(--my, -1000px), #000 0%, transparent 100%);
-  }
-}
-
-/* Annotations: one at a time */
 .hand__notes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.note { opacity: 0; animation: turn 9s ease-in-out infinite; }
-.note:nth-of-type(2) { animation-delay: 3s; }
-.note:nth-of-type(3) { animation-delay: 6s; }
+/* Scoped to the drawing: .intro also uses a .note paragraph that must stay visible. */
+.hand__notes .note { opacity: 0; animation: turn 9s ease-in-out infinite; }
+.hand__notes .note:nth-of-type(2) { animation-delay: 3s; }
+.hand__notes .note:nth-of-type(3) { animation-delay: 6s; }
 .note circle { fill: var(--blue); }
 .note path { stroke: var(--blue); stroke-width: 1; fill: none; }
 .note text { fill: var(--blue); font: italic 19px var(--serif); }
-
 @keyframes turn {
   0%        { opacity: 0; }
   6%, 30%   { opacity: 1; }
   36%, 100% { opacity: 0; }
 }
+.hand-caption { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; padding: 4px; }
+.hand-caption__title { display: flex; align-items: baseline; gap: 14px; }
 
-.hand-caption { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; padding: 4px; }
-.hand-caption__title { display: flex; align-items: baseline; gap: 16px; font-size: 17px; }
-
-/* ---------- Section heads ---------- */
-.section { padding-top: var(--section); scroll-margin-top: 24px; }
-.section-head {
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
-  padding-bottom: 16px;
-}
-.section-head__title { display: flex; flex-direction: column; gap: 8px; padding-right: 12px; }
-.section-head h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
-
-/* ---------- Tables (drawing list, experience, education) ---------- */
+/* ==========================================================================
+   SELECTED WORK
+   ========================================================================== */
 .sheet-table {
   width: 100%;
   border-collapse: collapse;
   border-top: 1px solid var(--blue);
   border-bottom: 1px solid var(--blue);
   background: var(--paper);
-  font-size: 18px;
 }
 .sheet-table th { text-align: left; font-weight: 400; padding: 8px 12px; }
 .sheet-table td { padding: 12px; border-top: 1px solid var(--hair); vertical-align: top; }
-.sheet-table td:first-child { font: 12px/2 var(--mono); color: var(--muted); white-space: nowrap; }
+.sheet-table td:first-child { font: 12px/2 var(--mono); color: var(--muted); white-space: nowrap; width: 64px; }
 .sheet-table tbody tr:hover td { color: var(--blue); }
 .is-live { color: var(--blue); }
 
-/* ---------- Selected work (home) ---------- */
-.work-list { padding-bottom: var(--section); }
 .sheet {
   display: grid;
-  grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
   column-gap: var(--gap);
-  align-items: start;
-  padding-top: var(--section);
+  align-items: center;
+  padding-top: clamp(80px, 11vh, 128px);
   scroll-margin-top: 24px;
 }
-.sheet__text { display: flex; flex-direction: column; gap: 18px; line-height: 1.55; }
-.sheet__text h2 { font-size: clamp(28px, 1.2vw + 22px, 38px); }
-.sheet figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
-.sheet figcaption { display: flex; flex-direction: column; gap: 10px; }
-
-.media {
-  aspect-ratio: 3 / 2;
-  border: 1px dashed var(--blue);
-  background: color-mix(in srgb, var(--paper) 85%, transparent);
-  display: flex; align-items: center; justify-content: center;
-  text-align: center; padding: 32px;
-  font: 13px/1.6 var(--mono); color: var(--blue);
-  overflow: hidden;
-  position: relative; z-index: 1;  /* keep the frame above the caption's paper halo */
-}
-.media:has(video), .media:has(img) { border-style: solid; padding: 0; }
-.media video, .media img { width: 100%; height: 100%; object-fit: cover; }
-
-/* ---------- Research and papers ---------- */
-.research-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  column-gap: var(--gap);
-  align-items: start;
-  padding-top: 40px;
-}
-.research-item { display: flex; flex-direction: column; gap: 14px; padding: 4px; line-height: 1.55; }
-.research-item h3 { font: italic 400 clamp(24px, 1.4vw + 16px, 34px)/1.1 var(--serif); }
-.paper-item { display: flex; flex-direction: column; gap: 6px; padding: 4px; }
-.paper-item + .paper-item { margin-top: 28px; }
-
-/* ---------- Other projects ---------- */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(28px, 3vw, 56px);
-  padding-top: 40px;
-}
-.card { display: flex; flex-direction: column; gap: 14px; }
-.card .media { aspect-ratio: 4 / 3; }
-.card__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.card h3 { font-size: clamp(20px, 1.3vw + 12px, 26px); }
-.card p { font-size: var(--body); line-height: 1.55; }
-
-/* ---------- Background ---------- */
-.tables {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--gap);
-  row-gap: 48px;
-  padding-top: 40px;
-}
-.table-block { display: flex; flex-direction: column; gap: 16px; }
-.languages { padding-top: 24px; }
-
-/* ---------- Contact ---------- */
-.contact { padding-top: calc(var(--section) + 20px); padding-bottom: 56px; display: flex; flex-direction: column; gap: 48px; }
-.contact__box { display: flex; flex-direction: column; gap: 22px; align-self: flex-start; }
-.contact__line { font-size: clamp(28px, 3.2vw, 40px); line-height: 1.2; }
-.contact__foot {
-  display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;
-  padding-top: 16px; border-top: 1px solid var(--blue); background: var(--paper);
-}
+.sheet__text { display: flex; flex-direction: column; gap: 16px; padding: 6px; }
+.sheet__text h3 { font-size: var(--h2); font-weight: 700; }
+.sheet figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.more { font-size: var(--body); }
 
 /* ==========================================================================
-   Project page (level 2)
+   RESEARCH AND PAPERS
    ========================================================================== */
-.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; }
-
-.titleblock {
+.research {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--blue);
-  border-left: 1px solid var(--blue);
-  border-right: 1px solid var(--blue);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--gap);
+  align-items: start;
+}
+.research__block { display: flex; flex-direction: column; gap: 14px; padding: 6px; }
+.research__block h3 { font-size: calc(var(--h2) * 0.8); font-weight: 700; }
+.papers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); background: var(--paper); }
+.papers li { padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+.papers li + li { border-top: 1px solid var(--hair); }
+
+/* ==========================================================================
+   OTHER PROJECTS
+   ========================================================================== */
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(28px, 3vw, 48px) clamp(20px, 2.4vw, 40px); }
+@media (max-width: 1200px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { display: flex; flex-direction: column; gap: 12px; }
+.card__text { display: flex; flex-direction: column; gap: 6px; padding: 4px; }
+.card h3 { font-size: 18px; font-weight: 700; }
+.card p { font-size: 16px; line-height: 1.5; }
+
+/* ==========================================================================
+   BACKGROUND
+   ========================================================================== */
+.background { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--gap); align-items: start; }
+.background h3 { padding: 0 0 10px; }
+.cv-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); background: var(--paper); }
+.cv-table td { padding: 12px; border-top: 1px solid var(--hair); vertical-align: top; }
+.cv-table tr:first-child td { border-top: none; }
+.cv-table td:first-child { font: 12px/1.9 var(--mono); color: var(--muted); white-space: nowrap; width: 150px; }
+.cv-table b { font-weight: 700; }
+.cv-table span { display: block; color: var(--muted); }
+.toolbox { margin-top: 28px; }
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact { padding-top: calc(var(--section) + 16px); padding-bottom: 48px; display: flex; flex-direction: column; gap: 44px; }
+.contact__box { display: flex; flex-direction: column; gap: 20px; align-self: flex-start; padding: 6px; }
+.contact__line { font-size: clamp(26px, 2.8vw, 40px); line-height: 1.2; }
+.contact__foot { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--blue); background: var(--paper); }
+
+/* ==========================================================================
+   PROJECT PAGES (articles)
+   ========================================================================== */
+/* padding-right keeps the sheet label clear of the fixed theme toggle. */
+.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; padding-right: 48px; }
+.titleblock {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--blue); border-bottom: none;
   background: var(--paper);
-  margin-top: 24px;
 }
 .titleblock__head {
   grid-column: 1 / -1;
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px;
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px;
   padding: 14px 16px; border-bottom: 1px solid var(--blue);
 }
-.titleblock__head div { display: flex; flex-direction: column; gap: 6px; }
-.titleblock__cell {
-  padding: 8px 12px; border-bottom: 1px solid var(--blue);
-  display: flex; flex-direction: column; gap: 2px; font-size: 15px;
-}
+.titleblock__head > div { display: flex; flex-direction: column; gap: 6px; }
+.titleblock__cell { padding: 8px 12px; border-bottom: 1px solid var(--blue); display: flex; flex-direction: column; gap: 2px; font-size: 15px; }
 .titleblock__cell + .titleblock__cell { border-left: 1px solid var(--blue); }
 .titleblock__cell .label { font-size: 9px; }
 
-/* Flowing narrative used by the project pages: text with image slots between sections */
-.prose {
-  max-width: 760px; margin-inline: auto; padding-top: 72px;
-  display: flex; flex-direction: column; gap: 16px;
-  line-height: 1.6;
-  background: var(--paper);
-  box-shadow: 0 0 22px 18px var(--paper);
-}
-.prose .lede { font-size: var(--lead); line-height: 1.35; }
-.prose h2 { font-size: 26px; margin-top: 26px; }
-.prose h3 { font-size: 20px; margin-top: 10px; }
-.prose figure { margin: 18px 0 6px; display: flex; flex-direction: column; gap: 10px; }
-.prose .media { aspect-ratio: 16 / 9; }
+.article-lead { max-width: 720px; margin-top: 56px; font-size: var(--lead); line-height: 1.5; padding: 6px; }
+.prose { max-width: 720px; margin-top: 40px; padding: 6px; background: var(--paper); box-shadow: 0 0 24px 20px var(--paper); }
+.prose h2 { font-size: var(--h2); font-weight: 700; margin: 56px 0 16px; }
+.prose h3 { font-size: calc(var(--h2) * 0.72); font-weight: 700; margin: 36px 0 12px; }
+.prose p { margin: 0 0 16px; line-height: 1.65; }
+.prose figure { margin: 36px 0; }
+.prose figure .media { aspect-ratio: 16 / 10; }
+.prose figcaption { margin-top: 8px; }
+.prose > :first-child { margin-top: 0; }
 
-.results { width: 100%; border-collapse: collapse; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); background: var(--paper); }
-.results td { padding: 12px; border-top: 1px solid var(--hair); }
-.results td:first-child { font: 12px/1.8 var(--mono); color: var(--muted); width: 40%; }
-
-.pager {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
-  margin-top: var(--section); padding-block: 20px 56px; border-top: 1px solid var(--blue);
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 1fr); row-gap: 40px; min-height: auto; padding-top: 96px; }
-  .hand-figure { justify-self: center; width: min(100%, 440px); }
-  .hand__notes { display: none; }          /* too small to read on phones */
-  .sheet, .research-grid, .tables { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
-  .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .titleblock__cell:nth-child(odd of .titleblock__cell) { border-left: none; }
-}
-@media (max-width: 720px) {
-  .cards { grid-template-columns: minmax(0, 1fr); }
-  .col-year { display: none; }
-  .sheet-table { font-size: 16px; }
-}
+.pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: var(--section); padding-block: 20px 56px; border-top: 1px solid var(--blue); background: var(--paper); }
 
 /* ---------- Theme toggle ---------- */
 .theme-toggle {
@@ -400,10 +316,26 @@ mark.todo { background: var(--todo); color: inherit; padding: 0 0.2em; }
 }
 .theme-toggle:hover { background: var(--hair); }
 
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: minmax(0, 1fr); row-gap: 40px; padding-top: 88px; }
+  .hand-figure { justify-self: center; width: min(100%, 440px); }
+  .hand__notes { display: none; }
+  .sheet, .research, .background { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .titleblock__cell:nth-child(odd of .titleblock__cell) { border-left: none; }
+}
+@media (max-width: 640px) {
+  .col-year { display: none; }
+  .hero-nav { gap: 14px; right: 44px; }
+  .cv-table td:first-child { width: 96px; white-space: normal; }
+}
+
 /* ---------- Motion off ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hand__sweep { display: none; }
-  .note { animation: none; }
-  .note:first-of-type { opacity: 1; }
+  .hand__notes .note { animation: none; }
+  .hand__notes .note:first-of-type { opacity: 1; }
 }

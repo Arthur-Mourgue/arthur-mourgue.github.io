@@ -1,4 +1,4 @@
-# 01: Stratégie
+# 01 — Stratégie
 
 ## L'objectif
 
@@ -23,7 +23,7 @@ Le site doit faire dire à celui qui le ferme : *"Ce n'est pas un étudiant, c'e
 | Ingénieur qui fait passer l'entretien | 5 min | Choix techniques, ce qui a cassé, résultats | Pages projet |
 | Fondateur de startup | 1–2 min | Énergie, goût, capacité à livrer | Hero, LaMain, ton ton |
 
-## Les boîtes visées (état fin septembre 2026, à revérifier avant de postuler)
+## Les boîtes visées (état fin septembre 2026 — à revérifier avant de postuler)
 
 - **Wandercraft** (Paris) : humanoïde Calvin, déployé chez Renault. Envoie la feuille Capra (mise en production) et LaMain.
 - **Enchanted Tools** (Paris) : robots où le design compte autant que la technique, calcul embarqué. Ton goût et Capra (edge) comptent ici.

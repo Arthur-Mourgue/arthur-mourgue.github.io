@@ -1,4 +1,4 @@
-# 04: Les médias
+# 04 — Les médias
 
 C'est ce qui fera passer le site de "étudiant" à "crack". Un site sobre avec de très bonnes images vaut plus qu'un site chargé avec des images moyennes.
 

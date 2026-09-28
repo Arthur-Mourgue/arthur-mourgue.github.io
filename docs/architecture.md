@@ -32,9 +32,13 @@ static files; nothing in `site/` imports anything at runtime.
 
 ### Shared front-end
 `site/assets/css/style.css` and `site/assets/js/site.js` are unchanged plain
-assets. The shared `<head>`, theme toggle and script tags are produced once from
-`site-src/layout.html` + `site-src/partials/`, so the five pages can no longer
-drift from each other.
+assets. `site.js` now holds a single IIFE, the theme toggle (the cursor-reactive
+crosses were dropped with the v3 art direction). The shared `<head>`, theme
+toggle and script tags are produced once from `site-src/layout.html` +
+`site-src/partials/`, so the five pages can no longer drift from each other.
+The visual system follows the "temporary" handoff: fluid `clamp()` sizes, a hero
+that fits exactly one screen, and the same paper / crosses / serif / one-blue
+direction.
 
 ## Why there is no automated architecture contract
 - `import-linter` needs a Python package with intra-package imports. `tools/`

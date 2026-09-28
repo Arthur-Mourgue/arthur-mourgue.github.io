@@ -64,6 +64,29 @@
 - Vérifié : screenshots Chrome 1280x720, 1920x1080 et 390x844, rendu équilibré
   et hero complet sur un écran. `./scripts/check.sh` vert.
 
+## 2026-09-28 — integration de la version temporary
+- Fait : l'accueil et le CSS sont portés depuis `temporary/portfolio-lamain`
+  (hero régulier, nav Work/Research/Background/CV, scroll cue, `cv-table`,
+  cartes 4 colonnes, `papers`, `article-lead`). Les 4 pages projet reprennent
+  les textes/champs de temporary (Capra « March to September 2026 », figures,
+  pager LaMain → Capra → LePotager → DagoBERT). `docs/01`-`05` remplacés par
+  ceux de temporary et `docs/00-site-content.md` ajouté. `temporary/` supprimé.
+  Architecture conservée (`site-src/` + `tools/build_site.py`), bouton de thème
+  conservé.
+- Décisions : deux corrections par rapport à temporary, gardées pour un vrai
+  site. (1) `.note` servait à la fois à l'intro et aux annotations SVG
+  (`opacity: 0`), la note « Looking for an end-of-studies internship » était
+  invisible : les règles d'annotations sont scopées à `.hand__notes .note`.
+  (2) le label « Sheet 0X » passait sous le bouton de thème fixe : `.topbar`
+  reçoit `padding-right: 48px` et `.hero-nav` est décalé de 48px.
+- Assets : `lamain-lines-backing.png` et `crosses-accent.svg` supprimés (plus
+  utilisés). `site.js` réduit au seul toggle. `css_version` 18, `js_version` 11.
+- Vérifié : `./scripts/check.sh` vert ; rendu Chrome 1280x720, 1440x900,
+  1920x1080, 390x844 (hero = 1 écran, pas de scroll horizontal, label dégagé) ;
+  12 placeholders présents ; aucun « : » ni tiret cadratin/demi-cadratin.
+- À surveiller : `site-content.md` à la racine est encore l'ancienne v1, à
+  supprimer ou remplacer.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

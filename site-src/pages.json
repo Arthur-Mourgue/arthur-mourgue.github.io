@@ -1,47 +1,47 @@
 {
-  "css_version": "15",
-  "js_version": "10",
+  "css_version": "18",
+  "js_version": "11",
   "pages": [
     {
       "output": "index.html",
-      "title": "Arthur Mourgue: research engineer, robotics and AI",
-      "description": "Research engineer in robotics and AI. I work on AI for robots, from training the models to making them work on real hardware. Building LaMain, an open-source robot hand with touch, and researching world models for robot swarms. Looking for an end-of-studies internship from March 2027.",
+      "title": "Arthur Mourgue, Research Engineer in AI for Robotics",
+      "description": "Research engineer in AI for robotics. Three years of R&D at Safran, six months at Capra Robotics, master's in intelligent systems at Sorbonne Université.",
       "og_comment": "Social preview: export a 1200x630 screenshot of the hero to assets/img/og.png",
-      "og_title": "Arthur Mourgue: research engineer, robotics and AI",
-      "og_description": "I work on AI for robots, from training the models to making them work on real hardware. Currently building LaMain, an open-source robot hand with touch.",
+      "og_title": "Arthur Mourgue, Research Engineer in AI for Robotics",
+      "og_description": "AI for robots, from training the models to running them on real hardware.",
       "og_image": "assets/img/og.png",
       "body": "index.body.html"
     },
     {
       "output": "projects/lamain.html",
-      "title": "LaMain · Arthur Mourgue",
-      "description": "LaMain: an open-source three-finger robot hand with touch for the SO-101 arm. 5 DOF, under 200 g (target), under €200 (target), with tactile sensors and LeRobot integration.",
-      "og_title": "LaMain · Arthur Mourgue",
-      "og_description": "An open-source three-finger robot hand with touch for the SO-101 arm.",
+      "title": "LaMain, Arthur Mourgue",
+      "description": "An open-source robot hand with touch, light enough to go on the SO-101 arm.",
+      "og_title": "LaMain, Arthur Mourgue",
+      "og_description": "An open-source robot hand with touch, light enough to go on the SO-101 arm.",
       "body": "projects/lamain.body.html"
     },
     {
       "output": "projects/capra.html",
-      "title": "Capra Robotics · Arthur Mourgue",
-      "description": "Capra Robotics: three problems on real autonomous mobile robots. Ground segmentation on a Jetson, anonymisation inside an OAK-D camera, and LiDAR docking to a food cart.",
-      "og_title": "Capra Robotics · Arthur Mourgue",
+      "title": "Capra Robotics, Arthur Mourgue",
+      "description": "Three problems on real autonomous mobile robots. Two of them are about computer vision models, one is about localisation.",
+      "og_title": "Capra Robotics, Arthur Mourgue",
       "og_description": "Three problems on real autonomous mobile robots, from computer vision to LiDAR docking.",
       "body": "projects/capra.body.html"
     },
     {
       "output": "projects/lepotager.html",
-      "title": "LePotager · Arthur Mourgue",
-      "description": "LePotager: a robot arm that sorts fruit by pressing it, using imitation learning on vision and touch. Built in 48 hours at the LeRobot hackathon in Copenhagen.",
-      "og_title": "LePotager · Arthur Mourgue",
-      "og_description": "A robot arm that sorts fruit by touch, built in 48 hours at the LeRobot hackathon.",
+      "title": "LePotager, Arthur Mourgue",
+      "description": "A robot arm that sorts fruit by touch, built in 48 hours.",
+      "og_title": "LePotager, Arthur Mourgue",
+      "og_description": "A robot arm that sorts fruit by touch, built in 48 hours.",
       "body": "projects/lepotager.body.html"
     },
     {
       "output": "projects/dagobert.html",
-      "title": "DagoBERT · Arthur Mourgue",
-      "description": "DagoBERT: a local language model that turns plain English into embedded C++ for ARM flight-test hardware, co-authored as a paper at ETTC 2025.",
-      "og_title": "DagoBERT · Arthur Mourgue",
-      "og_description": "A local language model that turns plain English into embedded C++ for ARM flight-test hardware.",
+      "title": "DagoBERT, Arthur Mourgue",
+      "description": "Programming flight-test hardware in plain English, at Safran Data Systems.",
+      "og_title": "DagoBERT, Arthur Mourgue",
+      "og_description": "Programming flight-test hardware in plain English, at Safran Data Systems.",
       "body": "projects/dagobert.body.html"
     }
   ]

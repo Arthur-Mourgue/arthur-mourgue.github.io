@@ -1,4 +1,4 @@
-# 05: Checklist
+# 05 — Checklist
 
 ## V1 en ligne (cette semaine)
 - [ ] Remplacer `[Your name]`, `[YOUR_EMAIL]`, `[GITHUB_URL]`, `[LINKEDIN_URL]`

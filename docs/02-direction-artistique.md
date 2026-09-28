@@ -1,4 +1,4 @@
-# 02: Direction artistique
+# 02 — Direction artistique
 
 ## L'idée en une phrase
 
