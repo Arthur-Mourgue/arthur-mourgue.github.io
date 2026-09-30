@@ -177,22 +177,22 @@ img, video { display: block; max-width: 100%; }
   align-items: center;
   padding-block: clamp(64px, 10vh, 120px) clamp(56px, 8vh, 104px);
 }
-/* Sticky section nav. The opaque paper background (with its soft halo) hides
-   the cross grid behind the links, and the bar stays at the top of the page
-   while scrolling. padding-right keeps the links clear of the fixed toggle. */
+/* Sticky section nav. The paper chip hugs the links (no full-width bar) and its
+   soft halo hides the cross grid behind it. margin-right keeps it clear of the
+   fixed theme toggle. */
 .hero-nav {
   position: sticky;
   top: 0;
   z-index: 15;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 52px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   gap: 22px;
-  padding-block: 16px;
-  padding-right: 52px;
+  padding: 16px;
   background: var(--paper);
   box-shadow: 0 0 20px 16px var(--paper);
-  border-bottom: 1px solid var(--hair);
 }
 .hero-nav a { font: 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
 .hero-nav a:hover { text-decoration: underline; }
@@ -377,21 +377,18 @@ img, video { display: block; max-width: 100%; }
 /* ==========================================================================
    PROJECT PAGES (articles)
    ========================================================================== */
-/* Sticky so the "Work" link stays reachable while reading a sheet. padding-right
-   keeps the link clear of the fixed theme toggle; the paper background hides the
-   cross grid behind the bar. */
+/* Sticky so the "Work" link stays reachable while reading a sheet. The paper
+   chip hugs the link and its halo hides the cross grid behind it. */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 15;
+  width: fit-content;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-block: 16px;
-  padding-right: 52px;
+  padding: 16px;
   background: var(--paper);
   box-shadow: 0 0 20px 16px var(--paper);
-  border-bottom: 1px solid var(--hair);
 }
 .titleblock {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
