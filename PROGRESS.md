@@ -383,6 +383,15 @@
   `css_version` 43.
 - Vérifié : `./scripts/check.sh` vert.
 
+## 2026-09-30 — hero recentré sous la nav collante
+- Fait : la barre de navigation collante de l'accueil prenait de la place dans le
+  flux et poussait le hero vers le bas. Elle a maintenant une hauteur fixe
+  (`--nav-h: 49px`) annulée par une marge basse négative, donc elle flotte
+  au-dessus du hero au lieu de le décaler : le texte et le dessin LaMain
+  retrouvent leur centrage vertical sur le premier écran (comme avant la barre).
+  Liens en `white-space: nowrap` pour garantir une seule ligne. `css_version` 47.
+- Vérifié : `./scripts/check.sh` vert ; capture Chrome (1440×900 et 390×844).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

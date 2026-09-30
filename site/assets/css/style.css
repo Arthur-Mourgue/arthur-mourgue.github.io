@@ -179,22 +179,28 @@ img, video { display: block; max-width: 100%; }
 }
 /* Sticky section nav. The paper chip hugs the links (no full-width bar) and its
    soft halo hides the cross grid behind it. margin-right keeps it clear of the
-   fixed theme toggle. */
+   fixed theme toggle.
+   The bar floats over the hero instead of pushing it down: a fixed height plus a
+   negative bottom margin of the same value cancels the space it takes in the
+   flow, so the hero still fills the first screen and stays vertically centred. */
 .hero-nav {
+  --nav-h: 49px;
   position: sticky;
   top: 0;
   z-index: 15;
   width: fit-content;
   margin-left: auto;
   margin-right: 52px;
+  margin-bottom: calc(-1 * var(--nav-h));
+  height: var(--nav-h);
   display: flex;
   align-items: center;
   gap: 22px;
-  padding: 16px;
+  padding: 0 16px;
   background: var(--paper);
   border: 1px solid var(--blue);
 }
-.hero-nav a { font: 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
+.hero-nav a { font: 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
 .hero-nav a:hover { text-decoration: underline; }
 .scroll-cue {
   position: absolute; bottom: clamp(20px, 3.5vh, 36px); left: 0;
