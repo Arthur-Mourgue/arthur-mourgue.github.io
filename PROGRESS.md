@@ -372,6 +372,17 @@
 - Vérifié : `./scripts/check.sh` vert ; rendu PDF Chrome (Capra).
 - Commit + push de tout le travail média de la session.
 
+## 2026-09-30 — barres de navigation collantes, papiers pleine largeur
+- Fait : la nav de l'accueil (Work/Research/Background/CV) est sortie du hero et
+  rendue collante (`position: sticky`) avec un fond papier (blanc/noir selon le
+  thème) qui masque la grille de croix derrière les liens. Même traitement pour
+  `.topbar` des fiches projet : le lien « ← Work » reste en haut pendant le
+  défilement. `scroll-margin-top` des sections/fiches relevé pour compenser la
+  barre. Section recherche : bloc « Local rules for robot swarms » retiré, la
+  liste des papiers passe en pleine largeur (lien à gauche, référence à droite).
+  `css_version` 43.
+- Vérifié : `./scripts/check.sh` vert.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

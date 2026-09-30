@@ -157,7 +157,7 @@ img, video { display: block; max-width: 100%; }
 .media-row figcaption { grid-column: 1 / -1; text-align: center; }
 
 /* ---------- Section heads ---------- */
-.section { padding-top: var(--section); scroll-margin-top: 16px; }
+.section { padding-top: var(--section); scroll-margin-top: 76px; }
 /* The drawing list sits closer to the hero than the later sections. */
 #work { padding-top: clamp(32px, 4vh, 56px); }
 .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 20px; }
@@ -177,10 +177,22 @@ img, video { display: block; max-width: 100%; }
   align-items: center;
   padding-block: clamp(64px, 10vh, 120px) clamp(56px, 8vh, 104px);
 }
-/* right: 48px keeps the nav clear of the fixed theme toggle. */
+/* Sticky section nav. The opaque paper background (with its soft halo) hides
+   the cross grid behind the links, and the bar stays at the top of the page
+   while scrolling. padding-right keeps the links clear of the fixed toggle. */
 .hero-nav {
-  position: absolute; top: clamp(20px, 3.5vh, 36px); right: 48px;
-  display: flex; gap: 22px;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 22px;
+  padding-block: 16px;
+  padding-right: 52px;
+  background: var(--paper);
+  box-shadow: 0 0 20px 16px var(--paper);
+  border-bottom: 1px solid var(--hair);
 }
 .hero-nav a { font: 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
 .hero-nav a:hover { text-decoration: underline; }
@@ -296,7 +308,7 @@ img, video { display: block; max-width: 100%; }
   column-gap: var(--gap);
   align-items: center;
   padding-top: clamp(80px, 11vh, 128px);
-  scroll-margin-top: 24px;
+  scroll-margin-top: 88px;
 }
 .sheet__text { display: flex; flex-direction: column; gap: 16px; padding: 6px; }
 .sheet__text h3 { font-size: var(--h2); font-weight: 700; }
@@ -320,16 +332,16 @@ img, video { display: block; max-width: 100%; }
    ========================================================================== */
 .research {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   column-gap: var(--gap);
   align-items: start;
 }
 .research__block { display: flex; flex-direction: column; gap: 14px; padding: 6px; }
-/* Separator between the research project and the papers column. */
-.research__block + .research__block { border-left: 1px solid var(--blue); }
 .research__block h3 { font-size: calc(var(--h2) * 0.8); font-weight: 700; }
 .papers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); background: var(--paper); }
-.papers li { padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+.papers li { padding: 16px 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; }
+.papers li a { flex: 1 1 420px; }
+.papers li .spec { flex: 0 0 auto; margin-left: auto; }
 .papers li + li { border-top: 1px solid var(--hair); }
 
 /* ==========================================================================
@@ -365,8 +377,22 @@ img, video { display: block; max-width: 100%; }
 /* ==========================================================================
    PROJECT PAGES (articles)
    ========================================================================== */
-/* padding-right keeps the sheet label clear of the fixed theme toggle. */
-.topbar { display: flex; justify-content: space-between; align-items: center; padding-block: 32px; padding-right: 48px; }
+/* Sticky so the "Work" link stays reachable while reading a sheet. padding-right
+   keeps the link clear of the fixed theme toggle; the paper background hides the
+   cross grid behind the bar. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 16px;
+  padding-right: 52px;
+  background: var(--paper);
+  box-shadow: 0 0 20px 16px var(--paper);
+  border-bottom: 1px solid var(--hair);
+}
 .titleblock {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--blue); border-bottom: none;
@@ -410,18 +436,17 @@ img, video { display: block; max-width: 100%; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 1fr); row-gap: 40px; padding-top: 88px; }
+  .hero { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
   .hand-figure { justify-self: center; width: min(100%, 440px); }
   .hand__notes { display: none; }
   .sheet, .research, .background { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
-  .research__block + .research__block { border-left: none; }
   .cards { grid-template-columns: minmax(0, 1fr); }
   .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .titleblock__cell:nth-child(odd of .titleblock__cell) { border-left: none; }
 }
 @media (max-width: 640px) {
   .col-year { display: none; }
-  .hero-nav { gap: 14px; right: 44px; }
+  .hero-nav { gap: 14px; }
   .cv-table td:first-child { width: 96px; white-space: normal; }
   .media-row { grid-template-columns: 1fr; }
 }
