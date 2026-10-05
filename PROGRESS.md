@@ -405,6 +405,21 @@
 - Vérifié : `./scripts/check.sh` vert ; captures Chrome (accueil, sections, fiche
   LaMain, onde au clic).
 
+## 2026-10-05 — correctifs : onde sur la bonne grille, gif v0, titres
+- Fait : (1) L'onde au clic dessinait sa propre grille de croix, décalée de
+  celle du `body` (boîte de 1040px positionnée au clic) — double quadrillage
+  visible. La couche `.ripple` couvre maintenant toute la page (`inset: 0`,
+  même ancrage que le halo de survol) et son quadrillage 28px partage l'origine
+  du fond du `body` : les croix bleues se posent sur les croix grises. Le cercle
+  est un `clip-path` centré sur `--rx/--ry` (coords page mises par site.js).
+  (2) Le gif v0 est aussi dans sheet-01 de l'accueil (la main avant « Read the
+  full sheet »), comme demandé. (3) Titres de section en gros serif gras **noir**
+  (`.section-head h2`, taille `var(--h2)`) ; sous-titres projets un peu plus
+  petits et **bleus** (`.sheet__text h3`, `calc(var(--h2) * 0.82)`). « Research
+  and papers » → « Papers ». `css_version` 49, `js_version` 14.
+- Vérifié : `./scripts/check.sh` vert ; captures Chrome (titres, onde à deux
+  instants de l'animation, zoom sur la grille).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

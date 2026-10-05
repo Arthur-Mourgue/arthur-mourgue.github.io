@@ -34,14 +34,12 @@
   });
 })();
 
-// Click ripple: every click drops a growing circle of accent crosses at the
-// point, on top of the hover glow, so the whole grid reacts. The circle is a
-// fixed-size div centred on the click; the .ripple keyframes grow its clip-path
-// and fade it out. Runs on any pointer type; we remove the node when the
-// animation ends and skip reduced-motion users.
+// Click ripple: every click sends a wave through the cross grid — the existing
+// crosses turn blue as the circle grows past them. The layer is a full-page div
+// (see .ripple in style.css); we only hand it the click point in page coordinates
+// and drop it when the animation ends. Any pointer type, skipped under
+// prefers-reduced-motion.
 (function () {
-  var RADIUS = 520;     // half the ripple box size, in px (matches .ripple clip-path)
-
   var reduced = matchMedia("(prefers-reduced-motion: reduce)");
 
   document.addEventListener("click", function (e) {
@@ -49,13 +47,10 @@
 
     var ripple = document.createElement("div");
     ripple.className = "ripple";
-    var size = RADIUS * 2;
-    ripple.style.width = size + "px";
-    ripple.style.height = size + "px";
-    // pageX/pageY (document-relative): the ripple is position: absolute in body
-    // and must scroll with the page, like the hover glow.
-    ripple.style.left = e.pageX - RADIUS + "px";
-    ripple.style.top = e.pageY - RADIUS + "px";
+    // pageX/pageY (document-relative): the layer is position: absolute in body
+    // and scrolls with the page, so the circle must use page coordinates too.
+    ripple.style.setProperty("--rx", e.pageX + "px");
+    ripple.style.setProperty("--ry", e.pageY + "px");
 
     ripple.addEventListener("animationend", function () {
       ripple.remove();

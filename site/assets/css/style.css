@@ -109,15 +109,16 @@ img, video { display: block; max-width: 100%; }
   }
 }
 
-/* Click ripple: a circle of accent crosses that expands from the click point and
-   fades, so the grid reacts when you click anywhere on the page. site.js inserts
-   a fixed-size div as a body child. The blue is painted as a background colour
-   and revealed through the tiled crosses mask (masks resolve currentColor
-   reliably), while a growing clip-path circle does the expansion so the 28px
-   crosses keep their size. z-index -1 keeps it behind the content but above the
-   page background; pointer-events none so it never blocks clicks. */
+/* Click ripple: a wave that turns the page's own crosses blue as it passes.
+   The layer spans the whole document (inset: 0, anchored to body like the hover
+   glow) so its 28px crosses share body's background origin: the blue crosses land
+   exactly on the grey ones instead of forming a second, offset grid. The wave is a
+   clip-path circle centred on --rx/--ry (the click, in page coordinates, set by
+   site.js) growing to RADIUS and fading. z-index -1 keeps it behind the content
+   but above the page background; pointer-events none so it never blocks clicks. */
 .ripple {
   position: absolute;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
   background: var(--blue);
@@ -130,8 +131,14 @@ img, video { display: block; max-width: 100%; }
   animation: ripple 900ms ease-out forwards;
 }
 @keyframes ripple {
-  0%   { clip-path: circle(0% at center);  opacity: 1; }
-  100% { clip-path: circle(50% at center); opacity: 0; }
+  0% {
+    clip-path: circle(0px at var(--rx, 50%) var(--ry, 50%));
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(520px at var(--rx, 50%) var(--ry, 50%));
+    opacity: 0;
+  }
 }
 
 /* ---------- Small parts ---------- */
@@ -197,7 +204,9 @@ img, video { display: block; max-width: 100%; }
   margin-bottom: clamp(24px, 3vh, 40px);
   border-bottom: 1px solid var(--blue);
 }
-.section-head .label { color: var(--blue); }
+/* Section titles carry the same size and weight as the project names they head,
+   but stay in ink: the section is the structure, the projects wear the accent. */
+.section-head h2 { font-size: var(--h2); font-weight: 700; color: var(--ink); }
 
 /* ==========================================================================
    HERO. Exactly one screen at normal zoom.
@@ -352,7 +361,7 @@ img, video { display: block; max-width: 100%; }
   scroll-margin-top: 88px;
 }
 .sheet__text { display: flex; flex-direction: column; gap: 16px; padding: 6px; }
-.sheet__text h3 { font-size: var(--h2); font-weight: 700; }
+.sheet__text h3 { font-size: calc(var(--h2) * 0.82); font-weight: 700; color: var(--blue); }
 .sheet figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
 /* Skills insert: the tech list, framed, above the "Read the full sheet" link. */
 .sheet__tags {
