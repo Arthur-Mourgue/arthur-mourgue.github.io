@@ -435,6 +435,26 @@
 - Vérifié : `./scripts/check.sh` vert ; captures Chrome ; largeur mesurée dans
   Chrome (520px au lieu de 256px).
 
+## 2026-10-05 — zoom et redimensionnement du texte
+- Fait : audit de zoom sur les 5 pages. Deux vrais défauts trouvés et corrigés.
+  (1) La liste Papers débordait horizontalement (`.papers li .spec` en
+  `flex: 0 0 auto` : la référence longue ne pouvait pas rétrécir et poussait la
+  page plus large que le viewport → barre de défilement latérale sur écran étroit
+  et sous zoom navigateur). `min-width: 0` + `flex: 0 1 auto` sur les deux
+  enfants : la référence passe sous le titre et s'enroule.
+  (2) Toutes les tailles de police étaient en `px`, donc le zoom **texte seul**
+  (taille de police par défaut du navigateur / réglage utilisateur) ne changeait rien
+  changer : mesuré, h1 restait à 28.8px avec la racine à 200%. Tout est passé en
+  `rem` (échelle --h1/--lead/--body/--h2/--section, labels mono, cartes, CV,
+  figcaptions, titre du hero) : rendu identique à la racine 16px par défaut, mais
+  le texte suit maintenant le réglage utilisateur. `--nav-h` de la barre collante
+  devient `calc(0.9625rem + 2rem + 2px)` : la barre et sa marge négative
+  grandissent ensemble, donc le hero reste centré (49px → 73px → 97px à
+  100/150/200%). `prefers-reduced-motion` était déjà couvert (balayage main,
+  notes, pulsation des statuts, onde au clic). `css_version` 51.
+- Vérifié : `./scripts/check.sh` vert ; débordement mesuré sur les 5 pages à
+  485/768/1280 px (aucun) ; zoom texte mesuré à 100/150/200 %.
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
