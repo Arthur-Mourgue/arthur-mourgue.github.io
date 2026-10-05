@@ -392,6 +392,19 @@
   Liens en `white-space: nowrap` pour garantir une seule ligne. `css_version` 47.
 - Vérifié : `./scripts/check.sh` vert ; capture Chrome (1440×900 et 390×844).
 
+## 2026-10-05 — photo LaMain v0, titres de section, onde au clic
+- Fait : la première image de la fiche LaMain est désormais le gif `lamainv0.gif`
+  (la vraie main v0 montée sur un robot) à la place du rendu CAD `main-ouverte.png`.
+  L'accueil gagne des titres de section mono uniformes (Selected work, Research and
+  papers, Other projects, Background) avec un filet bleu sous chacun, pour bien
+  délimiter les blocs ; l'ancien label « Papers » a été absorbé par le titre.
+  Chaque clic fait apparaître une onde circulaire qui traverse la grille de croix
+  (`.ripple`, `clip-path` qui grandit + fondu, masque croisillons teintés) ; le
+  nœud est retiré à la fin de l'animation et l'effet est ignoré si
+  `prefers-reduced-motion`. `css_version` 48, `js_version` 13.
+- Vérifié : `./scripts/check.sh` vert ; captures Chrome (accueil, sections, fiche
+  LaMain, onde au clic).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...

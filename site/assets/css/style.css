@@ -13,6 +13,7 @@
   --hair: rgba(26, 13, 171, 0.35);
   --slot: rgba(244, 242, 237, 0.85);
   --grid: url("../img/crosses.svg");
+  --crosses-accent: url("../img/crosses-accent.svg");
 
   --serif: "Times New Roman", Times, Georgia, serif;
   --mono: ui-monospace, Menlo, Consolas, monospace;
@@ -108,6 +109,31 @@ img, video { display: block; max-width: 100%; }
   }
 }
 
+/* Click ripple: a circle of accent crosses that expands from the click point and
+   fades, so the grid reacts when you click anywhere on the page. site.js inserts
+   a fixed-size div as a body child. The blue is painted as a background colour
+   and revealed through the tiled crosses mask (masks resolve currentColor
+   reliably), while a growing clip-path circle does the expansion so the 28px
+   crosses keep their size. z-index -1 keeps it behind the content but above the
+   page background; pointer-events none so it never blocks clicks. */
+.ripple {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--blue);
+  -webkit-mask-image: var(--crosses-accent);
+          mask-image: var(--crosses-accent);
+  -webkit-mask-size: 28px 28px;
+          mask-size: 28px 28px;
+  -webkit-mask-repeat: repeat;
+          mask-repeat: repeat;
+  animation: ripple 900ms ease-out forwards;
+}
+@keyframes ripple {
+  0%   { clip-path: circle(0% at center);  opacity: 1; }
+  100% { clip-path: circle(50% at center); opacity: 0; }
+}
+
 /* ---------- Small parts ---------- */
 .label {
   font: 11px/1.4 var(--mono);
@@ -160,9 +186,18 @@ img, video { display: block; max-width: 100%; }
 .section { padding-top: var(--section); scroll-margin-top: 76px; }
 /* The drawing list sits closer to the hero than the later sections. */
 #work { padding-top: clamp(32px, 4vh, 56px); }
-.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 20px; }
-.section-head > div { display: flex; flex-direction: column; gap: 8px; padding-right: 12px; }
-.section-head h2 { font-size: var(--h2); font-weight: 700; }
+/* Every top-level section carries the same mono, uppercase, blue label and a
+   hairline under it, so the blocks read as clearly separated units. */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 12px;
+  margin-bottom: clamp(24px, 3vh, 40px);
+  border-bottom: 1px solid var(--blue);
+}
+.section-head .label { color: var(--blue); }
 
 /* ==========================================================================
    HERO. Exactly one screen at normal zoom.
