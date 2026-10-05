@@ -181,10 +181,16 @@ img, video { display: block; max-width: 100%; }
 /* Narrower frames for a small standalone figure, centred in the column. */
 .media--narrow { max-width: 440px; margin-inline: auto; }
 .media--medium { max-width: 580px; margin-inline: auto; }
+/* Wider than the other media, for the LaMain v0 gif: the main visual of the first
+   sheet. width 100% rather than auto side margins alone, because on a flex item
+   auto cross-axis margins replace the stretch and the frame would shrink to the
+   image's intrinsic width instead of following the column. */
+.media--wide { width: 100%; max-width: 520px; margin-inline: auto; }
 .prose figure:has(.media--narrow) figcaption,
 .prose figure:has(.media--medium) figcaption,
 .sheet figure:has(.media--narrow) figcaption,
-.sheet figure:has(.media--medium) figcaption { text-align: center; }
+.sheet figure:has(.media--medium) figcaption,
+.sheet figure:has(.media--wide) figcaption { text-align: center; }
 /* Two images side by side. */
 .media-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.6vw, 20px); align-items: start; }
 .media-row figcaption { grid-column: 1 / -1; text-align: center; }
@@ -202,11 +208,14 @@ img, video { display: block; max-width: 100%; }
   gap: 24px;
   padding-bottom: 12px;
   margin-bottom: clamp(24px, 3vh, 40px);
-  border-bottom: 1px solid var(--blue);
 }
 /* Section titles carry the same size and weight as the project names they head,
-   but stay in ink: the section is the structure, the projects wear the accent. */
+   but stay in ink: the section is the structure, the projects wear the accent.
+   No rule here: the block below (a table or a list) brings its own border, and
+   two horizontal lines in a row read as a mistake. */
 .section-head h2 { font-size: var(--h2); font-weight: 700; color: var(--ink); }
+/* Sits close to the table's own top border so the title still groups with it. */
+.section-head--table { margin-bottom: 12px; }
 
 /* ==========================================================================
    HERO. Exactly one screen at normal zoom.

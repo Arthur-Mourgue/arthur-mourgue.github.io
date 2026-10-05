@@ -420,6 +420,21 @@
 - Vérifié : `./scripts/check.sh` vert ; captures Chrome (titres, onde à deux
   instants de l'animation, zoom sur la grille).
 
+## 2026-10-05 — plus de double barre, tableau sans en-tête, gif v0 agrandi
+- Fait : les titres de section ne portent plus de filet bleu — le tableau ou la
+  liste en dessous a déjà sa propre bordure, et deux lignes horizontales
+  successives font doublon (`.section-head`, plus de `border-bottom` ;
+  `.section-head--table` resserre l'écart quand un tableau suit). La ligne
+  d'en-tête `Project / Year / Status` du tableau Selected work est retirée : les
+  colonnes se lisent seules, les années et les statuts restent dans les cellules.
+  Caption du sheet-01 raccourcie à « LaMain v0, the first prototype. » et
+  « Fusion 360 » retiré des tags LaMain. Le gif v0 passe en `.media--wide`
+  (520px, centré) : il ne suivait pas la colonne parce que `margin-inline: auto`
+  sur un élément flex remplace l'étirement (le cadre se réduisait à la largeur
+  intrinsèque de l'image, 256px) — d'où `width: 100%`. `css_version` 50.
+- Vérifié : `./scripts/check.sh` vert ; captures Chrome ; largeur mesurée dans
+  Chrome (520px au lieu de 256px).
+
 ## AAAA-MM-JJ — F001
 - Fait : ...
 - Décisions prises : ...
